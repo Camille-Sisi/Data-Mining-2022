@@ -3,12 +3,9 @@
 
 
 ## À propos de ce document {-}
+Ce document est la seconde version du cours de Data Mining dispensé aux étudiants de deuxième année de l’option Data du master MECI parcours PISE et CCESE. Le cours est partagé avec Claude Grasland dont vous trouverez la partie de cours à l’adresse suivante : https://ClaudeGrasland.github.io/DataMining1.
 
-Ce document est la seconde version du cours de Data Mining dispensé aux étudiants de deuxième année de l'option Data du master MECI parcours PISE et CCESE. 
-
-Il est basé sur `r R.Version()[["version.string"]]`.
-
-Ce document est régulièrement corrigé et mis à jour. La version de référence est disponible en ligne à l'adresse :
+Ce document est régulièrement corrigé et mis à jour. La version de référence est disponible en ligne à l’adresse :
 
 - [https://github.com/Camille-Sisi/Data-Mining-Seance1](https://github.com/Camille-Sisi/github.io-Data-Mining-Seance1).
 
