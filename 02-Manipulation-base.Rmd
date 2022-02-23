@@ -42,14 +42,14 @@ ParcoursLic %>%
   select(Bac, Serie) %>% head(4) %>% gt()
 ```
   
-  
-  
+
+
+
 Enfin, comme on a dit que l'on avait des informations sur deux champs différents, on peut très bien décider de créer deux nouvelles tables de données, en retenant seulement les informations correspondant au champ concerné. La première que l'on peut intituler "PassageL1L2" comprendrait toutes les lignes de la base initiale "ParcoursLic" mais sans les colonnes "reussite_3_ans", "reussite_4_ans", "reussite_3_4_ans", "effectif_neobacheliers_reussite" et "cohorte_reussite", alors que la seconde que l'on peut intituler "ReussiteLic" comprendrait ces variables ainsi que toutes les lignes.   
 
 Comme vous le savez très probablement, dans le langage `tidyverse`, pour faire des sélections sur les lignes ou observations dans une table de données, on utilise la fonction `filter()` ; pour faire des sélections sur les colonnes ou variables, on utilise la fonction `select()`  ; pour supprimer des variables, on utilise `select()` également (dans le langage `R` de base, on peut utiliser la fonction `subset()`).    
 
-
-Créer donc ces deux nouvelles bases de données :  
+Créer donc ces deux nouvelles bases de données.
 ```{r echo=FALSE}
 PassageL1L2 <- ParcoursLic %>% select(-c("reussite_3_ans", "reussite_4_ans", "reussite_3_4_ans",
                                          "effectif_neobacheliers_reussite", "cohorte_reussite"))
@@ -64,7 +64,7 @@ PassageL1L2 %>% head(5) %>% gt()
 ReussiteLic %>% head(5) %>% gt()
 ```
 
-\iffalse
+
 <div class="solution-exo">
 ```{r eval=FALSE}
 PassageL1L2 <- ParcoursLic %>% select(-c("reussite_3_ans", "reussite_4_ans", "reussite_3_4_ans",
