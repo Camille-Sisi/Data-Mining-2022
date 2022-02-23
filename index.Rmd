@@ -1,0 +1,26 @@
+--- 
+title: "DATA MINING"
+subtitle: "Master Meci - Parcours PISE et CCESE - Option Data"
+author: "Camille Signoretto, Maître de conférences en économie, Université de Paris"
+date: "`r Sys.Date()`"
+documentclass: book
+link-citations: yes
+description: Titre du cours
+site: bookdown::bookdown_site
+always_allow_html: yes
+---
+
+```{r setup, include = FALSE, cache = FALSE}
+library(knitr)
+library(tidyverse)
+
+knitr::opts_chunk$set(cache = TRUE,
+                      echo = TRUE,
+                      comment = "")
+
+```
+
+
+
+
+

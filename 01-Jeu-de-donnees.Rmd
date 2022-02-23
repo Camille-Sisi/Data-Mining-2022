@@ -1,0 +1,30 @@
+# Récupération du jeu de données sur une API {#c01-Jeu-de-donnees}
+
+<div align="justify">
+
+```{r message=FALSE, warning=FALSE}
+# On charge les librairies principales que l'on va utiliser
+library(knitr)
+library(httr)
+library(jsonlite)
+library(tidyverse)
+library(gt)
+library(rstatix)
+library(janitor)
+```
+
+On récupère le jeu de données sur lequel on va travailler au cours de cette séance sur le site de l'open data du Ministère de l'enseignement supérieur et de la recherche : j'ai choisi ici de travailler sur les parcours et la réussite en licence des bacheliers nouvellement inscrits, la page présentant cette base est consultable <a href="https://data.enseignementsup-recherche.gouv.fr/explore/dataset/fr-esr-parcours-et-reussite-des-bacheliers-en-licence/information/" target="_blank">ici</a>. En allant dans l'onglet 'API', on peut récupérer l'adresse à inscrire dans notre fonction `GET`. On récupère ensuite le contenu puis la base de données (cf. séance 1 de C. Grasland).  
+
+```{r message=FALSE, warning=FALSE}
+get_url <- GET("https://data.enseignementsup-recherche.gouv.fr/api/records/1.0/search/?dataset=fr-esr-parcours-et-reussite-des-bacheliers-en-licence&q=&rows=10000&start=0") #liste 
+content <- fromJSON(rawToChar(get_url$content)) #liste 
+ParcoursLic <- content$records$fields
+```
+La description sur le site nous donne le champ général et d'autres informations sur les variables :
+
+- le champ couvre l'ensemble des universités françaises, sauf l'université de Nouvelle Calédonie ; 
+- les informations ne sont pas brutes dans la mesure où elles ont déjà été retravaillées ; nous n'avons pas, par conséquent, comme observations les individus inscrits et diplômés, mais des indicateurs déjà construits et donc plus ou moins agrégés.  
+
+Plus précisément, on a en réalité deux types d'informations qui renvoient à deux champs différents : d'abord sur le passage en deuxième année en un ou deux ans dont le "champ des indicateurs est constitué des bacheliers 2014 inscrits en 2014-2015 en première année de licence (hors licence professionnelle) dans l’enseignement supérieur public" ; puis sur l'obtention de la licence en trois ou quatre ans dont le "champ des indicateurs est constitué des bacheliers 2012 inscrits en 2012-2013 en première année de licence dans l’enseignement supérieur public". Dans les deux cas, les étudiants ayant pris une inscription parallèle en STS, DUT ou CPGE, sont exclus.  
+
+Il faudra donc faire attention dans l'interprétation des traitements statistiques que l'on pourra faire de ces données. L'élément important est la "base", c'est-à-dire le dénominateur des indicateurs qui nous sont donnés, c'est cette variable qu'il faudra identifier et qui nous permettra de connaître les effectifs globaux des bacheliers inscrits selon l'année et ensuite par catégories.  
