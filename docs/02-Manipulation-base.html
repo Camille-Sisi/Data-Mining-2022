@@ -1716,7 +1716,7 @@ On remarque que certaines variables donnent la même information mais sont codé
 </div>
 <p>Enfin, comme on a dit que l’on avait des informations sur deux champs différents, on peut très bien décider de créer deux nouvelles tables de données, en retenant seulement les informations correspondant au champ concerné. La première que l’on peut intituler “PassageL1L2” comprendrait toutes les lignes de la base initiale “ParcoursLic” mais sans les colonnes “reussite_3_ans”, “reussite_4_ans”, “reussite_3_4_ans”, “effectif_neobacheliers_reussite” et “cohorte_reussite”, alors que la seconde que l’on peut intituler “ReussiteLic” comprendrait ces variables ainsi que toutes les lignes.</p>
 <p>Comme vous le savez très probablement, dans le langage <code>tidyverse</code>, pour faire des sélections sur les lignes ou observations dans une table de données, on utilise la fonction <code>filter()</code> ; pour faire des sélections sur les colonnes ou variables, on utilise la fonction <code>select()</code> ; pour supprimer des variables, on utilise <code>select()</code> également (dans le langage <code>R</code> de base, on peut utiliser la fonction <code>subset()</code>).</p>
-<p>Créer donc ces deux nouvelles bases de données :</p>
+<p>Créer donc ces deux nouvelles bases de données.</p>
 <div id="uygjiqgdtn" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
@@ -2799,7 +2799,6 @@ On remarque que certaines variables donnent la même information mais sont codé
   
 </table>
 </div>
-\iffalse
 <div class="solution-exo">
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="02-Manipulation-base.html#cb11-1" aria-hidden="true" tabindex="-1"></a>PassageL1L2 <span class="ot">&lt;-</span> ParcoursLic <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="st">&quot;reussite_3_ans&quot;</span>, <span class="st">&quot;reussite_4_ans&quot;</span>, <span class="st">&quot;reussite_3_4_ans&quot;</span>,</span>
 <span id="cb11-2"><a href="02-Manipulation-base.html#cb11-2" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">&quot;effectif_neobacheliers_reussite&quot;</span>, <span class="st">&quot;cohorte_reussite&quot;</span>))</span>
