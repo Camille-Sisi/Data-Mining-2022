@@ -10,7 +10,7 @@ Il est basé sur `r R.Version()[["version.string"]]`.
 
 Ce document est régulièrement corrigé et mis à jour. La version de référence est disponible en ligne à l'adresse :
 
-- [https://github.com/Camille-Sisi/github.io-Data-Mining-Seance1](https://github.com/Camille-Sisi/github.io-Data-Mining-Seance1).
+- [https://github.com/Camille-Sisi/Data-Mining-Seance1](https://github.com/Camille-Sisi/github.io-Data-Mining-Seance1).
 
 Pour toute suggestion ou correction, il est possible de me contacter [par mail](mailto:camille.signoretto@u-paris.fr)
 
