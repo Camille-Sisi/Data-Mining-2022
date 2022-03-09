@@ -1,0 +1,2808 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4.2 Manipulation des variables quantitatives | DATA MINING</title>
+  <meta name="description" content="Titre du cours" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4.2 Manipulation des variables quantitatives | DATA MINING" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Titre du cours" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4.2 Manipulation des variables quantitatives | DATA MINING" />
+  
+  <meta name="twitter:description" content="Titre du cours" />
+  
+
+<meta name="author" content="Camille Signoretto, Maître de conférences en économie, Université de Paris" />
+
+
+<meta name="date" content="2022-03-09" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="manipulation-des-variables-qualitatives.html"/>
+
+<script src="libs/header-attrs-2.12/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="css/tidyverse.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./index.html">Data Mining :  <em>Camille Signoretto</em></a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#Presentation">Présentation<span></span></a>
+<ul>
+<li><a href="à-propos-de-ce-document.html#à-propos-de-ce-document">À propos de ce document<span></span></a></li>
+<li><a href="prérequis.html#prérequis">Prérequis<span></span></a></li>
+<li><a href="remerciements.html#remerciements">Remerciements<span></span></a></li>
+<li><a href="licence.html#licence">Licence<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="c00-Presentation.html"><a href="c00-Presentation.html"><i class="fa fa-check"></i><b>1</b> Présentation<span></span></a>
+<ul>
+<li><a href="à-propos-de-ce-document-1.html#à-propos-de-ce-document-1">À propos de ce document<span></span></a></li>
+<li><a href="prérequis-1.html#prérequis-1">Prérequis<span></span></a></li>
+<li><a href="remerciements-1.html#remerciements-1">Remerciements<span></span></a></li>
+<li><a href="licence-1.html#licence-1">Licence<span></span></a></li>
+</ul></li>
+<li class="part"><span><b>I Séance n°1 : Data Wrangling<span></span></b></span></li>
+<li class="chapter" data-level="2" data-path="c01-Data-Wrangling.html"><a href="c01-Data-Wrangling.html"><i class="fa fa-check"></i><b>2</b> Récupération du jeu de données sur une API<span></span></a></li>
+<li class="chapter" data-level="3" data-path="c02-Manipulation-base.html"><a href="c02-Manipulation-base.html"><i class="fa fa-check"></i><b>3</b> Manipulation de la base<span></span></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="format-des-données---wide-ou-long.html"><a href="format-des-données---wide-ou-long.html"><i class="fa fa-check"></i><b>3.1</b> Format des données - WIDE ou LONG<span></span></a></li>
+<li class="chapter" data-level="3.2" data-path="séparer-les-variables-séparer-les-données.html"><a href="séparer-les-variables-séparer-les-données.html"><i class="fa fa-check"></i><b>3.2</b> Séparer les variables, séparer les données<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="c03-Manipulation-variables.html"><a href="c03-Manipulation-variables.html"><i class="fa fa-check"></i><b>4</b> Manipulation des variables<span></span></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="manipulation-des-variables-qualitatives.html"><a href="manipulation-des-variables-qualitatives.html"><i class="fa fa-check"></i><b>4.1</b> Manipulation des variables qualitatives<span></span></a></li>
+<li class="chapter" data-level="4.2" data-path="manipulation-des-variables-quantitatives.html"><a href="manipulation-des-variables-quantitatives.html"><i class="fa fa-check"></i><b>4.2</b> Manipulation des variables quantitatives<span></span></a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="manipulation-des-variables-quantitatives.html"><a href="manipulation-des-variables-quantitatives.html#détecter-et-visualiser-les-valeurs-manquantes"><i class="fa fa-check"></i><b>4.2.1</b> Détecter et “visualiser” les valeurs manquantes<span></span></a></li>
+<li class="chapter" data-level="4.2.2" data-path="manipulation-des-variables-quantitatives.html"><a href="manipulation-des-variables-quantitatives.html#gérer-les-valeurs-manquantes"><i class="fa fa-check"></i><b>4.2.2</b> Gérer les valeurs manquantes<span></span></a></li>
+<li class="chapter" data-level="4.2.3" data-path="manipulation-des-variables-quantitatives.html"><a href="manipulation-des-variables-quantitatives.html#détecter-et-visualiser-les-valeurs-aberrantes"><i class="fa fa-check"></i><b>4.2.3</b> Détecter et “visualiser” les valeurs aberrantes<span></span></a></li>
+<li class="chapter" data-level="4.2.4" data-path="manipulation-des-variables-quantitatives.html"><a href="manipulation-des-variables-quantitatives.html#découper-en-classes-une-variable-quantitative"><i class="fa fa-check"></i><b>4.2.4</b> Découper en classes une variable quantitative<span></span></a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">DATA MINING</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="manipulation-des-variables-quantitatives" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Manipulation des variables quantitatives<a href="manipulation-des-variables-quantitatives.html#manipulation-des-variables-quantitatives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="manipulation-des-variables-quantitatives.html#cb33-1" aria-hidden="true" tabindex="-1"></a>PassageL1L2 <span class="sc">%&gt;%</span> <span class="fu">select_if</span>(is.numeric) <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">4</span>) <span class="sc">%&gt;%</span> <span class="fu">gt</span>()</span></code></pre></div>
+<div id="hhfsyemtpo" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#hhfsyemtpo .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#hhfsyemtpo .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hhfsyemtpo .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#hhfsyemtpo .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#hhfsyemtpo .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hhfsyemtpo .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hhfsyemtpo .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#hhfsyemtpo .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#hhfsyemtpo .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#hhfsyemtpo .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#hhfsyemtpo .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#hhfsyemtpo .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#hhfsyemtpo .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#hhfsyemtpo .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#hhfsyemtpo .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#hhfsyemtpo .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#hhfsyemtpo .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hhfsyemtpo .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#hhfsyemtpo .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#hhfsyemtpo .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hhfsyemtpo .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#hhfsyemtpo .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#hhfsyemtpo .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hhfsyemtpo .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hhfsyemtpo .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#hhfsyemtpo .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#hhfsyemtpo .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hhfsyemtpo .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hhfsyemtpo .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hhfsyemtpo .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hhfsyemtpo .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hhfsyemtpo .gt_left {
+  text-align: left;
+}
+
+#hhfsyemtpo .gt_center {
+  text-align: center;
+}
+
+#hhfsyemtpo .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#hhfsyemtpo .gt_font_normal {
+  font-weight: normal;
+}
+
+#hhfsyemtpo .gt_font_bold {
+  font-weight: bold;
+}
+
+#hhfsyemtpo .gt_font_italic {
+  font-style: italic;
+}
+
+#hhfsyemtpo .gt_super {
+  font-size: 65%;
+}
+
+#hhfsyemtpo .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#hhfsyemtpo .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#hhfsyemtpo .gt_slash_mark {
+  font-size: 0.7em;
+  line-height: 0.7em;
+  vertical-align: 0.15em;
+}
+
+#hhfsyemtpo .gt_fraction_numerator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: 0.45em;
+}
+
+#hhfsyemtpo .gt_fraction_denominator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: -0.05em;
+}
+</style>
+<table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">passage_en_l2_2_ans</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">effectif_neobacheliers_passage</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">passage_en_l2_1_2_ans</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">reorientation_en_dut</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">reorientation_en_dut_1_an</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">redoublement_en_l1</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">passage_en_l2_1_an</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">reorientation_en_dut_2_ans</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">0</td></tr>
+    <tr><td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">10</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">4</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">0</td></tr>
+    <tr><td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">3</td>
+<td class="gt_row gt_right">3</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">2</td>
+<td class="gt_row gt_right">0</td></tr>
+    <tr><td class="gt_row gt_right">NA</td>
+<td class="gt_row gt_right">NA</td>
+<td class="gt_row gt_right">NA</td>
+<td class="gt_row gt_right">NA</td>
+<td class="gt_row gt_right">NA</td>
+<td class="gt_row gt_right">NA</td>
+<td class="gt_row gt_right">NA</td>
+<td class="gt_row gt_right">NA</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+<p>Nous avons 8 variables numériques : notre variable clé ‘effectif_neobacheliers_passage’, 3 variables renseignant de l’année de passage en L2 - ‘passage_en_l2_1_an’, ‘passage_en_l2_1_2_ans’, ‘passage_en_l2_2_ans’, 1 variable de ‘redoublement_en_l1’, et de nouveau 3 variables renseignant la réorientation en DUT selon l’année - ‘reorientation_en_dut’, ‘reorientation_en_dut_1_an’, ‘reorientation_en_dut_2_ans’. On voit par ailleurs qu’il y a des valeurs manquantes pour ces variables.</p>
+<div id="détecter-et-visualiser-les-valeurs-manquantes" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Détecter et “visualiser” les valeurs manquantes<a href="manipulation-des-variables-quantitatives.html#détecter-et-visualiser-les-valeurs-manquantes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Même si l’information nous avait été donnée par la fonction <code>summary()</code>, on peut également compter le nombre de valeurs manquantes <code>NA</code> pour chacune des variables avec la fonction <code>colSums()</code>, cela est plus synthétique que <code>summary()</code> qui nous donne d’autres informations par ailleurs :</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="manipulation-des-variables-quantitatives.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ou en langage tidyverse sur les seules variables numériques :</span></span>
+<span id="cb34-2"><a href="manipulation-des-variables-quantitatives.html#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co"># PassageL1L2 %&gt;% filter_if(is.numeric) %&gt;% summarise_all(funs(sum(is.na(.))))</span></span>
+<span id="cb34-3"><a href="manipulation-des-variables-quantitatives.html#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(PassageL1L2))</span></code></pre></div>
+<pre><code>           passage_en_l2_2_ans effectif_neobacheliers_passage 
+                           959                            959 
+        sect_disciplinaire_lib                           sexe 
+                             0                              0 
+                age_au_bac_lib          passage_en_l2_1_2_ans 
+                             0                            959 
+                 serie_bac_lib                     age_au_bac 
+                             0                              0 
+                 gd_discipline              gd_discipline_lib 
+                             0                              0 
+               mention_bac_lib                     discipline 
+                             0                              0 
+          reorientation_en_dut                 discipline_lib 
+                           959                              0 
+     reorientation_en_dut_1_an             redoublement_en_l1 
+                           959                            959 
+            passage_en_l2_1_an                cohorte_passage 
+                           959                              0 
+    reorientation_en_dut_2_ans             sect_disciplinaire 
+                           959                              0 
+                      sexe_lib                    mention_bac 
+                             0                              0 
+                     serie_bac                        age_bac 
+                             0                              0 
+                      type_bac                mention_bac_bis 
+                             0                              0 </code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="manipulation-des-variables-quantitatives.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Pour les avoir en proportion :</span></span>
+<span id="cb36-2"><a href="manipulation-des-variables-quantitatives.html#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">colMeans</span>(<span class="fu">is.na</span>(PassageL1L2)<span class="sc">*</span><span class="dv">100</span>),<span class="dv">2</span>)</span></code></pre></div>
+<pre><code>           passage_en_l2_2_ans effectif_neobacheliers_passage 
+                         17.41                          17.41 
+        sect_disciplinaire_lib                           sexe 
+                          0.00                           0.00 
+                age_au_bac_lib          passage_en_l2_1_2_ans 
+                          0.00                          17.41 
+                 serie_bac_lib                     age_au_bac 
+                          0.00                           0.00 
+                 gd_discipline              gd_discipline_lib 
+                          0.00                           0.00 
+               mention_bac_lib                     discipline 
+                          0.00                           0.00 
+          reorientation_en_dut                 discipline_lib 
+                         17.41                           0.00 
+     reorientation_en_dut_1_an             redoublement_en_l1 
+                         17.41                          17.41 
+            passage_en_l2_1_an                cohorte_passage 
+                         17.41                           0.00 
+    reorientation_en_dut_2_ans             sect_disciplinaire 
+                         17.41                           0.00 
+                      sexe_lib                    mention_bac 
+                          0.00                           0.00 
+                     serie_bac                        age_bac 
+                          0.00                           0.00 
+                      type_bac                mention_bac_bis 
+                          0.00                           0.00 </code></pre>
+<p>Différents packages existent pour détecter et visualiser les données manquantes. Un d’entre eux est le package <strong><code>naniar</code></strong> : quelques fonctions permettent d’abord de décrire la base selon ses valeurs manquantes.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="manipulation-des-variables-quantitatives.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(naniar)</span>
+<span id="cb38-2"><a href="manipulation-des-variables-quantitatives.html#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ci-dessous : nombre de cellules du tableau ou de n_ij d&#39;une matrice </span></span>
+<span id="cb38-3"><a href="manipulation-des-variables-quantitatives.html#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co"># qui correspondent à des valeurs manquantes :</span></span>
+<span id="cb38-4"><a href="manipulation-des-variables-quantitatives.html#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="fu">n_miss</span>(PassageL1L2) </span></code></pre></div>
+<pre><code>[1] 7672</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="manipulation-des-variables-quantitatives.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pour les avoir en proportion (déjà en %, sinon utiliser `prop_miss(PassageL1L2)`)</span></span>
+<span id="cb40-2"><a href="manipulation-des-variables-quantitatives.html#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pct_miss</span>(PassageL1L2) </span></code></pre></div>
+<pre><code>[1] 5.357243</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="manipulation-des-variables-quantitatives.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ci-dessous : nombre de cellules du tableau ou de n_ij d&#39;une matrice </span></span>
+<span id="cb42-2"><a href="manipulation-des-variables-quantitatives.html#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="co"># qui correspondent à des valeurs renseignées :</span></span>
+<span id="cb42-3"><a href="manipulation-des-variables-quantitatives.html#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">n_complete</span>(PassageL1L2) </span></code></pre></div>
+<pre><code>[1] 135536</code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="manipulation-des-variables-quantitatives.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">#en proportion</span></span>
+<span id="cb44-2"><a href="manipulation-des-variables-quantitatives.html#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pct_complete</span>(PassageL1L2) </span></code></pre></div>
+<pre><code>[1] 94.64276</code></pre>
+<p>On peut ensuite visualiser le nombre de valeurs manquantes par variable, avec la fonction <code>gg_miss_var()</code>.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="manipulation-des-variables-quantitatives.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1er type de visualisation des valeurs manquantes</span></span>
+<span id="cb46-2"><a href="manipulation-des-variables-quantitatives.html#cb46-2" aria-hidden="true" tabindex="-1"></a>PassageL1L2 <span class="sc">%&gt;%</span>  <span class="fu">gg_miss_var</span>()</span></code></pre></div>
+<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-22-1.svg" width="672" /></p>
+<p>On peut également demander dans <code>gg_miss_var()</code> à ce que les valeurs soient en pourcentage, avec l’argument <code>show_pct=TRUE</code>.</p>
+<p>On peut aussi réaliser des graphiques montrant le nombre de valeurs manquantes pour l’ensemble des variables numériques de la base, en fonction d’une autre variable de nature catégorielle, avec l’argument <code>fct=</code> dans <code>gg_miss_var()</code>. Cela est intéressant pour voir si certaines valeurs manquantes des variables se retrouvent davantage dans des modalités précises d’une autre variable. Par exemple, ici, selon la série au bac :</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="manipulation-des-variables-quantitatives.html#cb47-1" aria-hidden="true" tabindex="-1"></a>PassageL1L2 <span class="sc">%&gt;%</span>  <span class="fu">select</span>(<span class="fu">where</span>(is.numeric), serie_bac_lib) <span class="sc">%&gt;%</span></span>
+<span id="cb47-2"><a href="manipulation-des-variables-quantitatives.html#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gg_miss_fct</span>(<span class="at">fct =</span> serie_bac_lib)</span></code></pre></div>
+<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-23-1.svg" width="672" />
+On voit que les valeurs manquantes sont plus nombreuses en proportion pour la modalité “BAC L” et sont moins nombreuses dans la modalité “BAC S” ; elles ne se distribuent ainsi pas de manière uniforme selon la variable de série du bac, en revanche comme on l’avait vu les proportions sont les mêmes quelle que soit la valeur manquante…</p>
+<p>Plus généralement, la fonction <code>gg_miss_upset()</code> de ce package permet de visualiser des dépendances entre les valeurs manquantes des variables ; mais <em>ici</em> cela n’a pas grand intérêt en réalité car les valeurs manquantes sont présentes pour toutes les variables numériques aux mêmes cellules… Voici le code néanmoins :</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="manipulation-des-variables-quantitatives.html#cb48-1" aria-hidden="true" tabindex="-1"></a>PassageL1L2 <span class="sc">%&gt;%</span> <span class="fu">select_if</span>(is.numeric) <span class="sc">%&gt;%</span> <span class="fu">gg_miss_upset</span>()</span></code></pre></div>
+<p>Toujours pour information, une autre fonction pour visualiser des combinaisons entre des variables comportant des valeurs manquantes est <code>aggr()</code> du package <strong><code>VIM</code></strong>. De même, voici le code pour information :</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="manipulation-des-variables-quantitatives.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(VIM)</span>
+<span id="cb49-2"><a href="manipulation-des-variables-quantitatives.html#cb49-2" aria-hidden="true" tabindex="-1"></a>PassageL1L2 <span class="sc">%&gt;%</span> <span class="fu">select_if</span>(is.numeric) <span class="sc">%&gt;%</span> <span class="fu">aggr</span>(<span class="at">sortVar=</span><span class="cn">TRUE</span>, <span class="at">only.miss =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>Enfin, il est possible d’appliquer la fonction <code>geom_miss_point()</code> à un ggplot, dans ce cas les valeurs manquantes de la ou des variables sont remplacées par des valeurs 10% plus basses que la valeur minimum observée des variables, et cela afin de les visualiser.</p>
+<p>Il existe bien sûr bien d’autres packages, comme <strong><code>funModeling</code></strong>, <strong><code>Amelia</code></strong> et sa fonction <code>missmap()</code>, ou encore <strong><code>visdat</code></strong> et sa fonction <code>vis_miss()</code>, etc. D’autres packages comme <strong><code>VIM</code></strong> ou <strong><code>MICE</code></strong> permettent non seulement de visualiser ces valeurs manquantes mais de leur appliquer des techniques pour les “gérer”, c’est ce que l’on va voir maintenant en résumé.</p>
+</div>
+<div id="gérer-les-valeurs-manquantes" class="section level3 hasAnchor" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> Gérer les valeurs manquantes<a href="manipulation-des-variables-quantitatives.html#gérer-les-valeurs-manquantes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Il est bien de connaître le nombre et la proportion de valeurs manquantes dans nos données, comment ces dernières se répartissent entre elles, etc., mais il faut aussi comprendre quel impact elles peuvent avoir sur des analyses statistiques, de régressions ou autres algorithmes.</p>
+<p>Dans une base de données tirée d’une enquête, les valeurs manquantes peuvent provenir d’une non-réponse de la part de l’enquêté (que ce soit un individu ou une entreprise), cette non-réponse pouvant être “totale” (on a aucune donnée pour cet enquêté alors qu’il fait partie de l’échantillon) ou “partielle” (on a une partie des réponses mais pas à toutes les questions et donc des variables parfois avec des valeurs manquantes) ; ou bien encore elles peuvent être dues à une mauvaise saisie de l’information par l’enquêteur. La pondération, si elle est présente dans une enquête, peut permettre de corriger de cette non-réponse totale, voire partielle.</p>
+<p>Les conséquences des valeurs manquantes dans une base de données dépend de plusieurs choses : on doit d’abord se demander si l’information perdue aurait été pertinente et/ou aurait apporté un élément particulier/supplémentaire. Ensuite, la perte éventuelle d’information est-elle importante, en nombre/en proportion. Et enfin (et surtout), peut-elle créer un biais lors de l’estimation et précision du phénomène que l’on souhaite observer, décrire, analyser, etc. Selon l’importance de ces conséquences, il faut traiter ces valeurs manquantes, c’est-à-dire utiliser une procédure la plus adaptée possible selon le potentiel biais repéré.</p>
+<p>Traditionnellement dans la littérature, on distingue 3 types de valeurs manquantes :</p>
+<ul>
+<li>valeur manquante entièrement due au hasard (‘MCAR’ pour Missing completely at random) : il n’y a pas de lien entre la valeur manquante pour une variable donnée et les autres variables, dit autrement la probabilité pour une variable qu’elle ait une valeur manquante est constante dans les données, elle ne diffère pas selon d’autres caractéristiques des individus ;</li>
+<li>valeur manquante due au hasard (‘MAR’ pour Missing at random) : il y a un lien entre la valeur manquante pour une variable donnée et les valeurs observées d’autres variables, c’est-à-dire que la probabilité pour une variable qu’elle ait une valeur manquante dépend d’autres variables (mais de leurs valeurs observées), elle ne sera donc pas la même selon les individus ;</li>
+<li>valeur ne manquant pas au hasard (‘NMAR’ pour Non missing at random) : il y a un lien entre la valeur manquante pour une variable et les valeurs manquantes/non observées d’autres variables. Ce sont celles qui risquent d’entraîner des biais importants si on ne les traite pas.</li>
+</ul>
+<p>Comment alors les gérer ? En pratique, il est d’usage lorsque la proportion de valeurs manquantes ne dépasse pas 5% des données de ne rien faire de particulier ou simplement de les supprimer. Sinon, on essaye d’appliquer plusieurs méthodes, simples ou plus complexes.</p>
+<p>Dans le cas de valeurs manquantes entièrement dues au hasard (MCAR) et/ou d’une faible proportion des valeurs manquantes dans le total de la table de données, on peut décider de supprimer toutes les lignes qui contiennent au moins une valeur manquante, afin d’avoir une table de données complètes, on peut utiliser la fonction <code>na.omit()</code> ou <code>complete.cases()</code>.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="manipulation-des-variables-quantitatives.html#cb50-1" aria-hidden="true" tabindex="-1"></a>PassageL1L2_sansNA <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(PassageL1L2)</span>
+<span id="cb50-2"><a href="manipulation-des-variables-quantitatives.html#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="co"># OU : </span></span>
+<span id="cb50-3"><a href="manipulation-des-variables-quantitatives.html#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="co"># PassageL1L2_sansNA &lt;- PassageL1L2[complete.cases(PassageL1L2), ]</span></span>
+<span id="cb50-4"><a href="manipulation-des-variables-quantitatives.html#cb50-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-5"><a href="manipulation-des-variables-quantitatives.html#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Pour vérification : </span></span>
+<span id="cb50-6"><a href="manipulation-des-variables-quantitatives.html#cb50-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(PassageL1L2_sansNA)</span></code></pre></div>
+<pre><code> passage_en_l2_2_ans effectif_neobacheliers_passage
+ Min.   :  0.000     Min.   :   1.00               
+ 1st Qu.:  0.000     1st Qu.:   2.00               
+ Median :  0.000     Median :   6.00               
+ Mean   :  4.316     Mean   :  35.12               
+ 3rd Qu.:  2.000     3rd Qu.:  23.00               
+ Max.   :571.000     Max.   :2454.00               
+                                                   
+                        sect_disciplinaire_lib sexe    
+ Sciences juridiques               : 186       1:2264  
+ Langues et littératures étrangères: 170       2:2285  
+ Psychologie                       : 169               
+ Langues étrangères appliquées     : 168               
+ STAPS                             : 168               
+ Histoire                          : 167               
+ (Other)                           :3521               
+                   age_au_bac_lib passage_en_l2_1_2_ans
+ A l&#39;heure ou en avance   :1750   Min.   :   0.00      
+ En retard d&#39;un an        :1439   1st Qu.:   1.00      
+ En retard de plus d&#39;un an:1004   Median :   2.00      
+ Non pris en compte       : 356   Mean   :  18.63      
+                                  3rd Qu.:   8.00      
+                                  Max.   :1950.00      
+                                                       
+                     serie_bac_lib  age_au_bac gd_discipline
+ BAC ES                     : 890   R0:1750    DSA  : 927   
+ BAC L                      : 698   R1:1439    LLSH :2112   
+ BAC professionnel          : 356   R2:1004    SANTE:   9   
+ BAC S                      :1046   R4: 356    SI   :1333   
+ BAC STMG                   : 694              STAPS: 168   
+ BAC technologique hors STMG: 865                           
+                                                            
+                             gd_discipline_lib                 mention_bac_lib
+ Droit, gestion, économie, AES        : 927    Assez bien              : 896  
+ Lettres, langues et sciences humaines:2112    Bien                    : 670  
+ Santé                                :   9    Inconnue                : 637  
+ Sciences et sciences de l&#39;ingénieur  :1333    Passable deuxième groupe: 925  
+ STAPS                                : 168    Passable premier groupe :1045  
+                                               Très bien               : 376  
+                                                                              
+   discipline   reorientation_en_dut
+ 06     :1213   Min.   : 0.000      
+ 15     : 924   1st Qu.: 0.000      
+ 04     : 457   Median : 0.000      
+ 02     : 398   Mean   : 0.805      
+ 01     : 371   3rd Qu.: 0.000      
+ 05     : 359   Max.   :79.000      
+ (Other): 827                       
+                                discipline_lib reorientation_en_dut_1_an
+ Sciences humaines et sociales         :1213   Min.   : 0.0000          
+ Sciences fondamentales et applications: 924   1st Qu.: 0.0000          
+ Lettres, sciences du langage, arts    : 457   Median : 0.0000          
+ Sciences économiques, gestion         : 398   Mean   : 0.6186          
+ Droit, sciences politiques            : 371   3rd Qu.: 0.0000          
+ Langues                               : 359   Max.   :63.0000          
+ (Other)                               : 827                            
+ redoublement_en_l1 passage_en_l2_1_an cohorte_passage
+ Min.   :   0.0     Min.   :   0.00    2014:4549      
+ 1st Qu.:   0.0     1st Qu.:   0.00                   
+ Median :   1.0     Median :   1.00                   
+ Mean   :  10.2     Mean   :  14.32                   
+ 3rd Qu.:   6.0     3rd Qu.:   6.00                   
+ Max.   :1019.0     Max.   :1494.00                   
+                                                      
+ reorientation_en_dut_2_ans sect_disciplinaire  sexe_lib    mention_bac
+ Min.   : 0.0000            36     : 186       Femme:2285   A: 376     
+ 1st Qu.: 0.0000            23     : 170       Homme:2264   B: 670     
+ Median : 0.0000            32     : 169                    C: 896     
+ Mean   : 0.1864            10     : 168                    D:1045     
+ 3rd Qu.: 0.0000            24     : 168                    P: 925     
+ Max.   :21.0000            27     : 167                    Q: 637     
+                            (Other):3521                               
+ serie_bac                   age_bac                  type_bac   
+ 1: 698    A l&#39;heure ou en avance:1750   Bac général      :2634  
+ 2: 890    En retard             :2443   Bac professionnel: 356  
+ 3:1046    Non pris en compte    : 356   Bac technologique:1559  
+ 4: 694                                                          
+ 5: 865                                                          
+ 6: 356                                                          
+                                                                 
+   mention_bac_bis
+ Très bien : 376  
+ Bien      : 670  
+ Assez bien: 896  
+ Passable  :1970  
+ Inconnue  : 637  
+                  
+                  </code></pre>
+<p>On se retrouve alors avec une table de 4 549 observations (lignes), on a donc perdu 959 observations, soit 17.41% des observations de la table initiale, ce qui est cohérent avec ce qu’on avait retiré de notre première analyse de détection des valeurs manquantes.</p>
+<p>Des techniques d’imputation simple peuvent également être utilisées. On peut par exemple remplacer les valeurs manquantes d’une variable quantitative par sa moyenne ou sa médiane, pour cela on peut utiliser la fonction <code>replace_na()</code> du package <strong><code>tidyr</code></strong>, ou <code>impute()</code> du package <strong><code>Hmisc</code></strong>, ou encore <code>na.aggregate()</code> du package <strong><code>zoo</code></strong> On donne ainsi une valeur “artificielle” pour remplacer la valeur manquante. Dans le cas de variables qualitatives, on peut, de même, imputer la modalité dominante (avec la fonction <code>mode()</code> du package <strong><code>Hmisc</code></strong> ; ou avec l’argument <code>mode=</code> du package <strong><code>zoo</code></strong>). Par exemple, voici les codes pour remplacer les valeurs manquantes de la variable ‘passage_en_l2_2_ans’ par sa moyenne (ici on ne fait pas tourner ces codes) :</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="manipulation-des-variables-quantitatives.html#cb52-1" aria-hidden="true" tabindex="-1"></a>PassageL1L2 <span class="sc">%&gt;%</span></span>
+<span id="cb52-2"><a href="manipulation-des-variables-quantitatives.html#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">passage_en_l2_2_ans_bis =</span> <span class="fu">replace_na</span>(passage_en_l2_2_ans,</span>
+<span id="cb52-3"><a href="manipulation-des-variables-quantitatives.html#cb52-3" aria-hidden="true" tabindex="-1"></a>                                              <span class="fu">mean</span>(passage_en_l2_2_ans, <span class="at">na.rm=</span><span class="cn">TRUE</span>))) </span>
+<span id="cb52-4"><a href="manipulation-des-variables-quantitatives.html#cb52-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-5"><a href="manipulation-des-variables-quantitatives.html#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Hmisc)</span>
+<span id="cb52-6"><a href="manipulation-des-variables-quantitatives.html#cb52-6" aria-hidden="true" tabindex="-1"></a>PassageL1L2<span class="sc">$</span>passage_en_l2_2_ans_bis <span class="ot">&lt;-</span> <span class="fu">with</span>(PassageL1L2,</span>
+<span id="cb52-7"><a href="manipulation-des-variables-quantitatives.html#cb52-7" aria-hidden="true" tabindex="-1"></a>                                            <span class="fu">impute</span>(passage_en_l2_2_ans, mean))</span>
+<span id="cb52-8"><a href="manipulation-des-variables-quantitatives.html#cb52-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-9"><a href="manipulation-des-variables-quantitatives.html#cb52-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(zoo)</span>
+<span id="cb52-10"><a href="manipulation-des-variables-quantitatives.html#cb52-10" aria-hidden="true" tabindex="-1"></a>PassageL1L2<span class="sc">$</span>passage_en_l2_2_ans_bis <span class="ot">&lt;-</span> <span class="fu">na.aggregate</span>(PassageL1L2<span class="sc">$</span>passage_en_l2_2_ans,</span>
+<span id="cb52-11"><a href="manipulation-des-variables-quantitatives.html#cb52-11" aria-hidden="true" tabindex="-1"></a>                                                    <span class="at">FUN =</span> mean)</span></code></pre></div>
+<p>On peut néanmoins réaliser ce type d’imputations simple de manière un petit peu plus subtile. Par exemple, la moyenne d’une variable peut différer selon d’autres variables. Dans ce cas, on va donc remplacer les valeurs manquantes de la variable selon la moyenne associée à chaque modalité de l’autre variable en ajoutant un <code>group_by()</code> avant la fonction <code>mutate()</code> si l’on utilise la fonction <code>replace_na()</code> par exemple.</p>
+<p>Si on ne veut pas supprimer ces lignes d’observations et perdre ainsi d’autres informations (celles des variables pour lesquelles la valeur était renseignée pour cette même observation), on peut simplement créer une variable indicatrice de valeur manquante, habituellement ‘9’ ou ‘999’ pour des variables quantitatives, ou une modalité ‘Manquant’ ou ‘Missing’ pour des variables qualitatives.</p>
+<p>Plusieurs autres méthodes existent également dans le cas de valeurs manquantes dues au hasard (MAR), en voici la liste pour information et sans prétention d’exhaustivité : - analyse pondérée pour des valeurs MAR qui consiste à calculer la probabilité qu’une observation soit complète et ensuite à affecter à chacune des observations complètes, un poids inversement proportionnel à cette probabilité ; - imputation de la dernière observation pour des données temporelles ; - imputation “hot-deck” qui consiste à remplacer la valeur manquante par une valeur observée chez un autre individu ayant les mêmes caractéristiques, ou “cold-deck” (même démarche que précédement, sauf que la valeur imputée vient d’une autre source) ; - imputation par le “plus proche voisin” en utilisant une fonction de distance basée sur plusieurs autres variables/caractéristiques de l’individu ; - imputation par un modèle de régression où l’on va remplacer la valeur manquante par une valeur prédite obtenue par régression sur données complètes de la variable comportant des valeurs manquantes.</p>
+<p>Il y a aussi des techniques plus complextes d’imputation multiple qui consiste à créer plusieurs valeurs possibles pour une valeur manquante d’une variable, cela peut être adaptée là aussi lorsque les valeurs manquantes sont dues au hasard (MAR).</p>
+<p>Vous trouverez de multiples ressources sur internet dans des ouvrages libres d’accès, ou vous pouvez aller voir un des chapitres de l’ouvrage principal support du cours (Husson, 2018), avec des exemples d’utilisation.</p>
+</div>
+<div id="détecter-et-visualiser-les-valeurs-aberrantes" class="section level3 hasAnchor" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> Détecter et “visualiser” les valeurs aberrantes<a href="manipulation-des-variables-quantitatives.html#détecter-et-visualiser-les-valeurs-aberrantes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Pour cela, on va utiliser une autre base, téléchargée sur opendatasoft à partir de la fonction créée lors de la séance de M. Grasland. Cette base dont le nom est <em>“aides-entreprises-covid-19-france”</em> renseigne du nombre d’aides financières et de leur montant, accordées aux entreprises françaises durant la crise du covid_19, selon notamment le secteur d’activité et la localisation géographique.</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="manipulation-des-variables-quantitatives.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rappel fonction (soit vous l&#39;avez encore dans votre environnement, soit</span></span>
+<span id="cb53-2"><a href="manipulation-des-variables-quantitatives.html#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="co"># vous l&#39;avez sauvegardé et dans ce cas il faut l&#39;appeler, soit vous devez </span></span>
+<span id="cb53-3"><a href="manipulation-des-variables-quantitatives.html#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="co"># refaire tourner les lignes de codes suivantes...)</span></span>
+<span id="cb53-4"><a href="manipulation-des-variables-quantitatives.html#cb53-4" aria-hidden="true" tabindex="-1"></a>get_data <span class="ot">&lt;-</span> <span class="cf">function</span>(idtab, rows, start) {</span>
+<span id="cb53-5"><a href="manipulation-des-variables-quantitatives.html#cb53-5" aria-hidden="true" tabindex="-1"></a>  url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;https://public.opendatasoft.com/api/records/1.0/search/?dataset=&quot;</span>,idtab,<span class="st">&quot;&amp;q=&amp;rows=&quot;</span>,rows,<span class="st">&quot;&amp;start=&quot;</span>,start,<span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb53-6"><a href="manipulation-des-variables-quantitatives.html#cb53-6" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">GET</span>(url)</span>
+<span id="cb53-7"><a href="manipulation-des-variables-quantitatives.html#cb53-7" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(<span class="fu">rawToChar</span>((x<span class="sc">$</span>content)))</span>
+<span id="cb53-8"><a href="manipulation-des-variables-quantitatives.html#cb53-8" aria-hidden="true" tabindex="-1"></a>  don <span class="ot">&lt;-</span> y<span class="sc">$</span>records<span class="sc">$</span>fields</span>
+<span id="cb53-9"><a href="manipulation-des-variables-quantitatives.html#cb53-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(don)</span>
+<span id="cb53-10"><a href="manipulation-des-variables-quantitatives.html#cb53-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb53-11"><a href="manipulation-des-variables-quantitatives.html#cb53-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-12"><a href="manipulation-des-variables-quantitatives.html#cb53-12" aria-hidden="true" tabindex="-1"></a>dt_aidesCovid <span class="ot">&lt;-</span> <span class="fu">get_data</span>(<span class="at">idtab =</span> <span class="st">&quot;aides-entreprises-covid-19-france&quot;</span>, </span>
+<span id="cb53-13"><a href="manipulation-des-variables-quantitatives.html#cb53-13" aria-hidden="true" tabindex="-1"></a>                         <span class="at">rows=</span><span class="dv">2000</span>,</span>
+<span id="cb53-14"><a href="manipulation-des-variables-quantitatives.html#cb53-14" aria-hidden="true" tabindex="-1"></a>                         <span class="at">start=</span><span class="dv">0</span>)</span>
+<span id="cb53-15"><a href="manipulation-des-variables-quantitatives.html#cb53-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-16"><a href="manipulation-des-variables-quantitatives.html#cb53-16" aria-hidden="true" tabindex="-1"></a>dt_aidesCovid <span class="sc">%&gt;%</span> <span class="fu">glimpse</span>()</span></code></pre></div>
+<pre><code>Rows: 1,680
+Columns: 13
+$ reg_code                &lt;int&gt; 84, 84, 84, 84, 84, 84, 27, 27, 27, 53, 53, 24~
+$ geo_point_2d            &lt;list&gt; &lt;45.263906, 5.573978&gt;, &lt;45.728000, 4.164813&gt;,~
+$ naf_section_name        &lt;chr&gt; &quot;Arts, spectacles et activités récréatives&quot;, &quot;~
+$ nombre_entreprises      &lt;int&gt; 1980, 3034, 2188, 6577, 3350, 6772, 61, 45, 23~
+$ plan                    &lt;chr&gt; &quot;Fonds de solidarité&quot;, &quot;Fonds de solidarité&quot;, ~
+$ financial_support_count &lt;int&gt; 15958, 8936, 21447, 19967, 18693, 16910, 366, ~
+$ reg_name                &lt;chr&gt; &quot;Auvergne-Rhône-Alpes&quot;, &quot;Auvergne-Rhône-Alpes&quot;~
+$ naf_section_code        &lt;chr&gt; &quot;R&quot;, &quot;F&quot;, &quot;I&quot;, &quot;F&quot;, &quot;N&quot;, &quot;Q&quot;, &quot;J&quot;, &quot;K&quot;, &quot;L&quot;, &quot;~
+$ total_meuros            &lt;dbl&gt; 53.696626, 13.922570, 111.923817, 33.039981, 8~
+$ dep_name                &lt;chr&gt; &quot;Isère&quot;, &quot;Loire&quot;, &quot;Loire&quot;, &quot;Rhône&quot;, &quot;Rhône&quot;, &quot;~
+$ iso3_code               &lt;chr&gt; &quot;FXX&quot;, &quot;FXX&quot;, &quot;FXX&quot;, &quot;FXX&quot;, &quot;FXX&quot;, &quot;FXX&quot;, &quot;FXX~
+$ dep_code                &lt;chr&gt; &quot;38&quot;, &quot;42&quot;, &quot;42&quot;, &quot;69&quot;, &quot;69&quot;, &quot;69&quot;, &quot;58&quot;, &quot;89&quot;~
+$ total                   &lt;dbl&gt; 53696626, 13922570, 111923817, 33039981, 83094~</code></pre>
+<p>Comme la base précédente, ces données sont micro-agrégées, mais de manière plus simple : ici une observation est “juste” le croisement d’un secteur et d’un département, il faut donc sommer les variables pour avoir une idée des montants. La fonction <code>fmt_number()</code> permet simplement d’avoir une séparation visuaelle par milliers étant donné ici que nous avons des montants très importants !</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="manipulation-des-variables-quantitatives.html#cb55-1" aria-hidden="true" tabindex="-1"></a>dt_aidesCovid <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">total_aides=</span><span class="fu">sum</span>(total),</span>
+<span id="cb55-2"><a href="manipulation-des-variables-quantitatives.html#cb55-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">total_aides_meuros=</span><span class="fu">sum</span>(total_meuros),</span>
+<span id="cb55-3"><a href="manipulation-des-variables-quantitatives.html#cb55-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">nb_totales_aides=</span><span class="fu">sum</span>(financial_support_count),</span>
+<span id="cb55-4"><a href="manipulation-des-variables-quantitatives.html#cb55-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">nb_totales_entre=</span><span class="fu">sum</span>(nombre_entreprises)) <span class="sc">%&gt;%</span> <span class="fu">gt</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb55-5"><a href="manipulation-des-variables-quantitatives.html#cb55-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">&quot;total_aides&quot;</span>, <span class="st">&quot;total_aides_meuros&quot;</span>, <span class="st">&quot;nb_totales_aides&quot;</span>, </span>
+<span id="cb55-6"><a href="manipulation-des-variables-quantitatives.html#cb55-6" aria-hidden="true" tabindex="-1"></a>                         <span class="st">&quot;nb_totales_entre&quot;</span>), <span class="at">sep_mark =</span> <span class="st">&quot; &quot;</span>, <span class="at">decimals =</span> <span class="dv">0</span>)</span></code></pre></div>
+<div id="dqtqsrumxz" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#dqtqsrumxz .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#dqtqsrumxz .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#dqtqsrumxz .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#dqtqsrumxz .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#dqtqsrumxz .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#dqtqsrumxz .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#dqtqsrumxz .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#dqtqsrumxz .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#dqtqsrumxz .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#dqtqsrumxz .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#dqtqsrumxz .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#dqtqsrumxz .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#dqtqsrumxz .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#dqtqsrumxz .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#dqtqsrumxz .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#dqtqsrumxz .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#dqtqsrumxz .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dqtqsrumxz .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#dqtqsrumxz .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#dqtqsrumxz .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dqtqsrumxz .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#dqtqsrumxz .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#dqtqsrumxz .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#dqtqsrumxz .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dqtqsrumxz .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#dqtqsrumxz .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#dqtqsrumxz .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#dqtqsrumxz .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#dqtqsrumxz .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dqtqsrumxz .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#dqtqsrumxz .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dqtqsrumxz .gt_left {
+  text-align: left;
+}
+
+#dqtqsrumxz .gt_center {
+  text-align: center;
+}
+
+#dqtqsrumxz .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#dqtqsrumxz .gt_font_normal {
+  font-weight: normal;
+}
+
+#dqtqsrumxz .gt_font_bold {
+  font-weight: bold;
+}
+
+#dqtqsrumxz .gt_font_italic {
+  font-style: italic;
+}
+
+#dqtqsrumxz .gt_super {
+  font-size: 65%;
+}
+
+#dqtqsrumxz .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#dqtqsrumxz .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#dqtqsrumxz .gt_slash_mark {
+  font-size: 0.7em;
+  line-height: 0.7em;
+  vertical-align: 0.15em;
+}
+
+#dqtqsrumxz .gt_fraction_numerator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: 0.45em;
+}
+
+#dqtqsrumxz .gt_fraction_denominator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: -0.05em;
+}
+</style>
+<table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">total_aides</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">total_aides_meuros</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">nb_totales_aides</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">nb_totales_entre</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_right">35 358 264 997</td>
+<td class="gt_row gt_right">35 358</td>
+<td class="gt_row gt_right">10 520 869</td>
+<td class="gt_row gt_right">2 016 007</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+<p>On veut plus précisément étudier dans cette sous-section les possibles valeurs aberrantes. On peut alors sortir les valeurs maximum pour chacune de ces variables.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="manipulation-des-variables-quantitatives.html#cb56-1" aria-hidden="true" tabindex="-1"></a>dt_aidesCovid <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">aides_max=</span><span class="fu">max</span>(total), <span class="at">aides_meuros_max=</span><span class="fu">max</span>(total_meuros),</span>
+<span id="cb56-2"><a href="manipulation-des-variables-quantitatives.html#cb56-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">nb_max_aides=</span><span class="fu">max</span>(financial_support_count),</span>
+<span id="cb56-3"><a href="manipulation-des-variables-quantitatives.html#cb56-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">nb_max_entre=</span><span class="fu">max</span>(nombre_entreprises)) <span class="sc">%&gt;%</span> <span class="fu">gt</span>()  <span class="sc">%&gt;%</span> </span>
+<span id="cb56-4"><a href="manipulation-des-variables-quantitatives.html#cb56-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">columns =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">sep_mark =</span> <span class="st">&quot; &quot;</span>, <span class="at">decimals =</span> <span class="dv">0</span>)</span></code></pre></div>
+<div id="iursfeltyk" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#iursfeltyk .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#iursfeltyk .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#iursfeltyk .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#iursfeltyk .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#iursfeltyk .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#iursfeltyk .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#iursfeltyk .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#iursfeltyk .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#iursfeltyk .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#iursfeltyk .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#iursfeltyk .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#iursfeltyk .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#iursfeltyk .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#iursfeltyk .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#iursfeltyk .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#iursfeltyk .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#iursfeltyk .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iursfeltyk .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#iursfeltyk .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#iursfeltyk .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iursfeltyk .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#iursfeltyk .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#iursfeltyk .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#iursfeltyk .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iursfeltyk .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#iursfeltyk .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#iursfeltyk .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#iursfeltyk .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#iursfeltyk .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iursfeltyk .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#iursfeltyk .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iursfeltyk .gt_left {
+  text-align: left;
+}
+
+#iursfeltyk .gt_center {
+  text-align: center;
+}
+
+#iursfeltyk .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#iursfeltyk .gt_font_normal {
+  font-weight: normal;
+}
+
+#iursfeltyk .gt_font_bold {
+  font-weight: bold;
+}
+
+#iursfeltyk .gt_font_italic {
+  font-style: italic;
+}
+
+#iursfeltyk .gt_super {
+  font-size: 65%;
+}
+
+#iursfeltyk .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#iursfeltyk .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#iursfeltyk .gt_slash_mark {
+  font-size: 0.7em;
+  line-height: 0.7em;
+  vertical-align: 0.15em;
+}
+
+#iursfeltyk .gt_fraction_numerator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: 0.45em;
+}
+
+#iursfeltyk .gt_fraction_denominator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: -0.05em;
+}
+</style>
+<table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">aides_max</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">aides_meuros_max</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">nb_max_aides</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">nb_max_entre</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_right">1 642 006 748</td>
+<td class="gt_row gt_right">1 642</td>
+<td class="gt_row gt_right">183 615</td>
+<td class="gt_row gt_right">35 374</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+<p>Ou faire quelques graphs sur la variable du montant total des aides en milliers d’euros “total_meuros” pour mieux visualiser de possibles valeurs aberrantes, de manière générale avec un histogramme ou ventilées par région avec des “boîtes à moustache” :</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="manipulation-des-variables-quantitatives.html#cb57-1" aria-hidden="true" tabindex="-1"></a>dt_aidesCovid <span class="sc">%&gt;%</span>  <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">aes</span>(<span class="at">x=</span>total_meuros) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">150</span>)</span></code></pre></div>
+<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-31-1.svg" width="672" /></p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="manipulation-des-variables-quantitatives.html#cb58-1" aria-hidden="true" tabindex="-1"></a>dt_aidesCovid <span class="sc">%&gt;%</span>  <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">aes</span>(<span class="at">x =</span> reg_name, <span class="at">y =</span> total_meuros) <span class="sc">+</span>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb58-2"><a href="manipulation-des-variables-quantitatives.html#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
+<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-31-2.svg" width="672" /></p>
+<p>On voit en effet quelques points qui semblent des valeurs aberrantes ou “outliers” ; parfois, c’est à tel point qu’on n’arrive même pas à distinguer les différentes valeurs de la distribution marquées par le Boxplot et par conséquent les boxplot sont ramassées. Pour rappel, dans un boxplot, par défaut un point est affiché comme aberrant s’il est en dehors de l’intervalle suivant : <span class="math inline">\(I=[Q_{1}−1.5×IQR ; Q_{3}+1.5×IQR]\)</span>, <code>IQR</code> étant l’intervalle interquartile donc la différence entre Q1 et Q3.</p>
+<p>Mais s’agit-il de “vraies” valeurs aberrantes ? Combien d’observations concernent-elles ? La fonction <code>boxplot.stats()</code> permet de récupérer les valeurs des observations indiquées comme aberrantes, comme cela on peut créer ensuite une variable indiquant si oui ou non l’observation a une valeur “aberrante”. Faisons-cela pour la variable “total_meuros” par exemple.</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="manipulation-des-variables-quantitatives.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># On récupère les valeurs de la partie &#39;out&#39; des sorties de la fonction, qui</span></span>
+<span id="cb59-2"><a href="manipulation-des-variables-quantitatives.html#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="co"># correspondent aux valeurs de tout point de données qui se situe au-delà</span></span>
+<span id="cb59-3"><a href="manipulation-des-variables-quantitatives.html#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="co"># des extrêmes de la boxplot</span></span>
+<span id="cb59-4"><a href="manipulation-des-variables-quantitatives.html#cb59-4" aria-hidden="true" tabindex="-1"></a>nb_outliers <span class="ot">&lt;-</span> <span class="fu">boxplot.stats</span>(dt_aidesCovid<span class="sc">$</span>total_meuros)<span class="sc">$</span>out </span>
+<span id="cb59-5"><a href="manipulation-des-variables-quantitatives.html#cb59-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-6"><a href="manipulation-des-variables-quantitatives.html#cb59-6" aria-hidden="true" tabindex="-1"></a><span class="co"># On crée une variable dans notre table d&#39;&quot;identification&quot; de ces outliers</span></span>
+<span id="cb59-7"><a href="manipulation-des-variables-quantitatives.html#cb59-7" aria-hidden="true" tabindex="-1"></a><span class="co"># avec comme modalité intiale/par défaut &quot;Faux&quot;</span></span>
+<span id="cb59-8"><a href="manipulation-des-variables-quantitatives.html#cb59-8" aria-hidden="true" tabindex="-1"></a>dt_aidesCovid<span class="sc">$</span>total_meuros_outliers <span class="ot">&lt;-</span> <span class="st">&quot;Faux&quot;</span> </span>
+<span id="cb59-9"><a href="manipulation-des-variables-quantitatives.html#cb59-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-10"><a href="manipulation-des-variables-quantitatives.html#cb59-10" aria-hidden="true" tabindex="-1"></a><span class="co"># On lui indique la modalité &quot;vraie&quot; si l&#39;observation a une valeur &quot;outliers&quot; </span></span>
+<span id="cb59-11"><a href="manipulation-des-variables-quantitatives.html#cb59-11" aria-hidden="true" tabindex="-1"></a><span class="co"># pour cette variable</span></span>
+<span id="cb59-12"><a href="manipulation-des-variables-quantitatives.html#cb59-12" aria-hidden="true" tabindex="-1"></a>dt_aidesCovid<span class="sc">$</span>total_meuros_outliers[dt_aidesCovid<span class="sc">$</span>total_meuros <span class="sc">%in%</span> <span class="fu">c</span>(nb_outliers)] <span class="ot">&lt;-</span> <span class="st">&quot;Vrai&quot;</span> </span>
+<span id="cb59-13"><a href="manipulation-des-variables-quantitatives.html#cb59-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-14"><a href="manipulation-des-variables-quantitatives.html#cb59-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Puis on regarde la répartition avec la fonction `tabyl()` du package `janitor()` </span></span>
+<span id="cb59-15"><a href="manipulation-des-variables-quantitatives.html#cb59-15" aria-hidden="true" tabindex="-1"></a>dt_aidesCovid <span class="sc">%&gt;%</span> <span class="fu">tabyl</span>(total_meuros_outliers) <span class="sc">%&gt;%</span> </span>
+<span id="cb59-16"><a href="manipulation-des-variables-quantitatives.html#cb59-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_pct_formatting</span>() <span class="sc">%&gt;%</span> <span class="fu">adorn_totals</span>(<span class="st">&quot;row&quot;</span>)</span></code></pre></div>
+<pre><code># A tibble: 3 x 3
+  total_meuros_outliers     n percent
+  &lt;chr&gt;                 &lt;dbl&gt; &lt;chr&gt;  
+1 Faux                   1484 88.3%  
+2 Vrai                    196 11.7%  
+3 Total                  1680 -      </code></pre>
+<p>On y lit que pour cette variable, il y aurait près de 11,6% de valeurs aberrantes telles qu’indiquées par le boxplot, cela fait beaucoup ! On peut regarder plus précisément à quelles observations elles correspondent et à quel montant.</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="manipulation-des-variables-quantitatives.html#cb61-1" aria-hidden="true" tabindex="-1"></a>dt_aidesCovid <span class="sc">%&gt;%</span> <span class="fu">filter</span>(total_meuros_outliers<span class="sc">==</span><span class="st">&#39;Vrai&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb61-2"><a href="manipulation-des-variables-quantitatives.html#cb61-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(total_meuros, naf_section_name, dep_name)  <span class="sc">%&gt;%</span></span>
+<span id="cb61-3"><a href="manipulation-des-variables-quantitatives.html#cb61-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(total_meuros)) <span class="sc">%&gt;%</span>  <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span> <span class="fu">gt</span>()</span></code></pre></div>
+<div id="tngndcvgfn" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#tngndcvgfn .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#tngndcvgfn .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#tngndcvgfn .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#tngndcvgfn .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#tngndcvgfn .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#tngndcvgfn .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#tngndcvgfn .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#tngndcvgfn .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#tngndcvgfn .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#tngndcvgfn .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#tngndcvgfn .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#tngndcvgfn .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#tngndcvgfn .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#tngndcvgfn .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#tngndcvgfn .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#tngndcvgfn .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#tngndcvgfn .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tngndcvgfn .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#tngndcvgfn .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#tngndcvgfn .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tngndcvgfn .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#tngndcvgfn .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#tngndcvgfn .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#tngndcvgfn .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tngndcvgfn .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#tngndcvgfn .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#tngndcvgfn .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#tngndcvgfn .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#tngndcvgfn .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tngndcvgfn .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#tngndcvgfn .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tngndcvgfn .gt_left {
+  text-align: left;
+}
+
+#tngndcvgfn .gt_center {
+  text-align: center;
+}
+
+#tngndcvgfn .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#tngndcvgfn .gt_font_normal {
+  font-weight: normal;
+}
+
+#tngndcvgfn .gt_font_bold {
+  font-weight: bold;
+}
+
+#tngndcvgfn .gt_font_italic {
+  font-style: italic;
+}
+
+#tngndcvgfn .gt_super {
+  font-size: 65%;
+}
+
+#tngndcvgfn .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#tngndcvgfn .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#tngndcvgfn .gt_slash_mark {
+  font-size: 0.7em;
+  line-height: 0.7em;
+  vertical-align: 0.15em;
+}
+
+#tngndcvgfn .gt_fraction_numerator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: 0.45em;
+}
+
+#tngndcvgfn .gt_fraction_denominator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: -0.05em;
+}
+</style>
+<table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">total_meuros</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">naf_section_name</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">dep_name</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_right">1641.1822</td>
+<td class="gt_row gt_left">Hébergement et restauration</td>
+<td class="gt_row gt_left">Paris</td></tr>
+    <tr><td class="gt_row gt_right">554.4675</td>
+<td class="gt_row gt_left">Commerce</td>
+<td class="gt_row gt_left">Paris</td></tr>
+    <tr><td class="gt_row gt_right">549.1241</td>
+<td class="gt_row gt_left">Activités spécialisées, scientifiques et techniques</td>
+<td class="gt_row gt_left">Paris</td></tr>
+    <tr><td class="gt_row gt_right">416.7967</td>
+<td class="gt_row gt_left">Activités de services administratifs et de soutien</td>
+<td class="gt_row gt_left">Paris</td></tr>
+    <tr><td class="gt_row gt_right">414.8821</td>
+<td class="gt_row gt_left">Arts, spectacles et activités récréatives</td>
+<td class="gt_row gt_left">Paris</td></tr>
+    <tr><td class="gt_row gt_right">413.4086</td>
+<td class="gt_row gt_left">Hébergement et restauration</td>
+<td class="gt_row gt_left">Alpes-Maritimes</td></tr>
+    <tr><td class="gt_row gt_right">409.7685</td>
+<td class="gt_row gt_left">Hébergement et restauration</td>
+<td class="gt_row gt_left">Bouches-du-Rhône</td></tr>
+    <tr><td class="gt_row gt_right">355.9510</td>
+<td class="gt_row gt_left">Hébergement et restauration</td>
+<td class="gt_row gt_left">Rhône</td></tr>
+    <tr><td class="gt_row gt_right">333.9413</td>
+<td class="gt_row gt_left">Hébergement et restauration</td>
+<td class="gt_row gt_left">Nord</td></tr>
+    <tr><td class="gt_row gt_right">292.2122</td>
+<td class="gt_row gt_left">Hébergement et restauration</td>
+<td class="gt_row gt_left">Gironde</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+<p>OK donc on voit que cette procédure attribue des valeurs aberrantes à des observations qui seraient intéressants néanmoins à conserver, donc attention à identifier les valeurs dites aberrantes, éventuellement avec plusieurs méthodes (cf. ci-dessous) et surtout à les comprendre ensuite, il ne s’agit pas juste de les identifier pour les exclure ensuite des analyses.</p>
+<p>Il existe en effet bien d’autres méthodes (méthode basée sur les percentiles ; méthode de Hampel), ainsi que des tests : par exemple, le package <strong><code>outliers</code></strong> vous permet de tester si une valeur (max ou min) est bien une valeur aberrante avec la fonction <code>grubbs.test()</code> (attention bis : à utiliser avec grande précaution et beaucoup de parcimonie), ou avec le package <strong><code>EnvStats</code></strong> et la fonction <code>rosnerTest()</code> pour détecter plusieurs “outliers” à la fois.</p>
+<p>Pour gérer ces variables aberrantes, on peut les supprimer bien sûr si l’on est sûr que la valeur de la variable n’est pas “normale”, par exemple si on a une variable de salaire avec des modalités inférieures à 0, oui dans ce cas ce sont des mauvais outliers (et d’ailleurs peut-être même pas identifiés comme tel statistiquement) et on peut les supprimer ; de même pour des variables de résultats économiques, on va souvent élaguer la distribution en retirant les 1% (par exemple) du bas et du haut de la distribution pour supprimer des potentiels outliers.<br />
+Sinon, on les isole en créant une variable dichotomique “0/1” ou “Faux/Vrai” ; ou on crée une variable qualitative avec plusieurs catégories.</p>
+<p>Dans les graphiques, en particulier les boîtes à moustache, on peut les supprimer du graphique et mettre une échelle plus réduite pour que celui-ci soit plus lisible, mais en précisant bien dans la légende que certaines valeurs ne sont pas visibles car enlevées.</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="manipulation-des-variables-quantitatives.html#cb62-1" aria-hidden="true" tabindex="-1"></a>dt_aidesCovid <span class="sc">%&gt;%</span>  <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">aes</span>(<span class="at">x =</span> reg_name, <span class="at">y =</span> total_meuros) <span class="sc">+</span> </span>
+<span id="cb62-2"><a href="manipulation-des-variables-quantitatives.html#cb62-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.shape =</span> <span class="cn">NA</span>) <span class="sc">+</span> <span class="fu">coord_flip</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">175</span>)) <span class="sc">+</span></span>
+<span id="cb62-3"><a href="manipulation-des-variables-quantitatives.html#cb62-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Distribution des aides financières en millions d&#39;euros, </span></span>
+<span id="cb62-4"><a href="manipulation-des-variables-quantitatives.html#cb62-4" aria-hidden="true" tabindex="-1"></a><span class="st">selon la région&quot;</span>, <span class="at">y=</span><span class="st">&quot;&quot;</span>, <span class="at">x=</span><span class="st">&quot;Région&quot;</span>, </span>
+<span id="cb62-5"><a href="manipulation-des-variables-quantitatives.html#cb62-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption=</span><span class="st">&quot;Rq : les valeurs au-delà de 175 millions d&#39;euros ne sont pas affichées sur le graphique.&quot;</span>) <span class="sc">+</span></span>
+<span id="cb62-6"><a href="manipulation-des-variables-quantitatives.html#cb62-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">hjust=</span><span class="dv">0</span>))</span></code></pre></div>
+<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-34-1.svg" width="672" /></p>
+</div>
+<div id="découper-en-classes-une-variable-quantitative" class="section level3 hasAnchor" number="4.2.4">
+<h3><span class="header-section-number">4.2.4</span> Découper en classes une variable quantitative<a href="manipulation-des-variables-quantitatives.html#découper-en-classes-une-variable-quantitative" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>On peut enfin découper en classes une variable quantitative et en faire donc une variable qualitative. On utilise pour cela la fonction <code>cut()</code> du langage de base de <code>R</code>. On peut par exemple découper la variable selon les principaux indicateurs de distribution.</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="manipulation-des-variables-quantitatives.html#cb63-1" aria-hidden="true" tabindex="-1"></a>dt_aidesCovid <span class="sc">%&gt;%</span> <span class="fu">get_summary_stats</span>(total_meuros)</span></code></pre></div>
+<pre><code># A tibble: 1 x 13
+  variable        n   min   max median    q1    q3   iqr   mad  mean    sd    se
+  &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 total_meur~  1680 0.006 1642.   5.99  1.83  17.6  15.8  7.54  21.1  60.4  1.47
+# ... with 1 more variable: ci &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="manipulation-des-variables-quantitatives.html#cb65-1" aria-hidden="true" tabindex="-1"></a>dt_aidesCovid<span class="sc">$</span>total_meuros_cat <span class="ot">&lt;-</span> <span class="fu">cut</span>(dt_aidesCovid<span class="sc">$</span>total_meuros,  </span>
+<span id="cb65-2"><a href="manipulation-des-variables-quantitatives.html#cb65-2" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>,</span>
+<span id="cb65-3"><a href="manipulation-des-variables-quantitatives.html#cb65-3" aria-hidden="true" tabindex="-1"></a>                                                 <span class="fu">quantile</span>(dt_aidesCovid<span class="sc">$</span>total_meuros,<span class="fl">0.25</span>), </span>
+<span id="cb65-4"><a href="manipulation-des-variables-quantitatives.html#cb65-4" aria-hidden="true" tabindex="-1"></a>                                                 <span class="fu">mean</span>(dt_aidesCovid<span class="sc">$</span>total_meuros), </span>
+<span id="cb65-5"><a href="manipulation-des-variables-quantitatives.html#cb65-5" aria-hidden="true" tabindex="-1"></a>                                                 <span class="fu">max</span>(dt_aidesCovid<span class="sc">$</span>total_meuros)))</span>
+<span id="cb65-6"><a href="manipulation-des-variables-quantitatives.html#cb65-6" aria-hidden="true" tabindex="-1"></a>dt_aidesCovid <span class="sc">%&gt;%</span> <span class="fu">tabyl</span>(total_meuros_cat) <span class="sc">%&gt;%</span> <span class="fu">adorn_pct_formatting</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb65-7"><a href="manipulation-des-variables-quantitatives.html#cb65-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_totals</span>(<span class="st">&quot;row&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">gt</span>()</span></code></pre></div>
+<div id="werjlqflyf" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#werjlqflyf .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#werjlqflyf .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#werjlqflyf .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#werjlqflyf .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#werjlqflyf .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#werjlqflyf .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#werjlqflyf .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#werjlqflyf .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#werjlqflyf .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#werjlqflyf .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#werjlqflyf .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#werjlqflyf .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#werjlqflyf .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#werjlqflyf .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#werjlqflyf .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#werjlqflyf .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#werjlqflyf .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#werjlqflyf .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#werjlqflyf .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#werjlqflyf .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#werjlqflyf .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#werjlqflyf .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#werjlqflyf .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#werjlqflyf .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#werjlqflyf .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#werjlqflyf .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#werjlqflyf .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#werjlqflyf .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#werjlqflyf .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#werjlqflyf .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#werjlqflyf .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#werjlqflyf .gt_left {
+  text-align: left;
+}
+
+#werjlqflyf .gt_center {
+  text-align: center;
+}
+
+#werjlqflyf .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#werjlqflyf .gt_font_normal {
+  font-weight: normal;
+}
+
+#werjlqflyf .gt_font_bold {
+  font-weight: bold;
+}
+
+#werjlqflyf .gt_font_italic {
+  font-style: italic;
+}
+
+#werjlqflyf .gt_super {
+  font-size: 65%;
+}
+
+#werjlqflyf .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#werjlqflyf .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#werjlqflyf .gt_slash_mark {
+  font-size: 0.7em;
+  line-height: 0.7em;
+  vertical-align: 0.15em;
+}
+
+#werjlqflyf .gt_fraction_numerator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: 0.45em;
+}
+
+#werjlqflyf .gt_fraction_denominator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: -0.05em;
+}
+</style>
+<table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">total_meuros_cat</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">n</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">percent</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left">(0,1.83]</td>
+<td class="gt_row gt_right">420</td>
+<td class="gt_row gt_left">25.0%</td></tr>
+    <tr><td class="gt_row gt_left">(1.83,21.1]</td>
+<td class="gt_row gt_right">901</td>
+<td class="gt_row gt_left">53.6%</td></tr>
+    <tr><td class="gt_row gt_left">(21.1,1.64e+03]</td>
+<td class="gt_row gt_right">359</td>
+<td class="gt_row gt_left">21.4%</td></tr>
+    <tr><td class="gt_row gt_left">Total</td>
+<td class="gt_row gt_right">1680</td>
+<td class="gt_row gt_left">-</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+<p>On a une classe majoritaire (du Q1 à la moyenne), mais cela nous permet de distinguer 2 classes pour lesquelles le montant des aides financières est très faible ou au contraire très élevé.</p>
+<p>A noter que si la variable quantitative en question a des valeurs manquantes, il faudra utiliser la fonction <code>fancycut()</code> ou <code>wafflecut()</code> du package <strong><code>fancycut</code></strong>, l’inconvénient est que cela nous oblige à indiquer les valeurs des différents indicateurs de la distribution. Pour trouver le même résultat que précédemment, le code serait alors le suivant :</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="manipulation-des-variables-quantitatives.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fancycut)</span>
+<span id="cb66-2"><a href="manipulation-des-variables-quantitatives.html#cb66-2" aria-hidden="true" tabindex="-1"></a>dt_aidesCovid<span class="sc">$</span>total_meuros_cat1 <span class="ot">&lt;-</span> <span class="fu">fancycut</span>(dt_aidesCovid<span class="sc">$</span>total_meuros, <span class="st">&#39;1&#39;</span><span class="ot">=</span><span class="st">&#39;(0,1.83]&#39;</span>, </span>
+<span id="cb66-3"><a href="manipulation-des-variables-quantitatives.html#cb66-3" aria-hidden="true" tabindex="-1"></a>                                           <span class="st">&#39;2&#39;</span><span class="ot">=</span><span class="st">&#39;(1.83,21]&#39;</span>, <span class="st">&#39;3&#39;</span><span class="ot">=</span><span class="st">&#39;(21,1.64e+03]&#39;</span>, </span>
+<span id="cb66-4"><a href="manipulation-des-variables-quantitatives.html#cb66-4" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">na.bucket=</span><span class="st">&#39;Manquant&#39;</span>)</span></code></pre></div>
+<p>Et voilà, on a bien “trituré” notre base de données, maintenant on peut l’enregistrer dans notre projet pour pouvoir la réutiliser lors de la prochaine séance.</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="manipulation-des-variables-quantitatives.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># On enregistre la table de données pour l&#39;utiliser ultérieurement</span></span>
+<span id="cb67-2"><a href="manipulation-des-variables-quantitatives.html#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(<span class="at">object =</span> PassageL1L2,</span>
+<span id="cb67-3"><a href="manipulation-des-variables-quantitatives.html#cb67-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">file =</span> <span class="st">&quot;Data/PassageL1L2.Rdata&quot;</span>)</span>
+<span id="cb67-4"><a href="manipulation-des-variables-quantitatives.html#cb67-4" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(<span class="at">object =</span> dt_aidesCovid,</span>
+<span id="cb67-5"><a href="manipulation-des-variables-quantitatives.html#cb67-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">file =</span> <span class="st">&quot;Data/dt_aidesCovid.Rdata&quot;</span>)</span></code></pre></div>
+
+</div>
+</div>
+<!-- </div> -->
+
+
+
+
+
+
+
+<script src="js/tidyverse.js"></script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="manipulation-des-variables-qualitatives.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"],
+"instapper": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/Camille-Sisi/github.io-Data-Mining-Seance1/master/03-Manipulation-variables.Rmd",
+"text": "Source"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"toc_depth": 3,
+"number_sections": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

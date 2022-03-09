@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Section 3 Manipulation de la base | DATA MINING</title>
+  <meta name="description" content="Titre du cours" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Section 3 Manipulation de la base | DATA MINING" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Titre du cours" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Section 3 Manipulation de la base | DATA MINING" />
+  
+  <meta name="twitter:description" content="Titre du cours" />
+  
+
+<meta name="author" content="Camille Signoretto, Maître de conférences en économie, Université de Paris" />
+
+
+<meta name="date" content="2022-03-09" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="c01-Data-Wrangling.html"/>
+<link rel="next" href="format-des-données---wide-ou-long.html"/>
+<script src="libs/header-attrs-2.12/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="css/tidyverse.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./index.html">Data Mining :  <em>Camille Signoretto</em></a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#Presentation">Présentation<span></span></a>
+<ul>
+<li><a href="à-propos-de-ce-document.html#à-propos-de-ce-document">À propos de ce document<span></span></a></li>
+<li><a href="prérequis.html#prérequis">Prérequis<span></span></a></li>
+<li><a href="remerciements.html#remerciements">Remerciements<span></span></a></li>
+<li><a href="licence.html#licence">Licence<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="c00-Presentation.html"><a href="c00-Presentation.html"><i class="fa fa-check"></i><b>1</b> Présentation<span></span></a>
+<ul>
+<li><a href="à-propos-de-ce-document-1.html#à-propos-de-ce-document-1">À propos de ce document<span></span></a></li>
+<li><a href="prérequis-1.html#prérequis-1">Prérequis<span></span></a></li>
+<li><a href="remerciements-1.html#remerciements-1">Remerciements<span></span></a></li>
+<li><a href="licence-1.html#licence-1">Licence<span></span></a></li>
+</ul></li>
+<li class="part"><span><b>I Séance n°1 : Data Wrangling<span></span></b></span></li>
+<li class="chapter" data-level="2" data-path="c01-Data-Wrangling.html"><a href="c01-Data-Wrangling.html"><i class="fa fa-check"></i><b>2</b> Récupération du jeu de données sur une API<span></span></a></li>
+<li class="chapter" data-level="3" data-path="c02-Manipulation-base.html"><a href="c02-Manipulation-base.html"><i class="fa fa-check"></i><b>3</b> Manipulation de la base<span></span></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="format-des-données---wide-ou-long.html"><a href="format-des-données---wide-ou-long.html"><i class="fa fa-check"></i><b>3.1</b> Format des données - WIDE ou LONG<span></span></a></li>
+<li class="chapter" data-level="3.2" data-path="séparer-les-variables-séparer-les-données.html"><a href="séparer-les-variables-séparer-les-données.html"><i class="fa fa-check"></i><b>3.2</b> Séparer les variables, séparer les données<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="c03-Manipulation-variables.html"><a href="c03-Manipulation-variables.html"><i class="fa fa-check"></i><b>4</b> Manipulation des variables<span></span></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="manipulation-des-variables-qualitatives.html"><a href="manipulation-des-variables-qualitatives.html"><i class="fa fa-check"></i><b>4.1</b> Manipulation des variables qualitatives<span></span></a></li>
+<li class="chapter" data-level="4.2" data-path="manipulation-des-variables-quantitatives.html"><a href="manipulation-des-variables-quantitatives.html"><i class="fa fa-check"></i><b>4.2</b> Manipulation des variables quantitatives<span></span></a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="manipulation-des-variables-quantitatives.html"><a href="manipulation-des-variables-quantitatives.html#détecter-et-visualiser-les-valeurs-manquantes"><i class="fa fa-check"></i><b>4.2.1</b> Détecter et “visualiser” les valeurs manquantes<span></span></a></li>
+<li class="chapter" data-level="4.2.2" data-path="manipulation-des-variables-quantitatives.html"><a href="manipulation-des-variables-quantitatives.html#gérer-les-valeurs-manquantes"><i class="fa fa-check"></i><b>4.2.2</b> Gérer les valeurs manquantes<span></span></a></li>
+<li class="chapter" data-level="4.2.3" data-path="manipulation-des-variables-quantitatives.html"><a href="manipulation-des-variables-quantitatives.html#détecter-et-visualiser-les-valeurs-aberrantes"><i class="fa fa-check"></i><b>4.2.3</b> Détecter et “visualiser” les valeurs aberrantes<span></span></a></li>
+<li class="chapter" data-level="4.2.4" data-path="manipulation-des-variables-quantitatives.html"><a href="manipulation-des-variables-quantitatives.html#découper-en-classes-une-variable-quantitative"><i class="fa fa-check"></i><b>4.2.4</b> Découper en classes une variable quantitative<span></span></a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">DATA MINING</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="c02-Manipulation-base" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Section 3</span> Manipulation de la base<a href="c02-Manipulation-base.html#c02-Manipulation-base" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>On va regarder un peu à quoi ressemble la table de données téléchargée, quelles sont les variables, etc.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="c02-Manipulation-base.html#cb3-1" aria-hidden="true" tabindex="-1"></a>ParcoursLic <span class="sc">%&gt;%</span> <span class="fu">head</span>() <span class="sc">%&gt;%</span> <span class="fu">gt</span>()</span></code></pre></div>
+<div id="hblvhovyui" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#hblvhovyui .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#hblvhovyui .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hblvhovyui .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#hblvhovyui .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#hblvhovyui .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hblvhovyui .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hblvhovyui .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#hblvhovyui .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#hblvhovyui .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#hblvhovyui .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#hblvhovyui .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#hblvhovyui .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#hblvhovyui .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#hblvhovyui .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#hblvhovyui .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#hblvhovyui .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#hblvhovyui .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hblvhovyui .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#hblvhovyui .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#hblvhovyui .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hblvhovyui .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#hblvhovyui .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#hblvhovyui .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hblvhovyui .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hblvhovyui .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#hblvhovyui .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#hblvhovyui .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hblvhovyui .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hblvhovyui .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hblvhovyui .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hblvhovyui .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hblvhovyui .gt_left {
+  text-align: left;
+}
+
+#hblvhovyui .gt_center {
+  text-align: center;
+}
+
+#hblvhovyui .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#hblvhovyui .gt_font_normal {
+  font-weight: normal;
+}
+
+#hblvhovyui .gt_font_bold {
+  font-weight: bold;
+}
+
+#hblvhovyui .gt_font_italic {
+  font-style: italic;
+}
+
+#hblvhovyui .gt_super {
+  font-size: 65%;
+}
+
+#hblvhovyui .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#hblvhovyui .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#hblvhovyui .gt_slash_mark {
+  font-size: 0.7em;
+  line-height: 0.7em;
+  vertical-align: 0.15em;
+}
+
+#hblvhovyui .gt_fraction_numerator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: 0.45em;
+}
+
+#hblvhovyui .gt_fraction_denominator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: -0.05em;
+}
+</style>
+<table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">passage_en_l2_2_ans</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">effectif_neobacheliers_passage</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">sect_disciplinaire_lib</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">sexe</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">age_au_bac_lib</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">passage_en_l2_1_2_ans</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">serie_bac_lib</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">age_au_bac</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">gd_discipline</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">cohorte_reussite</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">gd_discipline_lib</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">mention_bac_lib</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">discipline</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">reussite_3_ans</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">reorientation_en_dut</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">discipline_lib</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">reussite_3_4_ans</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">reorientation_en_dut_1_an</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">effectif_neobacheliers_reussite</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">redoublement_en_l1</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">passage_en_l2_1_an</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">cohorte_passage</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">reorientation_en_dut_2_ans</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">sect_disciplinaire</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">sexe_lib</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">mention_bac</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">serie_bac</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">reussite_4_ans</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_left">Langues et littératures étrangères</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_left">En retard d'un an</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_left">BAC STMG</td>
+<td class="gt_row gt_left">R1</td>
+<td class="gt_row gt_left">LLSH</td>
+<td class="gt_row gt_left">2012</td>
+<td class="gt_row gt_left">Lettres, langues et sciences humaines</td>
+<td class="gt_row gt_left">Inconnue</td>
+<td class="gt_row gt_left">05</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_left">Langues</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">3</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_left">2014</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">23</td>
+<td class="gt_row gt_left">Homme</td>
+<td class="gt_row gt_left">Q</td>
+<td class="gt_row gt_right">4</td>
+<td class="gt_row gt_right">0</td></tr>
+    <tr><td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">10</td>
+<td class="gt_row gt_left">Sociologie, démographie</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_left">En retard d'un an</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_left">BAC STMG</td>
+<td class="gt_row gt_left">R1</td>
+<td class="gt_row gt_left">LLSH</td>
+<td class="gt_row gt_left">2012</td>
+<td class="gt_row gt_left">Lettres, langues et sciences humaines</td>
+<td class="gt_row gt_left">Passable deuxième groupe</td>
+<td class="gt_row gt_left">06</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_left">Sciences humaines et sociales</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">16</td>
+<td class="gt_row gt_right">4</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_left">2014</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">33</td>
+<td class="gt_row gt_left">Homme</td>
+<td class="gt_row gt_left">P</td>
+<td class="gt_row gt_right">4</td>
+<td class="gt_row gt_right">1</td></tr>
+    <tr><td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">3</td>
+<td class="gt_row gt_left">Langues et littératures étrangères</td>
+<td class="gt_row gt_right">2</td>
+<td class="gt_row gt_left">En retard de plus d'un an</td>
+<td class="gt_row gt_right">3</td>
+<td class="gt_row gt_left">BAC technologique hors STMG</td>
+<td class="gt_row gt_left">R2</td>
+<td class="gt_row gt_left">LLSH</td>
+<td class="gt_row gt_left">2012</td>
+<td class="gt_row gt_left">Lettres, langues et sciences humaines</td>
+<td class="gt_row gt_left">Inconnue</td>
+<td class="gt_row gt_left">05</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_left">Langues</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">4</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">2</td>
+<td class="gt_row gt_left">2014</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">23</td>
+<td class="gt_row gt_left">Femme</td>
+<td class="gt_row gt_left">Q</td>
+<td class="gt_row gt_right">5</td>
+<td class="gt_row gt_right">0</td></tr>
+    <tr><td class="gt_row gt_right">NA</td>
+<td class="gt_row gt_right">NA</td>
+<td class="gt_row gt_left">Langues et littératures étrangères</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_left">Non pris en compte</td>
+<td class="gt_row gt_right">NA</td>
+<td class="gt_row gt_left">BAC professionnel</td>
+<td class="gt_row gt_left">R4</td>
+<td class="gt_row gt_left">LLSH</td>
+<td class="gt_row gt_left">2012</td>
+<td class="gt_row gt_left">Lettres, langues et sciences humaines</td>
+<td class="gt_row gt_left">Très bien</td>
+<td class="gt_row gt_left">05</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">NA</td>
+<td class="gt_row gt_left">Langues</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">NA</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">NA</td>
+<td class="gt_row gt_right">NA</td>
+<td class="gt_row gt_left">2014</td>
+<td class="gt_row gt_right">NA</td>
+<td class="gt_row gt_right">23</td>
+<td class="gt_row gt_left">Homme</td>
+<td class="gt_row gt_left">A</td>
+<td class="gt_row gt_right">6</td>
+<td class="gt_row gt_right">0</td></tr>
+    <tr><td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">21</td>
+<td class="gt_row gt_left">Sociologie, démographie</td>
+<td class="gt_row gt_right">2</td>
+<td class="gt_row gt_left">En retard de plus d'un an</td>
+<td class="gt_row gt_right">2</td>
+<td class="gt_row gt_left">BAC technologique hors STMG</td>
+<td class="gt_row gt_left">R2</td>
+<td class="gt_row gt_left">LLSH</td>
+<td class="gt_row gt_left">2012</td>
+<td class="gt_row gt_left">Lettres, langues et sciences humaines</td>
+<td class="gt_row gt_left">Passable deuxième groupe</td>
+<td class="gt_row gt_left">06</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_left">Sciences humaines et sociales</td>
+<td class="gt_row gt_right">2</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">29</td>
+<td class="gt_row gt_right">12</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_left">2014</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">33</td>
+<td class="gt_row gt_left">Femme</td>
+<td class="gt_row gt_left">P</td>
+<td class="gt_row gt_right">5</td>
+<td class="gt_row gt_right">1</td></tr>
+    <tr><td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">9</td>
+<td class="gt_row gt_left">Sciences de l'éducation</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_left">A l'heure ou en avance</td>
+<td class="gt_row gt_right">9</td>
+<td class="gt_row gt_left">BAC ES</td>
+<td class="gt_row gt_left">R0</td>
+<td class="gt_row gt_left">LLSH</td>
+<td class="gt_row gt_left">2012</td>
+<td class="gt_row gt_left">Lettres, langues et sciences humaines</td>
+<td class="gt_row gt_left">Assez bien</td>
+<td class="gt_row gt_left">06</td>
+<td class="gt_row gt_right">NA</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_left">Sciences humaines et sociales</td>
+<td class="gt_row gt_right">NA</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">NA</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">9</td>
+<td class="gt_row gt_left">2014</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">34</td>
+<td class="gt_row gt_left">Homme</td>
+<td class="gt_row gt_left">C</td>
+<td class="gt_row gt_right">2</td>
+<td class="gt_row gt_right">NA</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="c02-Manipulation-base.html#cb4-1" aria-hidden="true" tabindex="-1"></a>ParcoursLic <span class="sc">%&gt;%</span> <span class="fu">glimpse</span>()  <span class="co">#Note pour étudiants : en langage R de base, fonction équivalente &#39;str()&#39;</span></span></code></pre></div>
+<pre><code>Rows: 5,508
+Columns: 28
+$ passage_en_l2_2_ans             &lt;dbl&gt; 0, 0, 1, NA, 1, 0, 20, 1, 0, 0, 0, 1, ~
+$ effectif_neobacheliers_passage  &lt;dbl&gt; 1, 10, 3, NA, 21, 9, 144, 10, 3, 5, 1,~
+$ sect_disciplinaire_lib          &lt;chr&gt; &quot;Langues et littératures étrangères&quot;, ~
+$ sexe                            &lt;int&gt; 1, 1, 2, 1, 2, 1, 2, 2, 1, 2, 1, 2, 2,~
+$ age_au_bac_lib                  &lt;chr&gt; &quot;En retard d&#39;un an&quot;, &quot;En retard d&#39;un a~
+$ passage_en_l2_1_2_ans           &lt;dbl&gt; 0, 0, 3, NA, 2, 9, 86, 4, 1, 0, 1, 8, ~
+$ serie_bac_lib                   &lt;chr&gt; &quot;BAC STMG&quot;, &quot;BAC STMG&quot;, &quot;BAC technolog~
+$ age_au_bac                      &lt;chr&gt; &quot;R1&quot;, &quot;R1&quot;, &quot;R2&quot;, &quot;R4&quot;, &quot;R2&quot;, &quot;R0&quot;, &quot;R~
+$ gd_discipline                   &lt;chr&gt; &quot;LLSH&quot;, &quot;LLSH&quot;, &quot;LLSH&quot;, &quot;LLSH&quot;, &quot;LLSH&quot;~
+$ cohorte_reussite                &lt;chr&gt; &quot;2012&quot;, &quot;2012&quot;, &quot;2012&quot;, &quot;2012&quot;, &quot;2012&quot;~
+$ gd_discipline_lib               &lt;chr&gt; &quot;Lettres, langues et sciences humaines~
+$ mention_bac_lib                 &lt;chr&gt; &quot;Inconnue&quot;, &quot;Passable deuxième groupe&quot;~
+$ discipline                      &lt;chr&gt; &quot;05&quot;, &quot;06&quot;, &quot;05&quot;, &quot;05&quot;, &quot;06&quot;, &quot;06&quot;, &quot;0~
+$ reussite_3_ans                  &lt;dbl&gt; 0, 0, 1, 1, 1, NA, 48, 2, 0, 1, NA, 4,~
+$ reorientation_en_dut            &lt;dbl&gt; 0, 1, 0, NA, 1, 0, 3, 0, 0, 0, 0, 0, 0~
+$ discipline_lib                  &lt;chr&gt; &quot;Langues&quot;, &quot;Sciences humaines et socia~
+$ reussite_3_4_ans                &lt;dbl&gt; 0, 1, 1, 1, 2, NA, 86, 2, 0, 1, NA, 9,~
+$ reorientation_en_dut_1_an       &lt;dbl&gt; 0, 1, 0, NA, 1, 0, 2, 0, 0, 0, 0, 0, 0~
+$ effectif_neobacheliers_reussite &lt;dbl&gt; 3, 16, 4, 1, 29, NA, 206, 6, 2, 5, NA,~
+$ redoublement_en_l1              &lt;dbl&gt; 0, 4, 1, NA, 12, 0, 39, 2, 0, 1, 0, 1,~
+$ passage_en_l2_1_an              &lt;dbl&gt; 0, 0, 2, NA, 1, 9, 66, 3, 1, 0, 1, 7, ~
+$ cohorte_passage                 &lt;chr&gt; &quot;2014&quot;, &quot;2014&quot;, &quot;2014&quot;, &quot;2014&quot;, &quot;2014&quot;~
+$ reorientation_en_dut_2_ans      &lt;dbl&gt; 0, 0, 0, NA, 0, 0, 1, 0, 0, 0, 0, 0, 0~
+$ sect_disciplinaire              &lt;int&gt; 23, 33, 23, 23, 33, 34, 24, 24, 34, 34~
+$ sexe_lib                        &lt;chr&gt; &quot;Homme&quot;, &quot;Homme&quot;, &quot;Femme&quot;, &quot;Homme&quot;, &quot;F~
+$ mention_bac                     &lt;chr&gt; &quot;Q&quot;, &quot;P&quot;, &quot;Q&quot;, &quot;A&quot;, &quot;P&quot;, &quot;C&quot;, &quot;D&quot;, &quot;Q&quot;~
+$ serie_bac                       &lt;int&gt; 4, 4, 5, 6, 5, 2, 2, 2, 4, 5, 4, 1, 5,~
+$ reussite_4_ans                  &lt;dbl&gt; 0, 1, 0, 0, 1, NA, 38, 0, 0, 0, NA, 5,~</code></pre>
+<p>On a donc 28 colonnes ou variables et 5 508 lignes ou observations. Les variables sont en format, soit ‘dbl’ (“double”), soit ‘int’ (“interger”) ou encore ‘chr’ (“character”).<br />
+On remarque que certaines variables donnent la même information mais sont codées en nombre, ou en libellé : c’est le cas de la variable “sexe” (“sexe” et “sexe_lib”), mais aussi de la série au bac, des grandes disciplines de la licence, etc. On a également 2 variables dont la modalité semble toujours la même - “cohorte_passage” et “cohorte_reussite”, on le vérifiera lorsqu’on travaillera spécifiquement sur les variables. Enfin, on voit également des “NA”, ce qui signifie que certaines variables ont des valeurs manquantes.</p>
+</div>
+<script src="js/tidyverse.js"></script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="c01-Data-Wrangling.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="format-des-données---wide-ou-long.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"],
+"instapper": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/Camille-Sisi/github.io-Data-Mining-Seance1/master/02-Manipulation-base.Rmd",
+"text": "Source"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"toc_depth": 3,
+"number_sections": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

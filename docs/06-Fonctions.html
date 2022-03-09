@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Section 6 Systématiser nos procédures : construire une fonction | DATA MINING</title>
+  <meta name="description" content="Titre du cours" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Section 6 Systématiser nos procédures : construire une fonction | DATA MINING" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Titre du cours" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Section 6 Systématiser nos procédures : construire une fonction | DATA MINING" />
+  
+  <meta name="twitter:description" content="Titre du cours" />
+  
+
+<meta name="author" content="Camille Signoretto, Maîtresse de conférences en économie, Université Paris Cité" />
+
+
+<meta name="date" content="2022-03-09" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="05-Questions-fouille-donnees.html"/>
+<link rel="next" href="07-Analyse-descriptive.html"/>
+<script src="libs/header-attrs-2.12/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="css/tidyverse.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Mining :  <em>Camille Signoretto</em></a></li>
+
+<li class="divider"></li>
+<li><a href="00-Presentation.html#présentation">Présentation<span></span></a>
+<ul>
+<li><a href="00-Presentation.html#à-propos-de-ce-document">À propos de ce document<span></span></a></li>
+<li><a href="00-Presentation.html#prérequis">Prérequis<span></span></a></li>
+<li><a href="00-Presentation.html#remerciements">Remerciements<span></span></a></li>
+<li><a href="00-Presentation.html#licence">Licence<span></span></a></li>
+</ul></li>
+<li class="part"><span><b>Séance 1 : Data Wrangling<span></span></b></span></li>
+<li class="chapter" data-level="1" data-path="01-Jeu-de-donnees.html"><a href="01-Jeu-de-donnees.html"><i class="fa fa-check"></i><b>1</b> Récupération du jeu de données sur une API<span></span></a></li>
+<li class="chapter" data-level="2" data-path="02-Manipulation-base.html"><a href="02-Manipulation-base.html"><i class="fa fa-check"></i><b>2</b> Manipulation de la base<span></span></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="02-Manipulation-base.html"><a href="02-Manipulation-base.html#format-des-données---wide-ou-long"><i class="fa fa-check"></i><b>2.1</b> Format des données - WIDE ou LONG<span></span></a></li>
+<li class="chapter" data-level="2.2" data-path="02-Manipulation-base.html"><a href="02-Manipulation-base.html#séparer-les-variables-séparer-les-données"><i class="fa fa-check"></i><b>2.2</b> Séparer les variables, séparer les données<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="03-Manipulation-variables.html"><a href="03-Manipulation-variables.html"><i class="fa fa-check"></i><b>3</b> Manipulation des variables<span></span></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="03-Manipulation-variables.html"><a href="03-Manipulation-variables.html#manipulation-des-variables-qualitatives"><i class="fa fa-check"></i><b>3.1</b> Manipulation des variables qualitatives<span></span></a></li>
+<li class="chapter" data-level="3.2" data-path="03-Manipulation-variables.html"><a href="03-Manipulation-variables.html#manipulation-des-variables-quantitatives"><i class="fa fa-check"></i><b>3.2</b> Manipulation des variables quantitatives<span></span></a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="03-Manipulation-variables.html"><a href="03-Manipulation-variables.html#détecter-et-visualiser-les-valeurs-manquantes"><i class="fa fa-check"></i><b>3.2.1</b> Détecter et “visualiser” les valeurs manquantes<span></span></a></li>
+<li class="chapter" data-level="3.2.2" data-path="03-Manipulation-variables.html"><a href="03-Manipulation-variables.html#gérer-les-valeurs-manquantes"><i class="fa fa-check"></i><b>3.2.2</b> Gérer les valeurs manquantes<span></span></a></li>
+<li class="chapter" data-level="3.2.3" data-path="03-Manipulation-variables.html"><a href="03-Manipulation-variables.html#détecter-et-visualiser-les-valeurs-aberrantes"><i class="fa fa-check"></i><b>3.2.3</b> Détecter et “visualiser” les valeurs aberrantes<span></span></a></li>
+<li class="chapter" data-level="3.2.4" data-path="03-Manipulation-variables.html"><a href="03-Manipulation-variables.html#découper-en-classes-une-variable-quantitative"><i class="fa fa-check"></i><b>3.2.4</b> Découper en classes une variable quantitative<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="04-Enregistrement-tables-donnees.html"><a href="04-Enregistrement-tables-donnees.html"><i class="fa fa-check"></i><b>4</b> Enregistrement des tables<span></span></a></li>
+<li class="part"><span><b>Séance 2 : Data Mining - Analyse descriptive<span></span></b></span></li>
+<li class="chapter" data-level="5" data-path="05-Questions-fouille-donnees.html"><a href="05-Questions-fouille-donnees.html"><i class="fa fa-check"></i><b>5</b> Quelles questions intéressantes pour une “fouille de données” sur cette base ?<span></span></a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="05-Questions-fouille-donnees.html"><a href="05-Questions-fouille-donnees.html#caractéristiques-de-la-cohorte-des-bacheliers-2014-inscrits-en-première-année-de-licence-en-2014-2015"><i class="fa fa-check"></i><b>5.1</b> Caractéristiques de la cohorte des bacheliers 2014 inscrits en première année de licence en 2014-2015<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="06-Fonctions.html"><a href="06-Fonctions.html"><i class="fa fa-check"></i><b>6</b> Systématiser nos procédures : construire une fonction<span></span></a></li>
+<li class="chapter" data-level="7" data-path="07-Analyse-descriptive.html"><a href="07-Analyse-descriptive.html"><i class="fa fa-check"></i><b>7</b> (reprise de l’)Analyse descriptive<span></span></a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="07-Analyse-descriptive.html"><a href="07-Analyse-descriptive.html#caractéristiques-de-la-cohorte-des-bacheliers-2014-inscrits-en-première-année-de-licence-en-2014-2015-1"><i class="fa fa-check"></i><b>7.1</b> Caractéristiques de la cohorte des bacheliers 2014 inscrits en première année de licence en 2014-2015<span></span></a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">DATA MINING</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="c06-Fonctions" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Section 6</span> Systématiser nos procédures : construire une fonction<a href="06-Fonctions.html#c06-Fonctions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div align="justify">
+
+<p>Pour ré-utiliser un code de façon plus automatique, créer des fonctions est très utile (et on peut même les stocker dans un fichier <code>.r</code> pour les réutiliser plus tard pour une autre étude).</p>
+<p>L’idée est qu’à partir d’un bloc d’instructions ou de lignes de codes, on l’intègre dans une fonction qui portera un nom et qui pourra être appliquée sur les paramètres que l’on veut (table/objet différent, variables différentes) et qui nous retournera une valeur en sortie (qu’il faut préciser donc). Par exemple :</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="06-Fonctions.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exemple fonction avec 3 arguments</span></span>
+<span id="cb69-2"><a href="06-Fonctions.html#cb69-2" aria-hidden="true" tabindex="-1"></a>nom_fonction <span class="ot">&lt;-</span> <span class="cf">function</span>(data, var1, var2) {</span>
+<span id="cb69-3"><a href="06-Fonctions.html#cb69-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb69-4"><a href="06-Fonctions.html#cb69-4" aria-hidden="true" tabindex="-1"></a>  expression...  <span class="co"># Ce que la fonction fait</span></span>
+<span id="cb69-5"><a href="06-Fonctions.html#cb69-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb69-6"><a href="06-Fonctions.html#cb69-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(tab)  <span class="co"># Optionnel, mais la plupart du temps utilisé (!), </span></span>
+<span id="cb69-7"><a href="06-Fonctions.html#cb69-7" aria-hidden="true" tabindex="-1"></a>               <span class="co"># pour sortir le résultat de la fonction</span></span>
+<span id="cb69-8"><a href="06-Fonctions.html#cb69-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb69-9"><a href="06-Fonctions.html#cb69-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb69-10"><a href="06-Fonctions.html#cb69-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-11"><a href="06-Fonctions.html#cb69-11" aria-hidden="true" tabindex="-1"></a><span class="co"># L&#39;appel de la fonction devra ainsi préciser la table de données sur laquelle </span></span>
+<span id="cb69-12"><a href="06-Fonctions.html#cb69-12" aria-hidden="true" tabindex="-1"></a><span class="co"># l&#39;appliquer et les autres arguments : </span></span>
+<span id="cb69-13"><a href="06-Fonctions.html#cb69-13" aria-hidden="true" tabindex="-1"></a><span class="fu">nom_fonction</span>(<span class="at">data =</span> nom_de_ma_table , <span class="at">var1 =</span> nom_de_ma_variable1,  </span>
+<span id="cb69-14"><a href="06-Fonctions.html#cb69-14" aria-hidden="true" tabindex="-1"></a>             <span class="at">var2 =</span> nom_de_ma_variable2)</span>
+<span id="cb69-15"><a href="06-Fonctions.html#cb69-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-16"><a href="06-Fonctions.html#cb69-16" aria-hidden="true" tabindex="-1"></a><span class="co"># De plus, on pourra créer un nouvel objet (ici &quot;tab_var&quot;) pour stocker la table </span></span>
+<span id="cb69-17"><a href="06-Fonctions.html#cb69-17" aria-hidden="true" tabindex="-1"></a><span class="co"># qui est en valeur de sortie de la fonction : </span></span>
+<span id="cb69-18"><a href="06-Fonctions.html#cb69-18" aria-hidden="true" tabindex="-1"></a>tab_var <span class="ot">&lt;-</span> <span class="fu">nom_fonction</span>(<span class="at">data =</span> nom_de_ma_table , <span class="at">var1 =</span> nom_de_ma_variable1,</span>
+<span id="cb69-19"><a href="06-Fonctions.html#cb69-19" aria-hidden="true" tabindex="-1"></a>                        <span class="at">var2 =</span> nom_de_ma_variable2)</span></code></pre></div>
+<p>Les arguments doivent donc être précisés en entrée de notre fonction, si on ne les précise pas cela nous retournera une erreur… à moins que l’on ait spécifié des valeurs par défaut (ce qui peut être utile si on utilise souvent les mêmes paramètres, c’est-à-dire la même base de données par exemple) ; il peut y avoir autant d’arguments que l’on souhaite.<br />
+Si l’on utilise le langage tidyverse, il faut connaître quelques petits “trucs” pour écrire une fonction. Le schéma suivant réalisé par Julien Barnier du CNRS nous sera très utile.
+<img src="images/Schéma%20tidyverse%20functions_Julien%20Barnier.jpg" alt="Pour une fonction utilisant le langage tidyverse" /></p>
+<div align="center">
+<p><em>Source</em> : Julien Barnier, <a href="https://twitter.com/lapply/status/1493908215796535296?s=20&t=p4aYIEV4GsGS3TGftPa0Nw" target="_blank">https://twitter.com/lapply/status/1493908215796535296?s=20&amp;t=p4aYIEV4GsGS3TGftPa0Nw</a>.</p>
+<div align="justify">
+<p>Vous trouverez également des informations utiles <a href="https://thinkr.fr/comment-creer-des-fonctions-dans-le-tidyverse-avec-la-tidyeval-et-le-stash-stash/" target="_blank">ici</a>.</p>
+<p>On peut d’abord créer une fonction reprenant le code précédent pour la construction de tableau. On l’appelle <code>TAB</code>, et on lui donne comme arguments “data”, “…”, “var1” et “var_sum”. L’argument “…” est pratique si l’on ne sait pas combien il y aura de variable(s) dans la fonction à laquelle elle s’applique, c’est-à-dire autant 0 variable, 1 variable ou plus d’une variable ; mais elle peut-être aussi “dangereuse” si on ne se souvient plus qu’on l’a créée et/ou si on ne fait pas attention à bien remplir les autres arguments avec les noms correspondants. Ici, elle nous est utile pour introduire la fonction <code>group_by()</code> qu’on n’utilisera pas au début de l’analyse, mais après si.</p>
+<p>Ensuite, dans le langage tidyverse au sein d’une fonction, il faut appeler une variable avec des doubles-accolades. Si l’on utilisait une fonction <code>summarise()</code>, une autre subtilité à connaître dans une fonction avec langage tidyverse, est par exemple que cette syntaxe ne sera pas reconnue “summarise({{ nom_var }} = mean({{ var }}, na.rm=TRUE”, car il faut indiquer non pas un “=” mais un “:=” pour que la fonction puisse être lue lorsque d’un côté le nom donné à la variable est de type caractère ou “string”.<br />
+Enfin, il ne faut pas oublier de retourner un objet en sortie avec <code>return()</code>.</p>
+<p>Essayez donc de créer un fonction <code>tableau()</code>, reprenant le code de la section précédente et ci-dessous pour information :</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="06-Fonctions.html#cb70-1" aria-hidden="true" tabindex="-1"></a>PassageL1L2 <span class="sc">%&gt;%</span> </span>
+<span id="cb70-2"><a href="06-Fonctions.html#cb70-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(type_bac, <span class="at">wt=</span>effectif_neobacheliers_passage) <span class="sc">%&gt;%</span> </span>
+<span id="cb70-3"><a href="06-Fonctions.html#cb70-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Pourcentage=</span><span class="fu">prop.table</span>(n)<span class="sc">*</span><span class="dv">100</span>, <span class="at">Pourcentage=</span><span class="fu">round</span>(Pourcentage, <span class="dv">1</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb70-4"><a href="06-Fonctions.html#cb70-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_totals</span>(<span class="st">&quot;row&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb70-5"><a href="06-Fonctions.html#cb70-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Effectif=</span>n)</span></code></pre></div>
+<div class="solution-exo">
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="06-Fonctions.html#cb71-1" aria-hidden="true" tabindex="-1"></a>tableau <span class="ot">&lt;-</span> <span class="cf">function</span>(data, ..., var1, var_sum){</span>
+<span id="cb71-2"><a href="06-Fonctions.html#cb71-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb71-3"><a href="06-Fonctions.html#cb71-3" aria-hidden="true" tabindex="-1"></a>  tab_1 <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
+<span id="cb71-4"><a href="06-Fonctions.html#cb71-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(...) <span class="sc">%&gt;%</span> </span>
+<span id="cb71-5"><a href="06-Fonctions.html#cb71-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>({{ var1 }}, <span class="at">wt=</span>{{ var_sum }}) <span class="sc">%&gt;%</span> </span>
+<span id="cb71-6"><a href="06-Fonctions.html#cb71-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Pourcentage=</span><span class="fu">prop.table</span>(n)<span class="sc">*</span><span class="dv">100</span>, <span class="at">Pourcentage=</span><span class="fu">round</span>(Pourcentage, <span class="dv">1</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb71-7"><a href="06-Fonctions.html#cb71-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">Effectif=</span>n, <span class="at">Variable=</span>{{ var1 }}) </span>
+<span id="cb71-8"><a href="06-Fonctions.html#cb71-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb71-9"><a href="06-Fonctions.html#cb71-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(tab_1)</span>
+<span id="cb71-10"><a href="06-Fonctions.html#cb71-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb71-11"><a href="06-Fonctions.html#cb71-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<p>Essayez d’écrire une seconde fonction <code>somme()</code> permettant de systématiser le code suivant (utilisé dans la séance 1), en ajoutant une fonction de filtre qui peut être utile si l’on veut s’intéresser aux effectifs pour une discipline en particulier par exemple mais sans que l’on sache si on l’utilisera toujours :</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="06-Fonctions.html#cb72-1" aria-hidden="true" tabindex="-1"></a>PassageL1L2 <span class="sc">%&gt;%</span> </span>
+<span id="cb72-2"><a href="06-Fonctions.html#cb72-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="st">&#39;Nombre total de bacheliers inscrits en 2014-2015 en licence&#39;</span> <span class="ot">=</span></span>
+<span id="cb72-3"><a href="06-Fonctions.html#cb72-3" aria-hidden="true" tabindex="-1"></a>              <span class="fu">sum</span>(effectif_neobacheliers_passage, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="solution-exo">
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="06-Fonctions.html#cb73-1" aria-hidden="true" tabindex="-1"></a>somme <span class="ot">&lt;-</span> <span class="cf">function</span>(data, ..., nom_var, var1){</span>
+<span id="cb73-2"><a href="06-Fonctions.html#cb73-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb73-3"><a href="06-Fonctions.html#cb73-3" aria-hidden="true" tabindex="-1"></a>  som_1 <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
+<span id="cb73-4"><a href="06-Fonctions.html#cb73-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(...) <span class="sc">%&gt;%</span> </span>
+<span id="cb73-5"><a href="06-Fonctions.html#cb73-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>({{nom_var}}<span class="sc">:</span><span class="er">=</span><span class="fu">sum</span>({{var1}}, <span class="at">na.rm=</span>T)) </span>
+<span id="cb73-6"><a href="06-Fonctions.html#cb73-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb73-7"><a href="06-Fonctions.html#cb73-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(som_1)</span>
+<span id="cb73-8"><a href="06-Fonctions.html#cb73-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb73-9"><a href="06-Fonctions.html#cb73-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+
+<script src="js/tidyverse.js"></script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="05-Questions-fouille-donnees.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="07-Analyse-descriptive.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"],
+"instapper": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/Camille-Sisi/github.io-Data-Mining/master/06-Fonctions.Rmd",
+"text": "Source"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

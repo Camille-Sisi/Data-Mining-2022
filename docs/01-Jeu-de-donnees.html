@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Section 1 Récupération du jeu de données sur une API | DATA MINING</title>
+  <meta name="description" content="Titre du cours" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Section 1 Récupération du jeu de données sur une API | DATA MINING" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Titre du cours" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Section 1 Récupération du jeu de données sur une API | DATA MINING" />
+  
+  <meta name="twitter:description" content="Titre du cours" />
+  
+
+<meta name="author" content="Camille Signoretto, Maîtresse de conférences en économie, Université Paris Cité" />
+
+
+<meta name="date" content="2022-03-09" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="00-Presentation.html"/>
+<link rel="next" href="02-Manipulation-base.html"/>
+<script src="libs/header-attrs-2.12/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="css/tidyverse.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Mining :  <em>Camille Signoretto</em></a></li>
+
+<li class="divider"></li>
+<li><a href="00-Presentation.html#présentation">Présentation<span></span></a>
+<ul>
+<li><a href="00-Presentation.html#à-propos-de-ce-document">À propos de ce document<span></span></a></li>
+<li><a href="00-Presentation.html#prérequis">Prérequis<span></span></a></li>
+<li><a href="00-Presentation.html#remerciements">Remerciements<span></span></a></li>
+<li><a href="00-Presentation.html#licence">Licence<span></span></a></li>
+</ul></li>
+<li class="part"><span><b>Séance 1 : Data Wrangling<span></span></b></span></li>
+<li class="chapter" data-level="1" data-path="01-Jeu-de-donnees.html"><a href="01-Jeu-de-donnees.html"><i class="fa fa-check"></i><b>1</b> Récupération du jeu de données sur une API<span></span></a></li>
+<li class="chapter" data-level="2" data-path="02-Manipulation-base.html"><a href="02-Manipulation-base.html"><i class="fa fa-check"></i><b>2</b> Manipulation de la base<span></span></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="02-Manipulation-base.html"><a href="02-Manipulation-base.html#format-des-données---wide-ou-long"><i class="fa fa-check"></i><b>2.1</b> Format des données - WIDE ou LONG<span></span></a></li>
+<li class="chapter" data-level="2.2" data-path="02-Manipulation-base.html"><a href="02-Manipulation-base.html#séparer-les-variables-séparer-les-données"><i class="fa fa-check"></i><b>2.2</b> Séparer les variables, séparer les données<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="03-Manipulation-variables.html"><a href="03-Manipulation-variables.html"><i class="fa fa-check"></i><b>3</b> Manipulation des variables<span></span></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="03-Manipulation-variables.html"><a href="03-Manipulation-variables.html#manipulation-des-variables-qualitatives"><i class="fa fa-check"></i><b>3.1</b> Manipulation des variables qualitatives<span></span></a></li>
+<li class="chapter" data-level="3.2" data-path="03-Manipulation-variables.html"><a href="03-Manipulation-variables.html#manipulation-des-variables-quantitatives"><i class="fa fa-check"></i><b>3.2</b> Manipulation des variables quantitatives<span></span></a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="03-Manipulation-variables.html"><a href="03-Manipulation-variables.html#détecter-et-visualiser-les-valeurs-manquantes"><i class="fa fa-check"></i><b>3.2.1</b> Détecter et “visualiser” les valeurs manquantes<span></span></a></li>
+<li class="chapter" data-level="3.2.2" data-path="03-Manipulation-variables.html"><a href="03-Manipulation-variables.html#gérer-les-valeurs-manquantes"><i class="fa fa-check"></i><b>3.2.2</b> Gérer les valeurs manquantes<span></span></a></li>
+<li class="chapter" data-level="3.2.3" data-path="03-Manipulation-variables.html"><a href="03-Manipulation-variables.html#détecter-et-visualiser-les-valeurs-aberrantes"><i class="fa fa-check"></i><b>3.2.3</b> Détecter et “visualiser” les valeurs aberrantes<span></span></a></li>
+<li class="chapter" data-level="3.2.4" data-path="03-Manipulation-variables.html"><a href="03-Manipulation-variables.html#découper-en-classes-une-variable-quantitative"><i class="fa fa-check"></i><b>3.2.4</b> Découper en classes une variable quantitative<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="04-Enregistrement-tables-donnees.html"><a href="04-Enregistrement-tables-donnees.html"><i class="fa fa-check"></i><b>4</b> Enregistrement des tables<span></span></a></li>
+<li class="part"><span><b>Séance 2 : Data Mining - Analyse descriptive<span></span></b></span></li>
+<li class="chapter" data-level="5" data-path="05-Questions-fouille-donnees.html"><a href="05-Questions-fouille-donnees.html"><i class="fa fa-check"></i><b>5</b> Quelles questions intéressantes pour une “fouille de données” sur cette base ?<span></span></a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="05-Questions-fouille-donnees.html"><a href="05-Questions-fouille-donnees.html#caractéristiques-de-la-cohorte-des-bacheliers-2014-inscrits-en-première-année-de-licence-en-2014-2015"><i class="fa fa-check"></i><b>5.1</b> Caractéristiques de la cohorte des bacheliers 2014 inscrits en première année de licence en 2014-2015<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="06-Fonctions.html"><a href="06-Fonctions.html"><i class="fa fa-check"></i><b>6</b> Systématiser nos procédures : construire une fonction<span></span></a></li>
+<li class="chapter" data-level="7" data-path="07-Analyse-descriptive.html"><a href="07-Analyse-descriptive.html"><i class="fa fa-check"></i><b>7</b> (reprise de l’)Analyse descriptive<span></span></a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="07-Analyse-descriptive.html"><a href="07-Analyse-descriptive.html#caractéristiques-de-la-cohorte-des-bacheliers-2014-inscrits-en-première-année-de-licence-en-2014-2015-1"><i class="fa fa-check"></i><b>7.1</b> Caractéristiques de la cohorte des bacheliers 2014 inscrits en première année de licence en 2014-2015<span></span></a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">DATA MINING</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="c01-Jeu-de-donnees" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Section 1</span> Récupération du jeu de données sur une API<a href="01-Jeu-de-donnees.html#c01-Jeu-de-donnees" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div align="justify">
+
+
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="01-Jeu-de-donnees.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># On charge les librairies principales que l&#39;on va utiliser</span></span>
+<span id="cb1-2"><a href="01-Jeu-de-donnees.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb1-3"><a href="01-Jeu-de-donnees.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(httr)</span>
+<span id="cb1-4"><a href="01-Jeu-de-donnees.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jsonlite)</span>
+<span id="cb1-5"><a href="01-Jeu-de-donnees.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-6"><a href="01-Jeu-de-donnees.html#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb1-7"><a href="01-Jeu-de-donnees.html#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstatix)</span>
+<span id="cb1-8"><a href="01-Jeu-de-donnees.html#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span></code></pre></div>
+<p>On récupère le jeu de données sur lequel on va travailler au cours de cette séance sur le site de l’open data du Ministère de l’enseignement supérieur et de la recherche : j’ai choisi ici de travailler sur les parcours et la réussite en licence des bacheliers nouvellement inscrits, la page présentant cette base est consultable <a href="https://data.enseignementsup-recherche.gouv.fr/explore/dataset/fr-esr-parcours-et-reussite-des-bacheliers-en-licence/information/" target="_blank">ici</a>. En allant dans l’onglet ‘API’, on peut récupérer l’adresse à inscrire dans notre fonction <code>GET</code>. On récupère ensuite le contenu puis la base de données (cf. séance 1 de C. Grasland).</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="01-Jeu-de-donnees.html#cb2-1" aria-hidden="true" tabindex="-1"></a>get_url <span class="ot">&lt;-</span> <span class="fu">GET</span>(<span class="st">&quot;https://data.enseignementsup-recherche.gouv.fr/api/records/1.0/search/?dataset=fr-esr-parcours-et-reussite-des-bacheliers-en-licence&amp;q=&amp;rows=10000&amp;start=0&quot;</span>) <span class="co">#liste </span></span>
+<span id="cb2-2"><a href="01-Jeu-de-donnees.html#cb2-2" aria-hidden="true" tabindex="-1"></a>content <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(<span class="fu">rawToChar</span>(get_url<span class="sc">$</span>content)) <span class="co">#liste </span></span>
+<span id="cb2-3"><a href="01-Jeu-de-donnees.html#cb2-3" aria-hidden="true" tabindex="-1"></a>ParcoursLic <span class="ot">&lt;-</span> content<span class="sc">$</span>records<span class="sc">$</span>fields</span></code></pre></div>
+<p>La description sur le site nous donne le champ général et d’autres informations sur les variables :</p>
+<ul>
+<li>le champ couvre l’ensemble des universités françaises, sauf l’université de Nouvelle Calédonie ;</li>
+<li>les informations ne sont pas brutes dans la mesure où elles ont déjà été retravaillées ; nous n’avons pas, par conséquent, comme observations les individus inscrits et diplômés, mais des indicateurs déjà construits et donc plus ou moins agrégés.</li>
+</ul>
+<p>Plus précisément, on a en réalité deux types d’informations qui renvoient à deux champs différents : d’abord sur le passage en deuxième année en un ou deux ans dont le “<em>champ des indicateurs est constitué des bacheliers 2014 inscrits en 2014-2015 en première année de licence (hors licence professionnelle) dans l’enseignement supérieur public</em>” ; puis sur l’obtention de la licence en trois ou quatre ans dont le “<em>champ des indicateurs est constitué des bacheliers 2012 inscrits en 2012-2013 en première année de licence dans l’enseignement supérieur public</em>”. Dans les deux cas, les étudiants ayant pris une inscription parallèle en STS, DUT ou CPGE, sont exclus.</p>
+<p>Il faudra donc faire attention dans l’interprétation des traitements statistiques que l’on pourra faire de ces données. L’élément important est la “base”, c’est-à-dire le dénominateur des indicateurs qui sont indiqués sur le site mentionné plus haut, c’est cette variable qu’il faudra identifier et qui nous permettra de connaître les effectifs globaux des bacheliers inscrits selon l’année et ensuite par catégories.</p>
+
+</div>
+<script src="js/tidyverse.js"></script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="00-Presentation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="02-Manipulation-base.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"],
+"instapper": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/Camille-Sisi/github.io-Data-Mining/master/01-Jeu-de-donnees.Rmd",
+"text": "Source"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4.1 Manipulation des variables qualitatives | DATA MINING</title>
+  <meta name="description" content="Titre du cours" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4.1 Manipulation des variables qualitatives | DATA MINING" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Titre du cours" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4.1 Manipulation des variables qualitatives | DATA MINING" />
+  
+  <meta name="twitter:description" content="Titre du cours" />
+  
+
+<meta name="author" content="Camille Signoretto, Maître de conférences en économie, Université de Paris" />
+
+
+<meta name="date" content="2022-03-09" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="c03-Manipulation-variables.html"/>
+<link rel="next" href="manipulation-des-variables-quantitatives.html"/>
+<script src="libs/header-attrs-2.12/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="css/tidyverse.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./index.html">Data Mining :  <em>Camille Signoretto</em></a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#Presentation">Présentation<span></span></a>
+<ul>
+<li><a href="à-propos-de-ce-document.html#à-propos-de-ce-document">À propos de ce document<span></span></a></li>
+<li><a href="prérequis.html#prérequis">Prérequis<span></span></a></li>
+<li><a href="remerciements.html#remerciements">Remerciements<span></span></a></li>
+<li><a href="licence.html#licence">Licence<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="c00-Presentation.html"><a href="c00-Presentation.html"><i class="fa fa-check"></i><b>1</b> Présentation<span></span></a>
+<ul>
+<li><a href="à-propos-de-ce-document-1.html#à-propos-de-ce-document-1">À propos de ce document<span></span></a></li>
+<li><a href="prérequis-1.html#prérequis-1">Prérequis<span></span></a></li>
+<li><a href="remerciements-1.html#remerciements-1">Remerciements<span></span></a></li>
+<li><a href="licence-1.html#licence-1">Licence<span></span></a></li>
+</ul></li>
+<li class="part"><span><b>I Séance n°1 : Data Wrangling<span></span></b></span></li>
+<li class="chapter" data-level="2" data-path="c01-Data-Wrangling.html"><a href="c01-Data-Wrangling.html"><i class="fa fa-check"></i><b>2</b> Récupération du jeu de données sur une API<span></span></a></li>
+<li class="chapter" data-level="3" data-path="c02-Manipulation-base.html"><a href="c02-Manipulation-base.html"><i class="fa fa-check"></i><b>3</b> Manipulation de la base<span></span></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="format-des-données---wide-ou-long.html"><a href="format-des-données---wide-ou-long.html"><i class="fa fa-check"></i><b>3.1</b> Format des données - WIDE ou LONG<span></span></a></li>
+<li class="chapter" data-level="3.2" data-path="séparer-les-variables-séparer-les-données.html"><a href="séparer-les-variables-séparer-les-données.html"><i class="fa fa-check"></i><b>3.2</b> Séparer les variables, séparer les données<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="c03-Manipulation-variables.html"><a href="c03-Manipulation-variables.html"><i class="fa fa-check"></i><b>4</b> Manipulation des variables<span></span></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="manipulation-des-variables-qualitatives.html"><a href="manipulation-des-variables-qualitatives.html"><i class="fa fa-check"></i><b>4.1</b> Manipulation des variables qualitatives<span></span></a></li>
+<li class="chapter" data-level="4.2" data-path="manipulation-des-variables-quantitatives.html"><a href="manipulation-des-variables-quantitatives.html"><i class="fa fa-check"></i><b>4.2</b> Manipulation des variables quantitatives<span></span></a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="manipulation-des-variables-quantitatives.html"><a href="manipulation-des-variables-quantitatives.html#détecter-et-visualiser-les-valeurs-manquantes"><i class="fa fa-check"></i><b>4.2.1</b> Détecter et “visualiser” les valeurs manquantes<span></span></a></li>
+<li class="chapter" data-level="4.2.2" data-path="manipulation-des-variables-quantitatives.html"><a href="manipulation-des-variables-quantitatives.html#gérer-les-valeurs-manquantes"><i class="fa fa-check"></i><b>4.2.2</b> Gérer les valeurs manquantes<span></span></a></li>
+<li class="chapter" data-level="4.2.3" data-path="manipulation-des-variables-quantitatives.html"><a href="manipulation-des-variables-quantitatives.html#détecter-et-visualiser-les-valeurs-aberrantes"><i class="fa fa-check"></i><b>4.2.3</b> Détecter et “visualiser” les valeurs aberrantes<span></span></a></li>
+<li class="chapter" data-level="4.2.4" data-path="manipulation-des-variables-quantitatives.html"><a href="manipulation-des-variables-quantitatives.html#découper-en-classes-une-variable-quantitative"><i class="fa fa-check"></i><b>4.2.4</b> Découper en classes une variable quantitative<span></span></a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">DATA MINING</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="manipulation-des-variables-qualitatives" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Manipulation des variables qualitatives<a href="manipulation-des-variables-qualitatives.html#manipulation-des-variables-qualitatives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>On peut d’abord travailler sur les variables qualitatives. On regarde les différents niveaux pour chacune d’entre elles. On peut avoir recours pour cela à la fonction <code>sapply()</code> qui permet d’appliquer la fonction indiquée entre parenthèses (ici <code>levels()</code>) à tous les éléments de notre table.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="manipulation-des-variables-qualitatives.html#cb30-1" aria-hidden="true" tabindex="-1"></a>PassageL1L2 <span class="sc">%&gt;%</span> <span class="fu">select_if</span>(is.factor) <span class="sc">%&gt;%</span> <span class="fu">sapply</span>(levels)</span></code></pre></div>
+<pre><code>$sect_disciplinaire_lib
+ [1] &quot;Administration économique et sociale&quot;                                           
+ [2] &quot;Aménagement&quot;                                                                    
+ [3] &quot;Archéologie, ethnologie, préhistoire&quot;                                           
+ [4] &quot;Arts&quot;                                                                           
+ [5] &quot;Chimie&quot;                                                                         
+ [6] &quot;Cultures et langues régionales&quot;                                                 
+ [7] &quot;Électronique, génie électrique&quot;                                                 
+ [8] &quot;Formation générale aux métiers de l&#39;ingénieur&quot;                                  
+ [9] &quot;Génie civil&quot;                                                                    
+[10] &quot;Génie des procédés&quot;                                                             
+[11] &quot;Géographie&quot;                                                                     
+[12] &quot;Histoire&quot;                                                                       
+[13] &quot;Informatique&quot;                                                                   
+[14] &quot;Langues et littératures anciennes&quot;                                              
+[15] &quot;Langues et littératures étrangères&quot;                                             
+[16] &quot;Langues et littératures françaises&quot;                                             
+[17] &quot;Langues étrangères appliquées&quot;                                                  
+[18] &quot;Mathématique et informatique&quot;                                                   
+[19] &quot;Mathématiques&quot;                                                                  
+[20] &quot;Mathématiques appliquées et sciences sociales&quot;                                  
+[21] &quot;Mécanique, génie mécanique&quot;                                                     
+[22] &quot;Médecine&quot;                                                                       
+[23] &quot;Philosophie, épistémologie&quot;                                                     
+[24] &quot;Physique&quot;                                                                       
+[25] &quot;Physique et chimie&quot;                                                             
+[26] &quot;Pluridisciplinaire droit, sciences politiques&quot;                                  
+[27] &quot;Pluridisciplinaire langues&quot;                                                     
+[28] &quot;Pluridisciplinaire lettres, langues, sciences humaines&quot;                         
+[29] &quot;Pluridisciplinaire lettres, sciences du langage, arts&quot;                          
+[30] &quot;Pluridisciplinaire sciences&quot;                                                    
+[31] &quot;Pluridisciplinaire sciences de la vie, de la santé, de la terre et de l&#39;univers&quot;
+[32] &quot;Pluridisciplinaire sciences économiques et gestion&quot;                             
+[33] &quot;Pluridisciplinaire sciences fondamentales et applications&quot;                      
+[34] &quot;Pluridisciplinaire sciences humaines et sociales&quot;                               
+[35] &quot;Psychologie&quot;                                                                    
+[36] &quot;Sciences de gestion&quot;                                                            
+[37] &quot;Sciences de l&#39;éducation&quot;                                                        
+[38] &quot;Sciences de l&#39;information et la communication&quot;                                  
+[39] &quot;Sciences de l&#39;univers&quot;                                                          
+[40] &quot;Sciences de la vie&quot;                                                             
+[41] &quot;Sciences du langage, linguistique&quot;                                              
+[42] &quot;Sciences économiques&quot;                                                           
+[43] &quot;Sciences juridiques&quot;                                                            
+[44] &quot;Sciences politiques&quot;                                                            
+[45] &quot;Sciences religieuses&quot;                                                           
+[46] &quot;Sociologie, démographie&quot;                                                        
+[47] &quot;STAPS&quot;                                                                          
+[48] &quot;Technologie et sciences industrielles&quot;                                          
+
+$sexe
+[1] &quot;1&quot; &quot;2&quot;
+
+$age_au_bac_lib
+[1] &quot;A l&#39;heure ou en avance&quot;    &quot;En retard d&#39;un an&quot;        
+[3] &quot;En retard de plus d&#39;un an&quot; &quot;Non pris en compte&quot;       
+
+$serie_bac_lib
+[1] &quot;BAC ES&quot;                      &quot;BAC L&quot;                      
+[3] &quot;BAC professionnel&quot;           &quot;BAC S&quot;                      
+[5] &quot;BAC STMG&quot;                    &quot;BAC technologique hors STMG&quot;
+
+$age_au_bac
+[1] &quot;R0&quot; &quot;R1&quot; &quot;R2&quot; &quot;R4&quot;
+
+$gd_discipline
+[1] &quot;DSA&quot;   &quot;LLSH&quot;  &quot;SANTE&quot; &quot;SI&quot;    &quot;STAPS&quot;
+
+$gd_discipline_lib
+[1] &quot;Droit, gestion, économie, AES&quot;        
+[2] &quot;Lettres, langues et sciences humaines&quot;
+[3] &quot;Santé&quot;                                
+[4] &quot;Sciences et sciences de l&#39;ingénieur&quot;  
+[5] &quot;STAPS&quot;                                
+
+$mention_bac_lib
+[1] &quot;Assez bien&quot;               &quot;Bien&quot;                    
+[3] &quot;Inconnue&quot;                 &quot;Passable deuxième groupe&quot;
+[5] &quot;Passable premier groupe&quot;  &quot;Très bien&quot;               
+
+$discipline
+ [1] &quot;01&quot; &quot;02&quot; &quot;03&quot; &quot;04&quot; &quot;05&quot; &quot;06&quot; &quot;09&quot; &quot;10&quot; &quot;11&quot; &quot;15&quot; &quot;32&quot; &quot;33&quot;
+
+$discipline_lib
+ [1] &quot;Administration économique et sociale&quot;                  
+ [2] &quot;Droit, sciences politiques&quot;                            
+ [3] &quot;Langues&quot;                                               
+ [4] &quot;Lettres, sciences du langage, arts&quot;                    
+ [5] &quot;Médecine&quot;                                              
+ [6] &quot;Pluridisciplinaire lettres, langues, sciences humaines&quot;
+ [7] &quot;Pluridisciplinaire sciences&quot;                           
+ [8] &quot;Sciences de la vie, de la terre et de l&#39;univers&quot;       
+ [9] &quot;Sciences économiques, gestion&quot;                         
+[10] &quot;Sciences fondamentales et applications&quot;                
+[11] &quot;Sciences humaines et sociales&quot;                         
+[12] &quot;STAPS&quot;                                                 
+
+$cohorte_passage
+[1] &quot;2014&quot;
+
+$sect_disciplinaire
+ [1] &quot;1&quot;  &quot;2&quot;  &quot;3&quot;  &quot;4&quot;  &quot;5&quot;  &quot;6&quot;  &quot;7&quot;  &quot;10&quot; &quot;11&quot; &quot;12&quot; &quot;13&quot; &quot;14&quot; &quot;15&quot; &quot;16&quot; &quot;17&quot;
+[16] &quot;18&quot; &quot;19&quot; &quot;21&quot; &quot;23&quot; &quot;24&quot; &quot;25&quot; &quot;26&quot; &quot;27&quot; &quot;28&quot; &quot;29&quot; &quot;30&quot; &quot;31&quot; &quot;32&quot; &quot;33&quot; &quot;34&quot;
+[31] &quot;35&quot; &quot;36&quot; &quot;37&quot; &quot;38&quot; &quot;39&quot; &quot;40&quot; &quot;41&quot; &quot;42&quot; &quot;43&quot; &quot;61&quot; &quot;62&quot; &quot;64&quot; &quot;65&quot; &quot;66&quot; &quot;67&quot;
+[46] &quot;68&quot; &quot;69&quot; &quot;70&quot;
+
+$sexe_lib
+[1] &quot;Femme&quot; &quot;Homme&quot;
+
+$mention_bac
+[1] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;P&quot; &quot;Q&quot;
+
+$serie_bac
+[1] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; &quot;5&quot; &quot;6&quot;</code></pre>
+<p>On observe que la première variable affichée “sect_disciplinaire_lib” a de nombreuses modalités, 48 précisément, on ne s’en servira que pour une analyse détaillée ; la variable “age_au_bac_lib” compte 4 modalités que l’on pourrait réduire à 3 en regroupant les deux modalités “en retard” ; de même pour la variable de “serie_bac_lib”, on pourrait les regrouper ou créer une autre variable n’ayant que 3 modalités et qui soit alors plus générale ; idem pour la “mention_bac_lib” en regroupant les “passables”.<br />
+On va faire tout cela en utilisant les fonctions <code>mutate()</code>, <code>case_when()</code> et <code>as.factor()</code>, mais aussi en dernier exemple les fonctions <code>fct_relevel()</code> et <code>fct_collapse()</code> du package <strong><code>forcats</code></strong> :</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="manipulation-des-variables-qualitatives.html#cb32-1" aria-hidden="true" tabindex="-1"></a>PassageL1L2 <span class="ot">&lt;-</span> PassageL1L2 <span class="sc">%&gt;%</span> </span>
+<span id="cb32-2"><a href="manipulation-des-variables-qualitatives.html#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">age_bac =</span> <span class="fu">as.factor</span>(<span class="fu">case_when</span>(age_au_bac_lib <span class="sc">==</span> <span class="st">&quot;A l&#39;heure ou en avance&quot;</span> <span class="sc">~</span> <span class="st">&quot;A l&#39;heure ou en avance&quot;</span>,</span>
+<span id="cb32-3"><a href="manipulation-des-variables-qualitatives.html#cb32-3" aria-hidden="true" tabindex="-1"></a>                                       age_au_bac_lib <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;En retard d&#39;un an&quot;</span>, <span class="st">&quot;En retard de plus d&#39;un an&quot;</span>) <span class="sc">~</span> <span class="st">&quot;En retard&quot;</span>,</span>
+<span id="cb32-4"><a href="manipulation-des-variables-qualitatives.html#cb32-4" aria-hidden="true" tabindex="-1"></a>                                       age_au_bac_lib <span class="sc">==</span> <span class="st">&quot;Non pris en compte&quot;</span> <span class="sc">~</span> <span class="st">&quot;Non pris en compte&quot;</span>)),</span>
+<span id="cb32-5"><a href="manipulation-des-variables-qualitatives.html#cb32-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">type_bac =</span> <span class="fu">as.factor</span>(<span class="fu">case_when</span>(serie_bac_lib <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;BAC ES&quot;</span>, <span class="st">&quot;BAC L&quot;</span>, <span class="st">&quot;BAC S&quot;</span>) <span class="sc">~</span> <span class="st">&quot;Bac général&quot;</span>,</span>
+<span id="cb32-6"><a href="manipulation-des-variables-qualitatives.html#cb32-6" aria-hidden="true" tabindex="-1"></a>                                   serie_bac_lib <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;BAC STMG&quot;</span>, <span class="st">&quot;BAC technologique hors STMG&quot;</span>) <span class="sc">~</span> <span class="st">&quot;Bac technologique&quot;</span>,</span>
+<span id="cb32-7"><a href="manipulation-des-variables-qualitatives.html#cb32-7" aria-hidden="true" tabindex="-1"></a>                                   serie_bac_lib <span class="sc">==</span> <span class="st">&quot;BAC professionnel&quot;</span> <span class="sc">~</span> <span class="st">&quot;Bac professionnel&quot;</span>)),</span>
+<span id="cb32-8"><a href="manipulation-des-variables-qualitatives.html#cb32-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">mention_bac_bis =</span> <span class="fu">fct_collapse</span>(mention_bac_lib, <span class="st">&#39;Passable&#39;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;Passable deuxième groupe&quot;</span>,   <span class="st">&quot;Passable premier groupe&quot;</span>)),</span>
+<span id="cb32-9"><a href="manipulation-des-variables-qualitatives.html#cb32-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">mention_bac_bis =</span> <span class="fu">fct_relevel</span>(mention_bac_bis, <span class="fu">c</span>(<span class="st">&quot;Très bien&quot;</span>, <span class="st">&quot;Bien&quot;</span>, <span class="st">&quot;Assez bien&quot;</span>, <span class="st">&quot;Passable&quot;</span>, <span class="st">&quot;Inconnue&quot;</span>)))</span></code></pre></div>
+<p>En effeti, pour travailler sur les variables qualitatives en particulier lorsqu’elles sont en format “factor”, le package <strong><code>forcats</code></strong> est très utile. Outre une fonction de transformation d’une variable caractère en facteur (<code>as_factor()</code> proche de la version de baseR <code>as.factor()</code> utilisée juste au-dessus), elle contient plein d’autres fonctions : <code>fct_collapse()</code> utilisée à la fin de la commande précédente pour renommer ou regrouper des modalités d’une variable (au lieu de la double fonction <code>as.factor()</code> et <code>case_when()</code>) ; <code>fct_relevel()</code> utilisée également au-dessus pour trier les modalités comme on le souhaite ; <code>fct_drop()</code> pour enlever des niveaux de facteurs vides/sans effectifs ; <code>fct_explicit_na()</code> pour rendre les NA explicites en créant une modalité “(missing)” ; <code>fct_reorder()</code> et <code>fct_reorder2()</code> pour réordonner les modalités d’une variable, très utile pour les graphiques car utilisables directement dans <code>ggplot()</code> ; <code>fct_lump()</code> pour regrouper les modalités les plus communes (ou au contraire les moins communes) en lui indiquant entre parenthèses le nombre <code>n=</code> de modalités souhaitées ou la proportion minimum souhaitée <code>prop=</code>, et en sélectionnant la variable avec la fonction <code>pull()</code> avant car elle doit être en format vecteur et non data.frame ; ou encore <code>fct_recode()</code> pour changer le niveau des facteurs ; <code>fct_other()</code> ; <code>fct_infreq()</code> et <code>fct_inorder()</code> ; etc. Un bon récapitulatif de ces fonctions est présenté <a href="https://thinkr.fr/forcats-forcats-vous-avez-dit-forcats/" target="_blank">ici</a>.</p>
+</div>
+<script src="js/tidyverse.js"></script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="c03-Manipulation-variables.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="manipulation-des-variables-quantitatives.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"],
+"instapper": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/Camille-Sisi/github.io-Data-Mining-Seance1/master/03-Manipulation-variables.Rmd",
+"text": "Source"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"toc_depth": 3,
+"number_sections": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

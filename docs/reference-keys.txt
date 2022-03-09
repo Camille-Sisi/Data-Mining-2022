@@ -1,0 +1,17 @@
+c01-Jeu-de-donnees
+c02-Manipulation-base
+format-des-données---wide-ou-long
+séparer-les-variables-séparer-les-données
+c03-Manipulation-variables
+manipulation-des-variables-qualitatives
+manipulation-des-variables-quantitatives
+détecter-et-visualiser-les-valeurs-manquantes
+gérer-les-valeurs-manquantes
+détecter-et-visualiser-les-valeurs-aberrantes
+découper-en-classes-une-variable-quantitative
+c04-Enregistrement-tables-donnees
+c05-Questions-fouille-donnees
+caractéristiques-de-la-cohorte-des-bacheliers-2014-inscrits-en-première-année-de-licence-en-2014-2015
+c06-Fonctions
+c07-Analyse-descriptive
+caractéristiques-de-la-cohorte-des-bacheliers-2014-inscrits-en-première-année-de-licence-en-2014-2015-1
