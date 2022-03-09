@@ -1,0 +1,95 @@
+
+# Systématiser nos procédures : construire une fonction {#c06-Fonctions}
+<div align="justify">
+
+Pour ré-utiliser un code de façon plus automatique, créer des fonctions est très utile (et on peut même les stocker dans un fichier `.r` pour les réutiliser plus tard pour une autre étude).   
+
+L'idée est qu'à partir d'un bloc d'instructions ou de lignes de codes, on l'intègre dans une fonction qui portera un nom et qui pourra être appliquée sur les paramètres que l'on veut (table/objet différent, variables différentes) et qui nous retournera une valeur en sortie (qu'il faut préciser donc). Par exemple : 
+```{r eval=FALSE}
+# Exemple fonction avec 3 arguments
+nom_fonction <- function(data, var1, var2) {
+  
+  expression...  # Ce que la fonction fait
+  
+  return(tab)  # Optionnel, mais la plupart du temps utilisé (!), 
+               # pour sortir le résultat de la fonction
+  
+}
+
+# L'appel de la fonction devra ainsi préciser la table de données sur laquelle 
+# l'appliquer et les autres arguments : 
+nom_fonction(data = nom_de_ma_table , var1 = nom_de_ma_variable1,  
+             var2 = nom_de_ma_variable2)
+
+# De plus, on pourra créer un nouvel objet (ici "tab_var") pour stocker la table 
+# qui est en valeur de sortie de la fonction : 
+tab_var <- nom_fonction(data = nom_de_ma_table , var1 = nom_de_ma_variable1,
+                        var2 = nom_de_ma_variable2)
+```
+Les arguments doivent donc être précisés en entrée de notre fonction, si on ne les précise pas cela nous retournera une erreur... à moins que l'on ait spécifié des valeurs par défaut (ce qui peut être utile si on utilise souvent les mêmes paramètres, c'est-à-dire la même base de données par exemple) ; il peut y avoir autant d'arguments que l'on souhaite.  
+Si l'on utilise le langage tidyverse, il faut connaître quelques petits "trucs" pour écrire une fonction. Le schéma suivant réalisé par Julien Barnier du CNRS nous sera très utile.
+![Pour une fonction utilisant le langage tidyverse](images/Schéma tidyverse functions_Julien Barnier.jpg)
+
+<div align="center">
+*Source* : Julien Barnier, <a href="https://twitter.com/lapply/status/1493908215796535296?s=20&t=p4aYIEV4GsGS3TGftPa0Nw" target="_blank">https://twitter.com/lapply/status/1493908215796535296?s=20&t=p4aYIEV4GsGS3TGftPa0Nw</a>.  
+   
+
+<div align="justify"> 
+Vous trouverez également des informations utiles <a href="https://thinkr.fr/comment-creer-des-fonctions-dans-le-tidyverse-avec-la-tidyeval-et-le-stash-stash/" target="_blank">ici</a>.  
+
+On peut d'abord créer une fonction reprenant le code précédent pour la construction de tableau. On l'appelle `TAB`, et on lui donne comme arguments "data", "...", "var1" et "var_sum". L'argument "..." est pratique si l'on ne sait pas combien il y aura de variable(s) dans la fonction à laquelle elle s'applique, c'est-à-dire autant 0 variable, 1 variable ou plus d'une variable ; mais elle peut-être aussi "dangereuse" si on ne se souvient plus qu'on l'a créée et/ou si on ne fait pas attention à bien remplir les autres arguments avec les noms correspondants. Ici, elle nous est utile pour introduire la fonction `group_by()` qu'on n'utilisera pas au début de l'analyse, mais après si.  
+
+Ensuite, dans le langage tidyverse au sein d'une fonction, il faut appeler une variable avec des doubles-accolades. Si l'on utilisait une fonction `summarise()`, une autre subtilité à connaître dans une fonction avec langage tidyverse, est par exemple que cette syntaxe ne sera pas reconnue "summarise({{ nom_var }} = mean({{ var }}, na.rm=TRUE", car il faut indiquer non pas un "=" mais un ":=" pour que la fonction puisse être lue lorsque d'un côté le nom donné à la variable est de type caractère ou "string".  
+Enfin, il ne faut pas oublier de retourner un objet en sortie avec `return()`.   
+  
+Essayez donc de créer un fonction `tableau()`, reprenant le code de la section précédente et ci-dessous pour information : 
+```{r eval=FALSE}
+PassageL1L2 %>% 
+  count(type_bac, wt=effectif_neobacheliers_passage) %>% 
+  mutate(Pourcentage=prop.table(n)*100, Pourcentage=round(Pourcentage, 1)) %>% 
+  adorn_totals("row") %>% 
+  rename(Effectif=n)
+```
+
+<div class="solution-exo">
+```{r}
+tableau <- function(data, ..., var1, var_sum){
+  
+  tab_1 <- data %>% 
+    group_by(...) %>% 
+    count({{ var1 }}, wt={{ var_sum }}) %>% 
+    mutate(Pourcentage=prop.table(n)*100, Pourcentage=round(Pourcentage, 1)) %>% 
+    rename(Effectif=n, Variable={{ var1 }}) 
+  
+  return(tab_1)
+  
+}
+```
+</div>
+\fi
+
+
+Essayez d'écrire une seconde fonction `somme()` permettant de systématiser le code suivant (utilisé dans la séance 1), en ajoutant une fonction de filtre qui peut être utile si l'on veut s'intéresser aux effectifs pour une discipline en particulier par exemple mais sans que l'on sache si on l'utilisera toujours :
+```{r eval=FALSE}
+PassageL1L2 %>% 
+  summarise('Nombre total de bacheliers inscrits en 2014-2015 en licence' =
+              sum(effectif_neobacheliers_passage, na.rm=TRUE))
+```
+
+<div class="solution-exo">
+```{r}
+somme <- function(data, ..., nom_var, var1){
+  
+  som_1 <- data %>% 
+    filter(...) %>% 
+    summarise({{nom_var}}:=sum({{var1}}, na.rm=T)) 
+  
+  return(som_1)
+  
+}
+```
+</div>
+\fi 
+
+
+

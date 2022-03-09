@@ -1,0 +1,100 @@
+
+# Manipulation de la base {#c02-Manipulation-base}
+
+<div align="justify">
+
+On va regarder un peu à quoi ressemble la table de données téléchargée, quelles sont les variables, etc.  
+```{r}
+ParcoursLic %>% head() %>% gt()
+ParcoursLic %>% glimpse()  #Note pour étudiants : en langage R de base, fonction équivalente 'str()'
+```
+
+On a donc `r ncol(ParcoursLic)` colonnes ou variables et `r format(nrow(ParcoursLic), big.mark=" ")` lignes ou observations. Les variables sont en format, soit 'dbl' ("double"), soit 'int' ("interger") ou encore 'chr' ("character").  
+On remarque que certaines variables donnent la même information mais sont codées en nombre, ou en libellé : c'est le cas de la variable "sexe" ("sexe" et "sexe_lib"), mais aussi de la série au bac, des grandes disciplines de la licence, etc. On a également 2 variables dont la modalité semble toujours la même - "cohorte_passage" et "cohorte_reussite", on le vérifiera lorsqu'on travaillera spécifiquement sur les variables. Enfin, on voit également des "NA", ce qui signifie que certaines variables ont des valeurs manquantes.  
+  
+  
+## Format des données - WIDE ou LONG
+De manière plus générale, **quel est le format de nos données ici ?** L'obsevation de la table de données nous montre qu'on a une répétition de modalités pour toutes les variables catégorielles, on n'a donc pas une ligne par observation, car en réalité on a des données micro-agrégées, on est donc plutôt dans un format "long".  
+
+La question du format de la base est importante, on distingue généralement le format *wide* du format *long* : le premier renvoie au cas où chaque ligne correspond a un et un seul individu et toutes les informations le concernant sont en colonnes (ce qui peut augmenter rapidement le nombre de colonnes, c'est l'exemple d'une information que l'on a sur plusieurs années, chaque colonne correspondra à l'information de l'année en question) ; le second, au contraire, multiplie les lignes pour un seul individu mais il y a alors moins de colonnes (si l'on reprend l'exemple précédent, il y aura une colonne indiquant l'année et une colonne contenant l'information). Le package `tidyverse` contient deux fonctions qui permettent de passer d'un format à un autre : `pivot_longer()` et `pivot_wider()` présentés en détails <a href="https://tidyr.tidyverse.org/articles/pivot.html" target="_blank">ici</a>. Je vous présente un rapide exemple ci-dessous de la fonction `pivot_wider()`, mais nous aurons très probablement l'occasion de les utiliser au cours de ce semestre. 
+```{r}
+# On sélectionne seulement 2 variables catégorielles et une variable quanti avec
+# la fonction select()
+# Dans la fonction pivot_wider(), il est nécessaire de préciser les arguments 
+# `values_fill=' et "values_fn' pour que R sache quoi faire des différentes
+# valeurs répétées : les sommer ? en faire la moyenne ? Etc. Ici, logiquement, 
+# on fait la somme.
+# Dernière chose : comme il y a des valeurs manquantes, il faut mettre un filtre
+# avant précisant sans valeurs manquantes, avec la fonction filter().
+ParcoursLic %>% select(effectif_neobacheliers_passage, serie_bac_lib, age_au_bac_lib) %>%
+  filter(!is.na(effectif_neobacheliers_passage)) %>%
+  pivot_wider(names_from = serie_bac_lib, values_from = effectif_neobacheliers_passage,
+              values_fill = 0, values_fn = list(effectif_neobacheliers_passage=sum)) %>%
+  gt()
+```
+  
+  
+## Séparer les variables, séparer les données
+On peut également créer de nouvelles colonnes à partir d'une colonne en séparant les informations, ou le contraire rassembler 2 informations contenues dans 2 colonnes différentes dans une seule colonne. Ce sont respectivement les fonctions `separate()` et `unite()` du langage tidyverse que l'on utilise alors. Là aussi, je vous montre ci-dessous un rapide exemple avec la fonction  `separate()`, mais de même on aura sûrement l'occasion de les utiliser de manière plus approfondie ce semestre.
+```{r}
+ParcoursLic %>% 
+  separate(serie_bac_lib, into = c('Bac','Serie')) %>% 
+  select(Bac, Serie) %>% head(4) %>% gt()
+```
+Mais attention, on a un *"warning"* car on ne lui a pas indiqué d'option de séparation, et automatiquement le premier espace séparant le 1er du 2ème mot a été utilisé, mais du coup on voit que pour les expressions qui avaient plus de 2 mots on n'a pas les autres mots (c'est le cas pour la modalité 'Bac technologique hors STMG' qui est devenu 'BAC' d'un côté et 'technologique' de l'autre). Pour remédier à cela, il faut ajouter l'argument `extra="merge"`.
+```{r}
+ParcoursLic %>% 
+  separate(serie_bac_lib, into = c('Bac','Serie'), sep=" ", extra="merge") %>% 
+  select(Bac, Serie) %>% head(4) %>% gt()
+```
+  
+  
+  
+Enfin, comme on a dit que l'on avait des informations sur deux champs différents, on peut très bien décider de créer deux nouvelles tables de données, en retenant seulement les informations correspondant au champ concerné. La première que l'on peut intituler "PassageL1L2" comprendrait toutes les lignes de la base initiale "ParcoursLic" mais sans les colonnes "reussite_3_ans", "reussite_4_ans", "reussite_3_4_ans", "effectif_neobacheliers_reussite" et "cohorte_reussite", alors que la seconde que l'on peut intituler "ReussiteLic" comprendrait ces variables, ainsi que toutes les lignes.   
+
+Comme vous le savez très probablement, dans le langage `tidyverse`, pour faire des sélections sur les lignes ou observations dans une table de données, on utilise la fonction `filter()` ; pour faire des sélections sur les colonnes ou variables, on utilise la fonction `select()`  ; pour supprimer des variables, on utilise `select()` également (dans le langage `R` de base, on peut utiliser la fonction `subset()`).    
+
+
+Créer donc ces deux nouvelles bases de données, de telle sorte qu'elles ressemblent à ce qui s'affiche ci-dessous :  
+```{r echo=FALSE}
+PassageL1L2 <- ParcoursLic %>% select(-c("reussite_3_ans", "reussite_4_ans", "reussite_3_4_ans",
+                                         "effectif_neobacheliers_reussite", "cohorte_reussite"))
+
+ReussiteLic <- ParcoursLic %>% select("reussite_3_ans", "reussite_4_ans", "reussite_3_4_ans",
+                                      "effectif_neobacheliers_reussite", "cohorte_reussite",
+                                      "sect_disciplinaire_lib","sexe", "age_au_bac_lib", "serie_bac_lib",
+                                      "age_au_bac", "gd_discipline", "gd_discipline_lib",
+                                      "mention_bac_lib", "discipline", "discipline_lib",   
+                                      "sect_disciplinaire", "sexe_lib", "mention_bac", "serie_bac")
+PassageL1L2 %>% head(5) %>% gt()
+ReussiteLic %>% head(5) %>% gt()
+```
+
+\iffalse
+<div class="solution-exo">
+```{r eval=FALSE}
+PassageL1L2 <- ParcoursLic %>% select(-c("reussite_3_ans", "reussite_4_ans", "reussite_3_4_ans",
+                                         "effectif_neobacheliers_reussite", "cohorte_reussite"))
+
+ReussiteLic <- ParcoursLic %>% select("reussite_3_ans", "reussite_4_ans", "reussite_3_4_ans",
+                                      "effectif_neobacheliers_reussite", "cohorte_reussite",
+                                      "sect_disciplinaire_lib","sexe", "age_au_bac_lib", "serie_bac_lib",
+                                      "age_au_bac", "gd_discipline", "gd_discipline_lib",
+                                      "mention_bac_lib", "discipline", "discipline_lib",   
+                                      "sect_disciplinaire", "sexe_lib", "mention_bac", "serie_bac")
+```
+</div>
+\fi
+  
+  
+Ainsi, pour la première table, la variable clé donnant les effectifs est "effectif_neobacheliers_passage", alors que pour la seconde table, c'est "effectif_neobacheliers_reussite".  
+Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 2014 inscrits en 2014-2015 (champ base "PassageL1L2") et des bacheliers 2012 inscrits en 2012-2013 (champ base "ReussiteLic"), on peut écrire le code suivant - attention il y a des valeurs manquantes, il faut donc bien ajouter l'option "na.rm=TRUE" à la fonction `summarise()` ! On verra plus loin qu'on peut également utiliser la fonction `count()`.
+```{r message=FALSE, warning=FALSE}
+PassageL1L2 %>% summarise('Nombre total de bacheliers inscrits en 2014-2015 en licence' = 
+                            sum(effectif_neobacheliers_passage, na.rm=TRUE)) %>%  
+  gt()
+ReussiteLic %>% summarise('Nombre total de bacheliers inscrits en 2012-2013 en licence' =
+                            sum(effectif_neobacheliers_reussite, na.rm=TRUE)) %>%
+  gt()
+```
+  

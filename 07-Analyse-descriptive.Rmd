@@ -1,0 +1,249 @@
+<div align="justify">
+
+# (reprise de l')Analyse descriptive {#c07-Analyse-descriptive}
+  
+## Caractéristiques de la cohorte des bacheliers 2014 inscrits en première année de licence en 2014-2015
+On peut maintenant revenir sur notre analyse et utiliser la fonction `tableau()` créée pour construire notre tableau final qui va se composer : 
+
+- de 3 colonnes : une colonne nommée "Variable", une deuxième colonne nommée "Effectif" et une troisième colonne nommée "Pourcentagee;
+- et de plusieurs lignes qui correspondront aux modalités des variables suivantes : "type_bac", "serie_bac_lib", "mention_bac_bis", "age_bac", "sexe_lib","gd_discipline_lib" ; et une ligne "Total" à la fin.  
+
+Il faut donc utiliser notre foncion `tableau()` pour ces 6 variables, sauver les tableaux créer dans des objets, penser pour le dernier tableau à ajouter la ligne "Total", et ensuite concaténer ces 6 tableaux à l'aide de la fonction `rbind()`.  
+
+Essayons donc !!  
+  
+<div class="solution-exo">
+```{r}
+tab1 <- tableau(PassageL1L2, var1=type_bac, var_sum=effectif_neobacheliers_passage)
+tab2 <- tableau(PassageL1L2, var1=serie_bac_lib, var_sum=effectif_neobacheliers_passage)
+tab3 <- tableau(PassageL1L2, var1=mention_bac_bis, var_sum=effectif_neobacheliers_passage)
+tab4 <- tableau(PassageL1L2, var1=age_bac, var_sum=effectif_neobacheliers_passage)
+tab5 <- tableau(PassageL1L2, var1=sexe_lib, var_sum=effectif_neobacheliers_passage)
+# vu que c'est notre dernière table, on va ajouter le total:
+tab6 <- tableau(PassageL1L2, var1=gd_discipline_lib,
+            var_sum=effectif_neobacheliers_passage) %>%
+  adorn_totals("row") 
+Tabfinal <- rbind(tab1, tab2, tab3, tab4, tab5, tab6) 
+Tabfinal %>% gt()
+```
+</div>
+\fi  
+  
+
+
+Cela nous donne donc un tableau qu'il reste à mettre en forme pour qu'il puisse être utilisé dans un rapport. Comme évoqué précédemment, j'utilise pour cela le package **`gt`**, mais d'autres packages existent... Vous trouverez des informations sur les diverses options de ce package <a href="https://gt.rstudio.com/articles/intro-creating-gt-tables.html" target="_blank">ici</a> ou un tutoriel <a href="http://www.wvview.org/ossa/ossa/08_tables_with_gt.html" target="_blank">là</a> ou encore <a href="https://towardsdatascience.com/exploring-the-gt-grammar-of-tables-package-in-r-7fff9d0b40cd" target="_blank">là</a>.   
+  
+On peut ainsi ajouter des sections pour bien distinguer nos différentes variables avec `tab_row_group()` , puis ajouter un titre avec `tab_header(title=)`n et une légende avec `tab_source_note()` , ou encore mettre en gras certains noms du tableau avec `cols_label()`, etc.   
+Au final, cela donne ça : 
+```{r}
+Tabfinal %>% gt() %>% 
+  fmt_number(columns = "Effectif", sep_mark = " ", decimals = 0) %>% 
+  tab_row_group(label=md("**Total**"), rows=25) %>% 
+  tab_row_group(label=md("**Discipline de la licence suivie**"), rows=20:24) %>%  
+  tab_row_group(label=md("**Sexe**"), rows=18:19) %>% 
+  tab_row_group(label=md("**Âge au bac**"), rows=15:17) %>% 
+  tab_row_group(label=md("**Mention au bac**"), rows=10:14) %>% 
+  tab_row_group(label=md("**Série plus précise du bac**"), rows=4:9) %>% 
+  tab_row_group(label=md("**Type de bac**"), rows=1:3) %>% 
+  tab_header(title=md('**Caractéristiques des bacheliers 2014 inscrits en 2014-2015 en 
+                      première année de licence**')) %>% 
+  cols_label(Variable = " ", Effectif = md('**Effectif**'), Pourcentage = md('**Pourcentage**')) %>% 
+  tab_source_note(source_note = html("Source : Open-data ESR.<br>Champ : Bacheliers 2014 inscrits en première année de licence (hors licence professionnelle) dans l’enseignement supérieur public en 2014-2015.<br>Traitement des données : Camillle Signoretto"))
+
+```
+  
+
+  
+
+Les tableaux construits précédemment vont nous servir à réaliser des graphiques, qui sont davantage utilisés dans des présentations pour mieux visualiser les résultats qu'un tableau de statistiques descriptives. Les possibilités offertes par le package **`ggplot`** sont importantes et c'est pour cela que nous l'utiliserons en priorité. 
+  
+Par exemple, pour le type de bac, on peut construire un graphique en bâtons avec `geom_bar()` : 
+
+- en présentant les colonnes de manière décroissante selon le pourcentage, en utilisant `fct_reorder()` (vue précédemment) dans une étape préalable `mutate()` ;
+- en ajoutant des couleurs aux barres pour éviter le gris par défaut un peu terne, en utilisant par exemple la librairie `RColorBrewer` (vous pouvez regarder le type de palettes, notamment celles compatibles pour les daltoniens) et la palette "Set2" ; il faut pour cela indiquer l'option `fill=`, puis `scale_fill_brewer()`;
+- en ajoutant la valeur des pourcentages à l'intérieur des colonnes, avec l'ajout de `geom_text()` ;
+- et enfin, en ajoutant un titre, et en supprimant la légende qui n'est pas utile ici (car option `fill=` dans l'`aes`).
+  
+
+Faisons-le pas à pas : essayez d'abord de créer un graphique en bâtons simple sur la variable du type de bac inclus dans le tableau 1 (ici dénommé "tab_1"), en faisant en sorte que la couleur diffère selon les modalités de la variable (vous pouvez pour cela utiliser les différentes palettes de couleur du package **`RColorBrewer`** que vous devez installer avant).
+```{r}
+# install.packages("RColorBrewer")
+# library(RColorBrewer)
+# Pour voir le type de palettes disponibles dans ce package :
+# display.brewer.all(colorblindFriendly = TRUE)
+```
+
+Vous devez avoir ce graphique (ici la palette "Set2" a été utilisée) :
+```{r echo=FALSE}
+library(RColorBrewer)
+tab1 %>% 
+  ggplot() + aes(x=Variable, y=Pourcentage, fill=Variable) +
+  geom_bar(stat = "identity") +
+  scale_fill_brewer(palette = "Set2")
+```
+
+<div class="solution-exo">
+```{r eval=FALSE}
+library(RColorBrewer)
+tab1 %>% 
+  ggplot() + aes(x=Variable, y=Pourcentage, fill=Variable) +
+  geom_bar(stat = "identity") +
+  scale_fill_brewer(palette = "Set2")
+```
+</div>
+\fi
+  
+
+Ajoutez maintenant au milieu de chaque barre le chiffre du pourcentage correspondant, avec l'ajout de la fonction `geom_text()`, comme ci-dessous :
+```{r echo=FALSE}
+tab1 %>% 
+  ggplot() + aes(x=Variable, y=Pourcentage, fill=Variable) +
+  geom_bar(stat = "identity") + 
+  geom_text(aes(y=Pourcentage, label=Pourcentage), 
+            position = position_stack(vjust = 0.5), 
+            color="gray15") +
+  scale_fill_brewer(palette = "Set2")
+```
+
+<div class="solution-exo">
+```{r eval=FALSE}
+tab1 %>% 
+  ggplot() + aes(x=Variable, y=Pourcentage, fill=Variable) +
+  geom_bar(stat = "identity") + 
+  geom_text(aes(y=Pourcentage, label=Pourcentage), 
+            position = position_stack(vjust = 0.5), 
+            color="gray15") +
+  scale_fill_brewer(palette = "Set2")
+```
+</div>
+\fi
+
+  
+Ensuite, mettez dans l'ordre les barres de façon décroissante selon la valeur du pourcentage, pour avoir le graphique ci-dessous :
+```{r echo=FALSE}
+tab1 %>% 
+  mutate(Variable = fct_reorder(Variable, desc(Pourcentage))) %>%
+  ggplot() + aes(x=Variable, y=Pourcentage, fill=Variable) +
+  geom_bar(stat = "identity") + 
+  geom_text(aes(y=Pourcentage, label=Pourcentage), 
+            position = position_stack(vjust = 0.5), 
+            color="gray15") +
+  scale_fill_brewer(palette = "Set2")
+```
+
+<div class="solution-exo">
+```{r eval=FALSE}
+tab1 %>% 
+  mutate(Variable = fct_reorder(Variable, desc(Pourcentage))) %>%
+  ggplot() + aes(x=Variable, y=Pourcentage, fill=Variable) +
+  geom_bar(stat = "identity") + 
+  geom_text(aes(y=Pourcentage, label=Pourcentage), 
+            position = position_stack(vjust = 0.5), 
+            color="gray15") +
+  scale_fill_brewer(palette = "Set2")
+```
+</div>
+\fi
+  
+  
+Enfin, ajoutez un titre, supprimez la légende qui est redondante ici avec les modalités inscrites sur l'axe des abscisses, ainsi que les noms des axes. 
+  
+Cela donne alors ce graphique final : 
+```{r warning=FALSE, echo=FALSE}
+tab1 %>% 
+  mutate(Variable = fct_reorder(Variable, desc(Pourcentage))) %>%
+  ggplot() + aes(x=Variable, y=Pourcentage, fill=Variable) +
+  geom_bar(stat = "identity") + 
+  geom_text(aes(y=Pourcentage, label=Pourcentage), position = position_stack(vjust = 0.5), 
+            color="gray15") +
+  scale_fill_brewer(palette = "Set2") + 
+  labs(title="Répartition des bacheliers inscrits en première année 
+de licence en 2014-2015, selon le type de bac", x=" ", y=" ") + 
+  theme(legend.position = "none", plot.title = element_text(size = 14))
+```
+
+<div class="solution-exo">
+```{r warning=FALSE, eval=FALSE}
+tab1 %>% 
+  mutate(Variable = fct_reorder(Variable, desc(Pourcentage))) %>%
+  ggplot() + aes(x=Variable, y=Pourcentage, fill=Variable) +
+  geom_bar(stat = "identity") + 
+  geom_text(aes(y=Pourcentage, label=Pourcentage), position = position_stack(vjust = 0.5), 
+            color="gray15") +
+  scale_fill_brewer(palette = "Set2") + 
+  labs(title="Répartition des bacheliers inscrits en première année 
+de licence en 2014-2015, selon le type de bac", x=" ", y=" ") + 
+  theme(legend.position = "none", plot.title = element_text(size = 14))
+```
+ </div>
+\fi 
+ 
+Pour commentaire, on peut pointer le faire que la majorité des inscrits en licences universitaires ont effectué un Bac général (environ les 3/4), alors qu'au contraire seul 9% des inscrits ont un Bac professionnel. Ainsi, les Bacs professionnels qui représentent environ 30% des bacheliers une année donnée sont largement sous-représentés à l'université, contrairement aux Bacs généraux qui sont sur-représentés puisqu'ils comptent pour pratiquement 50% des bacheliers.
+  
+
+  
+  
+Avec des variables qualitatives, il n'y a pas grande diversité de graphiques possibles ! On pourrait aussi représenter l'analyse de la variable précédente par un graphique "waffle" avec le package **`waffle`**, comme ci-dessous. Mais cela sera plus pertinent quand on comparera plusieurs situations (cf. *infra*).
+```{r warning=FALSE}
+#install.packages("waffle")
+library(waffle)
+tab1 %>% 
+  mutate(Variable = fct_relevel(Variable, "Bac technologique",
+                                "Bac professionnel","Bac général")) %>%  
+  ggplot() + aes(values = Pourcentage, fill = Variable) +
+  geom_waffle(n_rows=10, flip = TRUE, make_proportional = TRUE) +
+  labs(title="Répartition des bacheliers inscrits en première année 
+de licence en 2014-2015, selon le type de bac")
+```
+  
+    
+  
+Là aussi, on peut réitérer ce type de graphique pour l'ensemble de nos variables ou caractéristiques précédentes, en créant une fonction, pour les regrouper ensuite dans un seul et même graphe.   
+
+Quelle serait alors cette fonction pour un graphique en bâtons ?
+<div class="solution-exo">
+```{r}
+bar_graph <- function(data, Titre){
+  data %>% 
+    mutate(Variable = fct_reorder(Variable, desc(Pourcentage))) %>% 
+    ggplot() + aes(x=Variable, y=Pourcentage, fill=Variable) + 
+    geom_bar(stat = "identity")  + 
+    geom_text(aes(y=Pourcentage, label=Pourcentage), position = position_stack(vjust = 0.5), color="gray15", size=3) +
+    scale_fill_brewer(palette = "Set2") +
+    labs(title=Titre, x=" ", y=" ") + 
+    theme(legend.position = "none", plot.title = element_text(size = 11))
+}
+```
+ </div>
+\fi
+
+
+On applique donc cette fonction à nos 6 variables, on sauvegarde  chaque graphique, et on les rassemble dans un même graphe avec la librairie **`pacthwork()`** (d'autres packages existent pour cela comme **`cowplot()`**) et on ajoute un titre.
+```{r warning=FALSE, fig.height=7.5}
+bar1 <- bar_graph(tab1, "Selon le type de bac") + 
+  theme(axis.text.x = element_text(angle = 45, hjust=1))
+bar2 <- bar_graph(tab2, "Selon la série du bac") + 
+  theme(axis.text.x = element_text(angle = 45, hjust=1))
+bar3 <- bar_graph(tab3, "Selon la mention au bac") + 
+  theme(axis.text.x = element_text(angle = 45, hjust=1))
+bar4 <- bar_graph(tab4, "Selon l'âge au bac") + 
+  theme(axis.text.x = element_text(angle = 45, hjust=1))
+bar5 <- bar_graph(tab5, "Selon le sexe")
+bar6 <- tab6 %>%  filter(Variable != "Total") %>% 
+  bar_graph("Selon la discipline de la 
+licence suivie") + 
+  theme(axis.text.x = element_text(angle = 45, hjust=1))
+
+library(patchwork)
+(bar1 + bar3 + bar5 + bar2 + bar4 + bar6) +
+  plot_annotation(title = 'Caractéristiques des bacheliers 2014 inscrits en 2014-2015 en première 
+année de licence')
+```
+  
+Ainsi, au-delà du type de bac, on remarque que ce sont les Bacs ES qui sont les plus nombreux en proportion dans les inscrits en licences universitaires en 2014-2015, et les Bacs STMG sont pratiquement aussi nombreux que les Bacs professionnels.  
+Ensuite, on constate que plus d'un étudiant sur deux a eu une mention "passable" au bac, alors que les mentions Bien et Très bien représentent à elles deux presque 17% des étudiants primo-inscrits en 2014-2015.  
+En lien avec la mention, l'âge au bac permet de révéler que les 2/3 des étudiants sont "à l'heure ou en avance", et quand même presqu'1/4 sont "en retard".  
+On note également qu'il y a plus de femmes que d'hommes parmi ces étudiants, dans une proportion respectivement de 60%-40%.  
+Enfin, 40% des bacheliers 2014 se sont inscrits dans une licence de "lettres, langues et sciences humaines", 33% dans une licence de "droit, gestion, économie ou AES", 17% dans une licence de "sciences et sciences de l'ingénieur" et enfin environ 9% dans une licence de STAPS. On remarque pour cette dernière variable qu'il n"y a quasiment pas d'inscrits en licence de santé, par conséquent, on ne représentera plus cette modalité de la variable par la suite.  
+
+  

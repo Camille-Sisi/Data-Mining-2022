@@ -1,0 +1,14 @@
+  
+# Enregistrement des tables {#c04-Enregistrement-tables-donnees}
+<div align="justify">
+  
+Et voilà, on a bien "trituré" ces deux bases de données, maintenant on peut les enregistrer dans notre projet pour pouvoir les réutiliser lors de la prochaine séance.
+```{r}
+# On enregistre la table de données pour l'utiliser ultérieurement
+saveRDS(object = PassageL1L2,
+        file = "Data/PassageL1L2.Rdata")
+saveRDS(object = dt_aidesCovid,
+        file = "Data/dt_aidesCovid.Rdata")
+```
+
+

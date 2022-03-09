@@ -1,0 +1,43 @@
+
+
+# (PART\*) Séance 2 : Data Mining - Analyse descriptive {-}
+
+
+# Quelles questions intéressantes pour une "fouille de données" sur cette base ? {#c05-Questions-fouille-donnees}
+
+<div align="justify">
+
+Quelles sont les questions intéressantes que l'on peut se poser ? Qu'est-ce qu'on va pouvoir mettre en évidence à partir de ces données ?
+
+Une première chose peut être de comprendre qui sont de manière générale les étudiants de 1ère année d'après cette base de données. On peut donc d'abord décrire la cohorte des bacheliers 2014 inscrits en 2014-2015 en première année de licence (hors licence professionnelle) dans l’enseignement supérieur public, selon  plusieurs caractéristiques : - la série du bac, - la mention, - l'âge au bac, - le sexe, et - enfin le type de licence dans lequel il sont inscrits.  
+
+Ensuite, on peut vouloir comprendre le passage de la L1 à la L2 : qui passe en L2 en 1 an, qui redouble, qui se réoriente en DUT. On recherche donc les profils de chacun de ces groupes pour analyser leurs spécificités. On peut à ce stade émettre quelques hypothèses : l'une toute simple est qu'il y aura plus de "mentions" au bac dans le groupe du passage en L2 en un an, alors qu'il y aurait plus de résultats "passables" au bac dans le groupe des redoublements ; de même pour l'âge au bac, on peut s'attendre à avoir plus d'étudiants "en retard au bac" qui redouble. Concernant la série du bac et la mention, on peut s'attendre à ne pas avoir de spécificités précises dans l'ensemble des licences... mais au sein de certaines licences selon le domaine.  
+  
+C'est l'une des dernières questions que l'on peut en effet se poser : existe-t-il des différences entre les disciplines des licences, par exemple certaines séries au bac sont-elles corrélées à davantage d'échec - c'est-à-dire de redoublement - à la fin de la L1 dans des disciplines particulières ? Le fait d'être une femme est-il corrélé à une meilleure réussite en L1 (passage en L2 en un an) dans certaines displines ? Etc.  
+   
+  
+  
+Avant cela, si vous avez commencé un nouveau script Rmarkdown, vous devez importer la table 'PassageL1L2' enregistrée précédemment dans le dossier 'Data' de votre projet. Pour cela, il faut utiliser la fonction `readRDS()`, comme ci-dessous :
+```{r}
+PassageL1L2 <- readRDS(file ="Data/PassageL1L2.Rdata") 
+```
+  
+
+## Caractéristiques de la cohorte des bacheliers 2014 inscrits en première année de licence en 2014-2015 
+On peut créer un tableau synthétique avec les statistiques descriptives sur les variables énumérées plus haut, et ensuite réaliser des graphiques pour mieux visualiser les résultats.  
+  
+Un type de tableau peut être en colonnes les effectifs et les pourcentages et en ligne les différentes variables. Encore une fois, étant donné la nature micro-agrégée de nos données, nous ne pouvons pas réaliser directement ses tableaux avec les fonctions traditionnelles types `freq()` du package **`questionR`** ou `tabyl()` du package **`janitor`** ; il faut créer nos propres sommes et pourcentages. Cela peut être fait avec la fonction `summarise()` précédée d'un `group_by()` pour spécifier la variable correspondant à la caractéristique qui nous intéresse, mais aussi plus rapidement avec la fonction `count()` en inscrivant en premier argument la variable (ou caractéristique) et en argument `wt=` (qui est normalement la variable de pondération) notre variable de sommation. On crée ensuite les pourcentages dans une fonction `mutate()` ; et on peut ajouter éventuellement une ligne totale (argument "row") avec la fonction `adorn_totals("row")`. Enfin, par défaut la fonction `count()` crée une variable "n", on peut alors renommer celle-ci en "Effectif".
+```{r}
+PassageL1L2 %>% count(type_bac, wt=effectif_neobacheliers_passage) %>% 
+  mutate(Pourcentage=prop.table(n)*100, Pourcentage=round(Pourcentage, 1)) %>% 
+  adorn_totals("row") %>% 
+  rename(Effectif=n) %>% 
+  gt() %>% 
+  fmt_number(columns = 2, sep_mark = " ", decimals = 0)
+```
+ 
+
+Il va donc falloir faire cela pour chacune de nos variables/caractéristiques ; pour ensuite les rassembler dans un unique tableau que l'on pourra construire et mettre en forme avec le package **`gt`**. Pour éviter de faire du copié-collé du code précédent, et donc pour systématiser nos procédures, on peut construire une fonction. Il nous faut donc faire un petit détour sur la manière de construire une fonction dans `R`. 
+
+
+
