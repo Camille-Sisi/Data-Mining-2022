@@ -24,7 +24,7 @@
 <meta name="author" content="Camille Signoretto, Maîtresse de conférences en économie, Université Paris Cité" />
 
 
-<meta name="date" content="2022-03-09" />
+<meta name="date" content="2022-03-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="01-Jeu-de-donnees.html"/>
 <link rel="next" href="03-Manipulation-variables.html"/>
-<script src="libs/header-attrs-2.12/header-attrs.js"></script>
+<script src="libs/header-attrs-2.13/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -176,6 +176,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="7" data-path="07-Analyse-descriptive.html"><a href="07-Analyse-descriptive.html"><i class="fa fa-check"></i><b>7</b> (reprise de l’)Analyse descriptive<span></span></a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="07-Analyse-descriptive.html"><a href="07-Analyse-descriptive.html#caractéristiques-de-la-cohorte-des-bacheliers-2014-inscrits-en-première-année-de-licence-en-2014-2015-1"><i class="fa fa-check"></i><b>7.1</b> Caractéristiques de la cohorte des bacheliers 2014 inscrits en première année de licence en 2014-2015<span></span></a></li>
+<li class="chapter" data-level="7.2" data-path="07-Analyse-descriptive.html"><a href="07-Analyse-descriptive.html#profils-des-étudiants-selon-leur-situation-en-fin-de-l1"><i class="fa fa-check"></i><b>7.2</b> Profils des étudiants selon leur situation en fin de L1<span></span></a></li>
 </ul></li>
 </ul>
 
@@ -200,12 +201,12 @@ code span.wa { color: #bf0303; } /* Warning */
 
 <p>On va regarder un peu à quoi ressemble la table de données téléchargée, quelles sont les variables, etc.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="02-Manipulation-base.html#cb3-1" aria-hidden="true" tabindex="-1"></a>ParcoursLic <span class="sc">%&gt;%</span> <span class="fu">head</span>() <span class="sc">%&gt;%</span> <span class="fu">gt</span>()</span></code></pre></div>
-<div id="lcajqnnslq" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="yqoovcycgm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#lcajqnnslq .gt_table {
+#yqoovcycgm .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -230,7 +231,7 @@ code span.wa { color: #bf0303; } /* Warning */
   border-left-color: #D3D3D3;
 }
 
-#lcajqnnslq .gt_heading {
+#yqoovcycgm .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -242,7 +243,7 @@ code span.wa { color: #bf0303; } /* Warning */
   border-right-color: #D3D3D3;
 }
 
-#lcajqnnslq .gt_title {
+#yqoovcycgm .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -254,7 +255,7 @@ code span.wa { color: #bf0303; } /* Warning */
   border-bottom-width: 0;
 }
 
-#lcajqnnslq .gt_subtitle {
+#yqoovcycgm .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -266,13 +267,13 @@ code span.wa { color: #bf0303; } /* Warning */
   border-top-width: 0;
 }
 
-#lcajqnnslq .gt_bottom_border {
+#yqoovcycgm .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#lcajqnnslq .gt_col_headings {
+#yqoovcycgm .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -287,7 +288,7 @@ code span.wa { color: #bf0303; } /* Warning */
   border-right-color: #D3D3D3;
 }
 
-#lcajqnnslq .gt_col_heading {
+#yqoovcycgm .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -307,7 +308,7 @@ code span.wa { color: #bf0303; } /* Warning */
   overflow-x: hidden;
 }
 
-#lcajqnnslq .gt_column_spanner_outer {
+#yqoovcycgm .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -319,15 +320,15 @@ code span.wa { color: #bf0303; } /* Warning */
   padding-right: 4px;
 }
 
-#lcajqnnslq .gt_column_spanner_outer:first-child {
+#yqoovcycgm .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#lcajqnnslq .gt_column_spanner_outer:last-child {
+#yqoovcycgm .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#lcajqnnslq .gt_column_spanner {
+#yqoovcycgm .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -339,7 +340,7 @@ code span.wa { color: #bf0303; } /* Warning */
   width: 100%;
 }
 
-#lcajqnnslq .gt_group_heading {
+#yqoovcycgm .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -364,7 +365,7 @@ code span.wa { color: #bf0303; } /* Warning */
   vertical-align: middle;
 }
 
-#lcajqnnslq .gt_empty_group_heading {
+#yqoovcycgm .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -379,15 +380,15 @@ code span.wa { color: #bf0303; } /* Warning */
   vertical-align: middle;
 }
 
-#lcajqnnslq .gt_from_md > :first-child {
+#yqoovcycgm .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#lcajqnnslq .gt_from_md > :last-child {
+#yqoovcycgm .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#lcajqnnslq .gt_row {
+#yqoovcycgm .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -406,7 +407,7 @@ code span.wa { color: #bf0303; } /* Warning */
   overflow-x: hidden;
 }
 
-#lcajqnnslq .gt_stub {
+#yqoovcycgm .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -419,7 +420,7 @@ code span.wa { color: #bf0303; } /* Warning */
   padding-right: 5px;
 }
 
-#lcajqnnslq .gt_stub_row_group {
+#yqoovcycgm .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -433,11 +434,11 @@ code span.wa { color: #bf0303; } /* Warning */
   vertical-align: top;
 }
 
-#lcajqnnslq .gt_row_group_first td {
+#yqoovcycgm .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#lcajqnnslq .gt_summary_row {
+#yqoovcycgm .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -447,16 +448,16 @@ code span.wa { color: #bf0303; } /* Warning */
   padding-right: 5px;
 }
 
-#lcajqnnslq .gt_first_summary_row {
+#yqoovcycgm .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#lcajqnnslq .gt_first_summary_row.thick {
+#yqoovcycgm .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#lcajqnnslq .gt_last_summary_row {
+#yqoovcycgm .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -466,7 +467,7 @@ code span.wa { color: #bf0303; } /* Warning */
   border-bottom-color: #D3D3D3;
 }
 
-#lcajqnnslq .gt_grand_summary_row {
+#yqoovcycgm .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -476,7 +477,7 @@ code span.wa { color: #bf0303; } /* Warning */
   padding-right: 5px;
 }
 
-#lcajqnnslq .gt_first_grand_summary_row {
+#yqoovcycgm .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -486,11 +487,11 @@ code span.wa { color: #bf0303; } /* Warning */
   border-top-color: #D3D3D3;
 }
 
-#lcajqnnslq .gt_striped {
+#yqoovcycgm .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#lcajqnnslq .gt_table_body {
+#yqoovcycgm .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -499,7 +500,7 @@ code span.wa { color: #bf0303; } /* Warning */
   border-bottom-color: #D3D3D3;
 }
 
-#lcajqnnslq .gt_footnotes {
+#yqoovcycgm .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -513,7 +514,7 @@ code span.wa { color: #bf0303; } /* Warning */
   border-right-color: #D3D3D3;
 }
 
-#lcajqnnslq .gt_footnote {
+#yqoovcycgm .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -522,7 +523,7 @@ code span.wa { color: #bf0303; } /* Warning */
   padding-right: 5px;
 }
 
-#lcajqnnslq .gt_sourcenotes {
+#yqoovcycgm .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -536,7 +537,7 @@ code span.wa { color: #bf0303; } /* Warning */
   border-right-color: #D3D3D3;
 }
 
-#lcajqnnslq .gt_sourcenote {
+#yqoovcycgm .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -544,60 +545,60 @@ code span.wa { color: #bf0303; } /* Warning */
   padding-right: 5px;
 }
 
-#lcajqnnslq .gt_left {
+#yqoovcycgm .gt_left {
   text-align: left;
 }
 
-#lcajqnnslq .gt_center {
+#yqoovcycgm .gt_center {
   text-align: center;
 }
 
-#lcajqnnslq .gt_right {
+#yqoovcycgm .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#lcajqnnslq .gt_font_normal {
+#yqoovcycgm .gt_font_normal {
   font-weight: normal;
 }
 
-#lcajqnnslq .gt_font_bold {
+#yqoovcycgm .gt_font_bold {
   font-weight: bold;
 }
 
-#lcajqnnslq .gt_font_italic {
+#yqoovcycgm .gt_font_italic {
   font-style: italic;
 }
 
-#lcajqnnslq .gt_super {
+#yqoovcycgm .gt_super {
   font-size: 65%;
 }
 
-#lcajqnnslq .gt_footnote_marks {
+#yqoovcycgm .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#lcajqnnslq .gt_asterisk {
+#yqoovcycgm .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#lcajqnnslq .gt_slash_mark {
+#yqoovcycgm .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#lcajqnnslq .gt_fraction_numerator {
+#yqoovcycgm .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#lcajqnnslq .gt_fraction_denominator {
+#yqoovcycgm .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -861,12 +862,12 @@ On remarque que certaines variables donnent la même information mais sont codé
 <span id="cb6-11"><a href="02-Manipulation-base.html#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> serie_bac_lib, <span class="at">values_from =</span> effectif_neobacheliers_passage,</span>
 <span id="cb6-12"><a href="02-Manipulation-base.html#cb6-12" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_fill =</span> <span class="dv">0</span>, <span class="at">values_fn =</span> <span class="fu">list</span>(<span class="at">effectif_neobacheliers_passage=</span>sum)) <span class="sc">%&gt;%</span></span>
 <span id="cb6-13"><a href="02-Manipulation-base.html#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code></pre></div>
-<div id="wwkfunrtts" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="ifzabvhbjz" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#wwkfunrtts .gt_table {
+#ifzabvhbjz .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -891,7 +892,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-left-color: #D3D3D3;
 }
 
-#wwkfunrtts .gt_heading {
+#ifzabvhbjz .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -903,7 +904,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-right-color: #D3D3D3;
 }
 
-#wwkfunrtts .gt_title {
+#ifzabvhbjz .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -915,7 +916,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-bottom-width: 0;
 }
 
-#wwkfunrtts .gt_subtitle {
+#ifzabvhbjz .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -927,13 +928,13 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-top-width: 0;
 }
 
-#wwkfunrtts .gt_bottom_border {
+#ifzabvhbjz .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#wwkfunrtts .gt_col_headings {
+#ifzabvhbjz .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -948,7 +949,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-right-color: #D3D3D3;
 }
 
-#wwkfunrtts .gt_col_heading {
+#ifzabvhbjz .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -968,7 +969,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   overflow-x: hidden;
 }
 
-#wwkfunrtts .gt_column_spanner_outer {
+#ifzabvhbjz .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -980,15 +981,15 @@ On remarque que certaines variables donnent la même information mais sont codé
   padding-right: 4px;
 }
 
-#wwkfunrtts .gt_column_spanner_outer:first-child {
+#ifzabvhbjz .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#wwkfunrtts .gt_column_spanner_outer:last-child {
+#ifzabvhbjz .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#wwkfunrtts .gt_column_spanner {
+#ifzabvhbjz .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1000,7 +1001,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   width: 100%;
 }
 
-#wwkfunrtts .gt_group_heading {
+#ifzabvhbjz .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1025,7 +1026,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   vertical-align: middle;
 }
 
-#wwkfunrtts .gt_empty_group_heading {
+#ifzabvhbjz .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1040,15 +1041,15 @@ On remarque que certaines variables donnent la même information mais sont codé
   vertical-align: middle;
 }
 
-#wwkfunrtts .gt_from_md > :first-child {
+#ifzabvhbjz .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#wwkfunrtts .gt_from_md > :last-child {
+#ifzabvhbjz .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#wwkfunrtts .gt_row {
+#ifzabvhbjz .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1067,7 +1068,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   overflow-x: hidden;
 }
 
-#wwkfunrtts .gt_stub {
+#ifzabvhbjz .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1080,7 +1081,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   padding-right: 5px;
 }
 
-#wwkfunrtts .gt_stub_row_group {
+#ifzabvhbjz .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1094,11 +1095,11 @@ On remarque que certaines variables donnent la même information mais sont codé
   vertical-align: top;
 }
 
-#wwkfunrtts .gt_row_group_first td {
+#ifzabvhbjz .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#wwkfunrtts .gt_summary_row {
+#ifzabvhbjz .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1108,16 +1109,16 @@ On remarque que certaines variables donnent la même information mais sont codé
   padding-right: 5px;
 }
 
-#wwkfunrtts .gt_first_summary_row {
+#ifzabvhbjz .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#wwkfunrtts .gt_first_summary_row.thick {
+#ifzabvhbjz .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#wwkfunrtts .gt_last_summary_row {
+#ifzabvhbjz .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1127,7 +1128,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-bottom-color: #D3D3D3;
 }
 
-#wwkfunrtts .gt_grand_summary_row {
+#ifzabvhbjz .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1137,7 +1138,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   padding-right: 5px;
 }
 
-#wwkfunrtts .gt_first_grand_summary_row {
+#ifzabvhbjz .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1147,11 +1148,11 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-top-color: #D3D3D3;
 }
 
-#wwkfunrtts .gt_striped {
+#ifzabvhbjz .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#wwkfunrtts .gt_table_body {
+#ifzabvhbjz .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1160,7 +1161,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-bottom-color: #D3D3D3;
 }
 
-#wwkfunrtts .gt_footnotes {
+#ifzabvhbjz .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1174,7 +1175,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-right-color: #D3D3D3;
 }
 
-#wwkfunrtts .gt_footnote {
+#ifzabvhbjz .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -1183,7 +1184,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   padding-right: 5px;
 }
 
-#wwkfunrtts .gt_sourcenotes {
+#ifzabvhbjz .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1197,7 +1198,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-right-color: #D3D3D3;
 }
 
-#wwkfunrtts .gt_sourcenote {
+#ifzabvhbjz .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1205,60 +1206,60 @@ On remarque que certaines variables donnent la même information mais sont codé
   padding-right: 5px;
 }
 
-#wwkfunrtts .gt_left {
+#ifzabvhbjz .gt_left {
   text-align: left;
 }
 
-#wwkfunrtts .gt_center {
+#ifzabvhbjz .gt_center {
   text-align: center;
 }
 
-#wwkfunrtts .gt_right {
+#ifzabvhbjz .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#wwkfunrtts .gt_font_normal {
+#ifzabvhbjz .gt_font_normal {
   font-weight: normal;
 }
 
-#wwkfunrtts .gt_font_bold {
+#ifzabvhbjz .gt_font_bold {
   font-weight: bold;
 }
 
-#wwkfunrtts .gt_font_italic {
+#ifzabvhbjz .gt_font_italic {
   font-style: italic;
 }
 
-#wwkfunrtts .gt_super {
+#ifzabvhbjz .gt_super {
   font-size: 65%;
 }
 
-#wwkfunrtts .gt_footnote_marks {
+#ifzabvhbjz .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#wwkfunrtts .gt_asterisk {
+#ifzabvhbjz .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#wwkfunrtts .gt_slash_mark {
+#ifzabvhbjz .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#wwkfunrtts .gt_fraction_numerator {
+#ifzabvhbjz .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#wwkfunrtts .gt_fraction_denominator {
+#ifzabvhbjz .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -1320,12 +1321,12 @@ On remarque que certaines variables donnent la même information mais sont codé
 <span id="cb7-3"><a href="02-Manipulation-base.html#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Bac, Serie) <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">4</span>) <span class="sc">%&gt;%</span> <span class="fu">gt</span>()</span></code></pre></div>
 <pre><code>Warning: Expected 2 pieces. Additional pieces discarded in 1055 rows [3, 5, 10,
 13, 16, 18, 19, 24, 50, 52, 58, 65, 66, 79, 81, 87, 89, 99, 118, 124, ...].</code></pre>
-<div id="xanmwrwuff" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="ysbixmqvik" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#xanmwrwuff .gt_table {
+#ysbixmqvik .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1350,7 +1351,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-left-color: #D3D3D3;
 }
 
-#xanmwrwuff .gt_heading {
+#ysbixmqvik .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1362,7 +1363,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-right-color: #D3D3D3;
 }
 
-#xanmwrwuff .gt_title {
+#ysbixmqvik .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1374,7 +1375,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-bottom-width: 0;
 }
 
-#xanmwrwuff .gt_subtitle {
+#ysbixmqvik .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1386,13 +1387,13 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-top-width: 0;
 }
 
-#xanmwrwuff .gt_bottom_border {
+#ysbixmqvik .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#xanmwrwuff .gt_col_headings {
+#ysbixmqvik .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1407,7 +1408,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-right-color: #D3D3D3;
 }
 
-#xanmwrwuff .gt_col_heading {
+#ysbixmqvik .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1427,7 +1428,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   overflow-x: hidden;
 }
 
-#xanmwrwuff .gt_column_spanner_outer {
+#ysbixmqvik .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1439,15 +1440,15 @@ On remarque que certaines variables donnent la même information mais sont codé
   padding-right: 4px;
 }
 
-#xanmwrwuff .gt_column_spanner_outer:first-child {
+#ysbixmqvik .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#xanmwrwuff .gt_column_spanner_outer:last-child {
+#ysbixmqvik .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#xanmwrwuff .gt_column_spanner {
+#ysbixmqvik .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1459,7 +1460,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   width: 100%;
 }
 
-#xanmwrwuff .gt_group_heading {
+#ysbixmqvik .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1484,7 +1485,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   vertical-align: middle;
 }
 
-#xanmwrwuff .gt_empty_group_heading {
+#ysbixmqvik .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1499,15 +1500,15 @@ On remarque que certaines variables donnent la même information mais sont codé
   vertical-align: middle;
 }
 
-#xanmwrwuff .gt_from_md > :first-child {
+#ysbixmqvik .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#xanmwrwuff .gt_from_md > :last-child {
+#ysbixmqvik .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#xanmwrwuff .gt_row {
+#ysbixmqvik .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1526,7 +1527,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   overflow-x: hidden;
 }
 
-#xanmwrwuff .gt_stub {
+#ysbixmqvik .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1539,7 +1540,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   padding-right: 5px;
 }
 
-#xanmwrwuff .gt_stub_row_group {
+#ysbixmqvik .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1553,11 +1554,11 @@ On remarque que certaines variables donnent la même information mais sont codé
   vertical-align: top;
 }
 
-#xanmwrwuff .gt_row_group_first td {
+#ysbixmqvik .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#xanmwrwuff .gt_summary_row {
+#ysbixmqvik .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1567,16 +1568,16 @@ On remarque que certaines variables donnent la même information mais sont codé
   padding-right: 5px;
 }
 
-#xanmwrwuff .gt_first_summary_row {
+#ysbixmqvik .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#xanmwrwuff .gt_first_summary_row.thick {
+#ysbixmqvik .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#xanmwrwuff .gt_last_summary_row {
+#ysbixmqvik .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1586,7 +1587,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-bottom-color: #D3D3D3;
 }
 
-#xanmwrwuff .gt_grand_summary_row {
+#ysbixmqvik .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1596,7 +1597,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   padding-right: 5px;
 }
 
-#xanmwrwuff .gt_first_grand_summary_row {
+#ysbixmqvik .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1606,11 +1607,11 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-top-color: #D3D3D3;
 }
 
-#xanmwrwuff .gt_striped {
+#ysbixmqvik .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#xanmwrwuff .gt_table_body {
+#ysbixmqvik .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1619,7 +1620,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-bottom-color: #D3D3D3;
 }
 
-#xanmwrwuff .gt_footnotes {
+#ysbixmqvik .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1633,7 +1634,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-right-color: #D3D3D3;
 }
 
-#xanmwrwuff .gt_footnote {
+#ysbixmqvik .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -1642,7 +1643,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   padding-right: 5px;
 }
 
-#xanmwrwuff .gt_sourcenotes {
+#ysbixmqvik .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1656,7 +1657,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-right-color: #D3D3D3;
 }
 
-#xanmwrwuff .gt_sourcenote {
+#ysbixmqvik .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1664,60 +1665,60 @@ On remarque que certaines variables donnent la même information mais sont codé
   padding-right: 5px;
 }
 
-#xanmwrwuff .gt_left {
+#ysbixmqvik .gt_left {
   text-align: left;
 }
 
-#xanmwrwuff .gt_center {
+#ysbixmqvik .gt_center {
   text-align: center;
 }
 
-#xanmwrwuff .gt_right {
+#ysbixmqvik .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#xanmwrwuff .gt_font_normal {
+#ysbixmqvik .gt_font_normal {
   font-weight: normal;
 }
 
-#xanmwrwuff .gt_font_bold {
+#ysbixmqvik .gt_font_bold {
   font-weight: bold;
 }
 
-#xanmwrwuff .gt_font_italic {
+#ysbixmqvik .gt_font_italic {
   font-style: italic;
 }
 
-#xanmwrwuff .gt_super {
+#ysbixmqvik .gt_super {
   font-size: 65%;
 }
 
-#xanmwrwuff .gt_footnote_marks {
+#ysbixmqvik .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#xanmwrwuff .gt_asterisk {
+#ysbixmqvik .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#xanmwrwuff .gt_slash_mark {
+#ysbixmqvik .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#xanmwrwuff .gt_fraction_numerator {
+#ysbixmqvik .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#xanmwrwuff .gt_fraction_denominator {
+#ysbixmqvik .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -1749,12 +1750,12 @@ On remarque que certaines variables donnent la même information mais sont codé
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="02-Manipulation-base.html#cb9-1" aria-hidden="true" tabindex="-1"></a>ParcoursLic <span class="sc">%&gt;%</span> </span>
 <span id="cb9-2"><a href="02-Manipulation-base.html#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(serie_bac_lib, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&#39;Bac&#39;</span>,<span class="st">&#39;Serie&#39;</span>), <span class="at">sep=</span><span class="st">&quot; &quot;</span>, <span class="at">extra=</span><span class="st">&quot;merge&quot;</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb9-3"><a href="02-Manipulation-base.html#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Bac, Serie) <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">4</span>) <span class="sc">%&gt;%</span> <span class="fu">gt</span>()</span></code></pre></div>
-<div id="ivzfvrzojx" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="zzwtckbevn" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#ivzfvrzojx .gt_table {
+#zzwtckbevn .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1779,7 +1780,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-left-color: #D3D3D3;
 }
 
-#ivzfvrzojx .gt_heading {
+#zzwtckbevn .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1791,7 +1792,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-right-color: #D3D3D3;
 }
 
-#ivzfvrzojx .gt_title {
+#zzwtckbevn .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1803,7 +1804,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-bottom-width: 0;
 }
 
-#ivzfvrzojx .gt_subtitle {
+#zzwtckbevn .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1815,13 +1816,13 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-top-width: 0;
 }
 
-#ivzfvrzojx .gt_bottom_border {
+#zzwtckbevn .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ivzfvrzojx .gt_col_headings {
+#zzwtckbevn .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1836,7 +1837,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-right-color: #D3D3D3;
 }
 
-#ivzfvrzojx .gt_col_heading {
+#zzwtckbevn .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1856,7 +1857,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   overflow-x: hidden;
 }
 
-#ivzfvrzojx .gt_column_spanner_outer {
+#zzwtckbevn .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1868,15 +1869,15 @@ On remarque que certaines variables donnent la même information mais sont codé
   padding-right: 4px;
 }
 
-#ivzfvrzojx .gt_column_spanner_outer:first-child {
+#zzwtckbevn .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ivzfvrzojx .gt_column_spanner_outer:last-child {
+#zzwtckbevn .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ivzfvrzojx .gt_column_spanner {
+#zzwtckbevn .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1888,7 +1889,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   width: 100%;
 }
 
-#ivzfvrzojx .gt_group_heading {
+#zzwtckbevn .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1913,7 +1914,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   vertical-align: middle;
 }
 
-#ivzfvrzojx .gt_empty_group_heading {
+#zzwtckbevn .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1928,15 +1929,15 @@ On remarque que certaines variables donnent la même information mais sont codé
   vertical-align: middle;
 }
 
-#ivzfvrzojx .gt_from_md > :first-child {
+#zzwtckbevn .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ivzfvrzojx .gt_from_md > :last-child {
+#zzwtckbevn .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ivzfvrzojx .gt_row {
+#zzwtckbevn .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1955,7 +1956,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   overflow-x: hidden;
 }
 
-#ivzfvrzojx .gt_stub {
+#zzwtckbevn .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1968,7 +1969,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   padding-right: 5px;
 }
 
-#ivzfvrzojx .gt_stub_row_group {
+#zzwtckbevn .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1982,11 +1983,11 @@ On remarque que certaines variables donnent la même information mais sont codé
   vertical-align: top;
 }
 
-#ivzfvrzojx .gt_row_group_first td {
+#zzwtckbevn .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ivzfvrzojx .gt_summary_row {
+#zzwtckbevn .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1996,16 +1997,16 @@ On remarque que certaines variables donnent la même information mais sont codé
   padding-right: 5px;
 }
 
-#ivzfvrzojx .gt_first_summary_row {
+#zzwtckbevn .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ivzfvrzojx .gt_first_summary_row.thick {
+#zzwtckbevn .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ivzfvrzojx .gt_last_summary_row {
+#zzwtckbevn .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2015,7 +2016,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-bottom-color: #D3D3D3;
 }
 
-#ivzfvrzojx .gt_grand_summary_row {
+#zzwtckbevn .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2025,7 +2026,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   padding-right: 5px;
 }
 
-#ivzfvrzojx .gt_first_grand_summary_row {
+#zzwtckbevn .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2035,11 +2036,11 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-top-color: #D3D3D3;
 }
 
-#ivzfvrzojx .gt_striped {
+#zzwtckbevn .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ivzfvrzojx .gt_table_body {
+#zzwtckbevn .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2048,7 +2049,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-bottom-color: #D3D3D3;
 }
 
-#ivzfvrzojx .gt_footnotes {
+#zzwtckbevn .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2062,7 +2063,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-right-color: #D3D3D3;
 }
 
-#ivzfvrzojx .gt_footnote {
+#zzwtckbevn .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -2071,7 +2072,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   padding-right: 5px;
 }
 
-#ivzfvrzojx .gt_sourcenotes {
+#zzwtckbevn .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2085,7 +2086,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-right-color: #D3D3D3;
 }
 
-#ivzfvrzojx .gt_sourcenote {
+#zzwtckbevn .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2093,60 +2094,60 @@ On remarque que certaines variables donnent la même information mais sont codé
   padding-right: 5px;
 }
 
-#ivzfvrzojx .gt_left {
+#zzwtckbevn .gt_left {
   text-align: left;
 }
 
-#ivzfvrzojx .gt_center {
+#zzwtckbevn .gt_center {
   text-align: center;
 }
 
-#ivzfvrzojx .gt_right {
+#zzwtckbevn .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ivzfvrzojx .gt_font_normal {
+#zzwtckbevn .gt_font_normal {
   font-weight: normal;
 }
 
-#ivzfvrzojx .gt_font_bold {
+#zzwtckbevn .gt_font_bold {
   font-weight: bold;
 }
 
-#ivzfvrzojx .gt_font_italic {
+#zzwtckbevn .gt_font_italic {
   font-style: italic;
 }
 
-#ivzfvrzojx .gt_super {
+#zzwtckbevn .gt_super {
   font-size: 65%;
 }
 
-#ivzfvrzojx .gt_footnote_marks {
+#zzwtckbevn .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#ivzfvrzojx .gt_asterisk {
+#zzwtckbevn .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ivzfvrzojx .gt_slash_mark {
+#zzwtckbevn .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#ivzfvrzojx .gt_fraction_numerator {
+#zzwtckbevn .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#ivzfvrzojx .gt_fraction_denominator {
+#zzwtckbevn .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -2177,12 +2178,12 @@ On remarque que certaines variables donnent la même information mais sont codé
 <p>Enfin, comme on a dit que l’on avait des informations sur deux champs différents, on peut très bien décider de créer deux nouvelles tables de données, en retenant seulement les informations correspondant au champ concerné. La première que l’on peut intituler “PassageL1L2” comprendrait toutes les lignes de la base initiale “ParcoursLic” mais sans les colonnes “reussite_3_ans”, “reussite_4_ans”, “reussite_3_4_ans”, “effectif_neobacheliers_reussite” et “cohorte_reussite”, alors que la seconde que l’on peut intituler “ReussiteLic” comprendrait ces variables, ainsi que toutes les lignes.</p>
 <p>Comme vous le savez très probablement, dans le langage <code>tidyverse</code>, pour faire des sélections sur les lignes ou observations dans une table de données, on utilise la fonction <code>filter()</code> ; pour faire des sélections sur les colonnes ou variables, on utilise la fonction <code>select()</code> ; pour supprimer des variables, on utilise <code>select()</code> également (dans le langage <code>R</code> de base, on peut utiliser la fonction <code>subset()</code>).</p>
 <p>Créer donc ces deux nouvelles bases de données, de telle sorte qu’elles ressemblent à ce qui s’affiche ci-dessous :</p>
-<div id="iswsgftegu" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="cvzjckylpj" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#iswsgftegu .gt_table {
+#cvzjckylpj .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -2207,7 +2208,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-left-color: #D3D3D3;
 }
 
-#iswsgftegu .gt_heading {
+#cvzjckylpj .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2219,7 +2220,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-right-color: #D3D3D3;
 }
 
-#iswsgftegu .gt_title {
+#cvzjckylpj .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2231,7 +2232,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-bottom-width: 0;
 }
 
-#iswsgftegu .gt_subtitle {
+#cvzjckylpj .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2243,13 +2244,13 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-top-width: 0;
 }
 
-#iswsgftegu .gt_bottom_border {
+#cvzjckylpj .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#iswsgftegu .gt_col_headings {
+#cvzjckylpj .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2264,7 +2265,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-right-color: #D3D3D3;
 }
 
-#iswsgftegu .gt_col_heading {
+#cvzjckylpj .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2284,7 +2285,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   overflow-x: hidden;
 }
 
-#iswsgftegu .gt_column_spanner_outer {
+#cvzjckylpj .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2296,15 +2297,15 @@ On remarque que certaines variables donnent la même information mais sont codé
   padding-right: 4px;
 }
 
-#iswsgftegu .gt_column_spanner_outer:first-child {
+#cvzjckylpj .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#iswsgftegu .gt_column_spanner_outer:last-child {
+#cvzjckylpj .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#iswsgftegu .gt_column_spanner {
+#cvzjckylpj .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2316,7 +2317,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   width: 100%;
 }
 
-#iswsgftegu .gt_group_heading {
+#cvzjckylpj .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2341,7 +2342,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   vertical-align: middle;
 }
 
-#iswsgftegu .gt_empty_group_heading {
+#cvzjckylpj .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2356,15 +2357,15 @@ On remarque que certaines variables donnent la même information mais sont codé
   vertical-align: middle;
 }
 
-#iswsgftegu .gt_from_md > :first-child {
+#cvzjckylpj .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#iswsgftegu .gt_from_md > :last-child {
+#cvzjckylpj .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#iswsgftegu .gt_row {
+#cvzjckylpj .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2383,7 +2384,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   overflow-x: hidden;
 }
 
-#iswsgftegu .gt_stub {
+#cvzjckylpj .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2396,7 +2397,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   padding-right: 5px;
 }
 
-#iswsgftegu .gt_stub_row_group {
+#cvzjckylpj .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2410,11 +2411,11 @@ On remarque que certaines variables donnent la même information mais sont codé
   vertical-align: top;
 }
 
-#iswsgftegu .gt_row_group_first td {
+#cvzjckylpj .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#iswsgftegu .gt_summary_row {
+#cvzjckylpj .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2424,16 +2425,16 @@ On remarque que certaines variables donnent la même information mais sont codé
   padding-right: 5px;
 }
 
-#iswsgftegu .gt_first_summary_row {
+#cvzjckylpj .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#iswsgftegu .gt_first_summary_row.thick {
+#cvzjckylpj .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#iswsgftegu .gt_last_summary_row {
+#cvzjckylpj .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2443,7 +2444,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-bottom-color: #D3D3D3;
 }
 
-#iswsgftegu .gt_grand_summary_row {
+#cvzjckylpj .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2453,7 +2454,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   padding-right: 5px;
 }
 
-#iswsgftegu .gt_first_grand_summary_row {
+#cvzjckylpj .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2463,11 +2464,11 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-top-color: #D3D3D3;
 }
 
-#iswsgftegu .gt_striped {
+#cvzjckylpj .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#iswsgftegu .gt_table_body {
+#cvzjckylpj .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2476,7 +2477,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-bottom-color: #D3D3D3;
 }
 
-#iswsgftegu .gt_footnotes {
+#cvzjckylpj .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2490,7 +2491,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-right-color: #D3D3D3;
 }
 
-#iswsgftegu .gt_footnote {
+#cvzjckylpj .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -2499,7 +2500,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   padding-right: 5px;
 }
 
-#iswsgftegu .gt_sourcenotes {
+#cvzjckylpj .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2513,7 +2514,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-right-color: #D3D3D3;
 }
 
-#iswsgftegu .gt_sourcenote {
+#cvzjckylpj .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2521,60 +2522,60 @@ On remarque que certaines variables donnent la même information mais sont codé
   padding-right: 5px;
 }
 
-#iswsgftegu .gt_left {
+#cvzjckylpj .gt_left {
   text-align: left;
 }
 
-#iswsgftegu .gt_center {
+#cvzjckylpj .gt_center {
   text-align: center;
 }
 
-#iswsgftegu .gt_right {
+#cvzjckylpj .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#iswsgftegu .gt_font_normal {
+#cvzjckylpj .gt_font_normal {
   font-weight: normal;
 }
 
-#iswsgftegu .gt_font_bold {
+#cvzjckylpj .gt_font_bold {
   font-weight: bold;
 }
 
-#iswsgftegu .gt_font_italic {
+#cvzjckylpj .gt_font_italic {
   font-style: italic;
 }
 
-#iswsgftegu .gt_super {
+#cvzjckylpj .gt_super {
   font-size: 65%;
 }
 
-#iswsgftegu .gt_footnote_marks {
+#cvzjckylpj .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#iswsgftegu .gt_asterisk {
+#cvzjckylpj .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#iswsgftegu .gt_slash_mark {
+#cvzjckylpj .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#iswsgftegu .gt_fraction_numerator {
+#cvzjckylpj .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#iswsgftegu .gt_fraction_denominator {
+#cvzjckylpj .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -2730,12 +2731,12 @@ On remarque que certaines variables donnent la même information mais sont codé
   
 </table>
 </div>
-<div id="catmvhsaub" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="lhgqqbvpsd" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#catmvhsaub .gt_table {
+#lhgqqbvpsd .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -2760,7 +2761,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-left-color: #D3D3D3;
 }
 
-#catmvhsaub .gt_heading {
+#lhgqqbvpsd .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2772,7 +2773,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-right-color: #D3D3D3;
 }
 
-#catmvhsaub .gt_title {
+#lhgqqbvpsd .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2784,7 +2785,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-bottom-width: 0;
 }
 
-#catmvhsaub .gt_subtitle {
+#lhgqqbvpsd .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2796,13 +2797,13 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-top-width: 0;
 }
 
-#catmvhsaub .gt_bottom_border {
+#lhgqqbvpsd .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#catmvhsaub .gt_col_headings {
+#lhgqqbvpsd .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2817,7 +2818,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-right-color: #D3D3D3;
 }
 
-#catmvhsaub .gt_col_heading {
+#lhgqqbvpsd .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2837,7 +2838,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   overflow-x: hidden;
 }
 
-#catmvhsaub .gt_column_spanner_outer {
+#lhgqqbvpsd .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2849,15 +2850,15 @@ On remarque que certaines variables donnent la même information mais sont codé
   padding-right: 4px;
 }
 
-#catmvhsaub .gt_column_spanner_outer:first-child {
+#lhgqqbvpsd .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#catmvhsaub .gt_column_spanner_outer:last-child {
+#lhgqqbvpsd .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#catmvhsaub .gt_column_spanner {
+#lhgqqbvpsd .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2869,7 +2870,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   width: 100%;
 }
 
-#catmvhsaub .gt_group_heading {
+#lhgqqbvpsd .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2894,7 +2895,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   vertical-align: middle;
 }
 
-#catmvhsaub .gt_empty_group_heading {
+#lhgqqbvpsd .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2909,15 +2910,15 @@ On remarque que certaines variables donnent la même information mais sont codé
   vertical-align: middle;
 }
 
-#catmvhsaub .gt_from_md > :first-child {
+#lhgqqbvpsd .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#catmvhsaub .gt_from_md > :last-child {
+#lhgqqbvpsd .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#catmvhsaub .gt_row {
+#lhgqqbvpsd .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2936,7 +2937,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   overflow-x: hidden;
 }
 
-#catmvhsaub .gt_stub {
+#lhgqqbvpsd .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2949,7 +2950,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   padding-right: 5px;
 }
 
-#catmvhsaub .gt_stub_row_group {
+#lhgqqbvpsd .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2963,11 +2964,11 @@ On remarque que certaines variables donnent la même information mais sont codé
   vertical-align: top;
 }
 
-#catmvhsaub .gt_row_group_first td {
+#lhgqqbvpsd .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#catmvhsaub .gt_summary_row {
+#lhgqqbvpsd .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2977,16 +2978,16 @@ On remarque que certaines variables donnent la même information mais sont codé
   padding-right: 5px;
 }
 
-#catmvhsaub .gt_first_summary_row {
+#lhgqqbvpsd .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#catmvhsaub .gt_first_summary_row.thick {
+#lhgqqbvpsd .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#catmvhsaub .gt_last_summary_row {
+#lhgqqbvpsd .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2996,7 +2997,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-bottom-color: #D3D3D3;
 }
 
-#catmvhsaub .gt_grand_summary_row {
+#lhgqqbvpsd .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3006,7 +3007,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   padding-right: 5px;
 }
 
-#catmvhsaub .gt_first_grand_summary_row {
+#lhgqqbvpsd .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3016,11 +3017,11 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-top-color: #D3D3D3;
 }
 
-#catmvhsaub .gt_striped {
+#lhgqqbvpsd .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#catmvhsaub .gt_table_body {
+#lhgqqbvpsd .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3029,7 +3030,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-bottom-color: #D3D3D3;
 }
 
-#catmvhsaub .gt_footnotes {
+#lhgqqbvpsd .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3043,7 +3044,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-right-color: #D3D3D3;
 }
 
-#catmvhsaub .gt_footnote {
+#lhgqqbvpsd .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -3052,7 +3053,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   padding-right: 5px;
 }
 
-#catmvhsaub .gt_sourcenotes {
+#lhgqqbvpsd .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3066,7 +3067,7 @@ On remarque que certaines variables donnent la même information mais sont codé
   border-right-color: #D3D3D3;
 }
 
-#catmvhsaub .gt_sourcenote {
+#lhgqqbvpsd .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3074,60 +3075,60 @@ On remarque que certaines variables donnent la même information mais sont codé
   padding-right: 5px;
 }
 
-#catmvhsaub .gt_left {
+#lhgqqbvpsd .gt_left {
   text-align: left;
 }
 
-#catmvhsaub .gt_center {
+#lhgqqbvpsd .gt_center {
   text-align: center;
 }
 
-#catmvhsaub .gt_right {
+#lhgqqbvpsd .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#catmvhsaub .gt_font_normal {
+#lhgqqbvpsd .gt_font_normal {
   font-weight: normal;
 }
 
-#catmvhsaub .gt_font_bold {
+#lhgqqbvpsd .gt_font_bold {
   font-weight: bold;
 }
 
-#catmvhsaub .gt_font_italic {
+#lhgqqbvpsd .gt_font_italic {
   font-style: italic;
 }
 
-#catmvhsaub .gt_super {
+#lhgqqbvpsd .gt_super {
   font-size: 65%;
 }
 
-#catmvhsaub .gt_footnote_marks {
+#lhgqqbvpsd .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#catmvhsaub .gt_asterisk {
+#lhgqqbvpsd .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#catmvhsaub .gt_slash_mark {
+#lhgqqbvpsd .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#catmvhsaub .gt_fraction_numerator {
+#lhgqqbvpsd .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#catmvhsaub .gt_fraction_denominator {
+#lhgqqbvpsd .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -3276,12 +3277,12 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="02-Manipulation-base.html#cb11-1" aria-hidden="true" tabindex="-1"></a>PassageL1L2 <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="st">&#39;Nombre total de bacheliers inscrits en 2014-2015 en licence&#39;</span> <span class="ot">=</span> </span>
 <span id="cb11-2"><a href="02-Manipulation-base.html#cb11-2" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">sum</span>(effectif_neobacheliers_passage, <span class="at">na.rm=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span>  </span>
 <span id="cb11-3"><a href="02-Manipulation-base.html#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code></pre></div>
-<div id="mvwjkrwqwv" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="vwpqqxngsh" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#mvwjkrwqwv .gt_table {
+#vwpqqxngsh .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -3306,7 +3307,7 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   border-left-color: #D3D3D3;
 }
 
-#mvwjkrwqwv .gt_heading {
+#vwpqqxngsh .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -3318,7 +3319,7 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   border-right-color: #D3D3D3;
 }
 
-#mvwjkrwqwv .gt_title {
+#vwpqqxngsh .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -3330,7 +3331,7 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   border-bottom-width: 0;
 }
 
-#mvwjkrwqwv .gt_subtitle {
+#vwpqqxngsh .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3342,13 +3343,13 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   border-top-width: 0;
 }
 
-#mvwjkrwqwv .gt_bottom_border {
+#vwpqqxngsh .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#mvwjkrwqwv .gt_col_headings {
+#vwpqqxngsh .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3363,7 +3364,7 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   border-right-color: #D3D3D3;
 }
 
-#mvwjkrwqwv .gt_col_heading {
+#vwpqqxngsh .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3383,7 +3384,7 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   overflow-x: hidden;
 }
 
-#mvwjkrwqwv .gt_column_spanner_outer {
+#vwpqqxngsh .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3395,15 +3396,15 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   padding-right: 4px;
 }
 
-#mvwjkrwqwv .gt_column_spanner_outer:first-child {
+#vwpqqxngsh .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#mvwjkrwqwv .gt_column_spanner_outer:last-child {
+#vwpqqxngsh .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#mvwjkrwqwv .gt_column_spanner {
+#vwpqqxngsh .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3415,7 +3416,7 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   width: 100%;
 }
 
-#mvwjkrwqwv .gt_group_heading {
+#vwpqqxngsh .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3440,7 +3441,7 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   vertical-align: middle;
 }
 
-#mvwjkrwqwv .gt_empty_group_heading {
+#vwpqqxngsh .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3455,15 +3456,15 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   vertical-align: middle;
 }
 
-#mvwjkrwqwv .gt_from_md > :first-child {
+#vwpqqxngsh .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#mvwjkrwqwv .gt_from_md > :last-child {
+#vwpqqxngsh .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#mvwjkrwqwv .gt_row {
+#vwpqqxngsh .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3482,7 +3483,7 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   overflow-x: hidden;
 }
 
-#mvwjkrwqwv .gt_stub {
+#vwpqqxngsh .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3495,7 +3496,7 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   padding-right: 5px;
 }
 
-#mvwjkrwqwv .gt_stub_row_group {
+#vwpqqxngsh .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3509,11 +3510,11 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   vertical-align: top;
 }
 
-#mvwjkrwqwv .gt_row_group_first td {
+#vwpqqxngsh .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#mvwjkrwqwv .gt_summary_row {
+#vwpqqxngsh .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3523,16 +3524,16 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   padding-right: 5px;
 }
 
-#mvwjkrwqwv .gt_first_summary_row {
+#vwpqqxngsh .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#mvwjkrwqwv .gt_first_summary_row.thick {
+#vwpqqxngsh .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#mvwjkrwqwv .gt_last_summary_row {
+#vwpqqxngsh .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3542,7 +3543,7 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   border-bottom-color: #D3D3D3;
 }
 
-#mvwjkrwqwv .gt_grand_summary_row {
+#vwpqqxngsh .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3552,7 +3553,7 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   padding-right: 5px;
 }
 
-#mvwjkrwqwv .gt_first_grand_summary_row {
+#vwpqqxngsh .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3562,11 +3563,11 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   border-top-color: #D3D3D3;
 }
 
-#mvwjkrwqwv .gt_striped {
+#vwpqqxngsh .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#mvwjkrwqwv .gt_table_body {
+#vwpqqxngsh .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3575,7 +3576,7 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   border-bottom-color: #D3D3D3;
 }
 
-#mvwjkrwqwv .gt_footnotes {
+#vwpqqxngsh .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3589,7 +3590,7 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   border-right-color: #D3D3D3;
 }
 
-#mvwjkrwqwv .gt_footnote {
+#vwpqqxngsh .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -3598,7 +3599,7 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   padding-right: 5px;
 }
 
-#mvwjkrwqwv .gt_sourcenotes {
+#vwpqqxngsh .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3612,7 +3613,7 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   border-right-color: #D3D3D3;
 }
 
-#mvwjkrwqwv .gt_sourcenote {
+#vwpqqxngsh .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3620,60 +3621,60 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   padding-right: 5px;
 }
 
-#mvwjkrwqwv .gt_left {
+#vwpqqxngsh .gt_left {
   text-align: left;
 }
 
-#mvwjkrwqwv .gt_center {
+#vwpqqxngsh .gt_center {
   text-align: center;
 }
 
-#mvwjkrwqwv .gt_right {
+#vwpqqxngsh .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#mvwjkrwqwv .gt_font_normal {
+#vwpqqxngsh .gt_font_normal {
   font-weight: normal;
 }
 
-#mvwjkrwqwv .gt_font_bold {
+#vwpqqxngsh .gt_font_bold {
   font-weight: bold;
 }
 
-#mvwjkrwqwv .gt_font_italic {
+#vwpqqxngsh .gt_font_italic {
   font-style: italic;
 }
 
-#mvwjkrwqwv .gt_super {
+#vwpqqxngsh .gt_super {
   font-size: 65%;
 }
 
-#mvwjkrwqwv .gt_footnote_marks {
+#vwpqqxngsh .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#mvwjkrwqwv .gt_asterisk {
+#vwpqqxngsh .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#mvwjkrwqwv .gt_slash_mark {
+#vwpqqxngsh .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#mvwjkrwqwv .gt_fraction_numerator {
+#vwpqqxngsh .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#mvwjkrwqwv .gt_fraction_denominator {
+#vwpqqxngsh .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -3696,12 +3697,12 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="02-Manipulation-base.html#cb12-1" aria-hidden="true" tabindex="-1"></a>ReussiteLic <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="st">&#39;Nombre total de bacheliers inscrits en 2012-2013 en licence&#39;</span> <span class="ot">=</span></span>
 <span id="cb12-2"><a href="02-Manipulation-base.html#cb12-2" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">sum</span>(effectif_neobacheliers_reussite, <span class="at">na.rm=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb12-3"><a href="02-Manipulation-base.html#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code></pre></div>
-<div id="pbrjsaiyix" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="bbqgfepfgu" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#pbrjsaiyix .gt_table {
+#bbqgfepfgu .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -3726,7 +3727,7 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   border-left-color: #D3D3D3;
 }
 
-#pbrjsaiyix .gt_heading {
+#bbqgfepfgu .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -3738,7 +3739,7 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   border-right-color: #D3D3D3;
 }
 
-#pbrjsaiyix .gt_title {
+#bbqgfepfgu .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -3750,7 +3751,7 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   border-bottom-width: 0;
 }
 
-#pbrjsaiyix .gt_subtitle {
+#bbqgfepfgu .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3762,13 +3763,13 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   border-top-width: 0;
 }
 
-#pbrjsaiyix .gt_bottom_border {
+#bbqgfepfgu .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#pbrjsaiyix .gt_col_headings {
+#bbqgfepfgu .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3783,7 +3784,7 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   border-right-color: #D3D3D3;
 }
 
-#pbrjsaiyix .gt_col_heading {
+#bbqgfepfgu .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3803,7 +3804,7 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   overflow-x: hidden;
 }
 
-#pbrjsaiyix .gt_column_spanner_outer {
+#bbqgfepfgu .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3815,15 +3816,15 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   padding-right: 4px;
 }
 
-#pbrjsaiyix .gt_column_spanner_outer:first-child {
+#bbqgfepfgu .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#pbrjsaiyix .gt_column_spanner_outer:last-child {
+#bbqgfepfgu .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#pbrjsaiyix .gt_column_spanner {
+#bbqgfepfgu .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3835,7 +3836,7 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   width: 100%;
 }
 
-#pbrjsaiyix .gt_group_heading {
+#bbqgfepfgu .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3860,7 +3861,7 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   vertical-align: middle;
 }
 
-#pbrjsaiyix .gt_empty_group_heading {
+#bbqgfepfgu .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3875,15 +3876,15 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   vertical-align: middle;
 }
 
-#pbrjsaiyix .gt_from_md > :first-child {
+#bbqgfepfgu .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#pbrjsaiyix .gt_from_md > :last-child {
+#bbqgfepfgu .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#pbrjsaiyix .gt_row {
+#bbqgfepfgu .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3902,7 +3903,7 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   overflow-x: hidden;
 }
 
-#pbrjsaiyix .gt_stub {
+#bbqgfepfgu .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3915,7 +3916,7 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   padding-right: 5px;
 }
 
-#pbrjsaiyix .gt_stub_row_group {
+#bbqgfepfgu .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3929,11 +3930,11 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   vertical-align: top;
 }
 
-#pbrjsaiyix .gt_row_group_first td {
+#bbqgfepfgu .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#pbrjsaiyix .gt_summary_row {
+#bbqgfepfgu .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3943,16 +3944,16 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   padding-right: 5px;
 }
 
-#pbrjsaiyix .gt_first_summary_row {
+#bbqgfepfgu .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#pbrjsaiyix .gt_first_summary_row.thick {
+#bbqgfepfgu .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#pbrjsaiyix .gt_last_summary_row {
+#bbqgfepfgu .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3962,7 +3963,7 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   border-bottom-color: #D3D3D3;
 }
 
-#pbrjsaiyix .gt_grand_summary_row {
+#bbqgfepfgu .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3972,7 +3973,7 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   padding-right: 5px;
 }
 
-#pbrjsaiyix .gt_first_grand_summary_row {
+#bbqgfepfgu .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3982,11 +3983,11 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   border-top-color: #D3D3D3;
 }
 
-#pbrjsaiyix .gt_striped {
+#bbqgfepfgu .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#pbrjsaiyix .gt_table_body {
+#bbqgfepfgu .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3995,7 +3996,7 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   border-bottom-color: #D3D3D3;
 }
 
-#pbrjsaiyix .gt_footnotes {
+#bbqgfepfgu .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4009,7 +4010,7 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   border-right-color: #D3D3D3;
 }
 
-#pbrjsaiyix .gt_footnote {
+#bbqgfepfgu .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -4018,7 +4019,7 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   padding-right: 5px;
 }
 
-#pbrjsaiyix .gt_sourcenotes {
+#bbqgfepfgu .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4032,7 +4033,7 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   border-right-color: #D3D3D3;
 }
 
-#pbrjsaiyix .gt_sourcenote {
+#bbqgfepfgu .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -4040,60 +4041,60 @@ Cela signifie que, par exemple, pour avoir les effectifs globaux des bacheliers 
   padding-right: 5px;
 }
 
-#pbrjsaiyix .gt_left {
+#bbqgfepfgu .gt_left {
   text-align: left;
 }
 
-#pbrjsaiyix .gt_center {
+#bbqgfepfgu .gt_center {
   text-align: center;
 }
 
-#pbrjsaiyix .gt_right {
+#bbqgfepfgu .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#pbrjsaiyix .gt_font_normal {
+#bbqgfepfgu .gt_font_normal {
   font-weight: normal;
 }
 
-#pbrjsaiyix .gt_font_bold {
+#bbqgfepfgu .gt_font_bold {
   font-weight: bold;
 }
 
-#pbrjsaiyix .gt_font_italic {
+#bbqgfepfgu .gt_font_italic {
   font-style: italic;
 }
 
-#pbrjsaiyix .gt_super {
+#bbqgfepfgu .gt_super {
   font-size: 65%;
 }
 
-#pbrjsaiyix .gt_footnote_marks {
+#bbqgfepfgu .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#pbrjsaiyix .gt_asterisk {
+#bbqgfepfgu .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#pbrjsaiyix .gt_slash_mark {
+#bbqgfepfgu .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#pbrjsaiyix .gt_fraction_numerator {
+#bbqgfepfgu .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#pbrjsaiyix .gt_fraction_denominator {
+#bbqgfepfgu .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;

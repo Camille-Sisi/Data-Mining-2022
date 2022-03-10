@@ -15,3 +15,4 @@ caractéristiques-de-la-cohorte-des-bacheliers-2014-inscrits-en-première-année
 c06-Fonctions
 c07-Analyse-descriptive
 caractéristiques-de-la-cohorte-des-bacheliers-2014-inscrits-en-première-année-de-licence-en-2014-2015-1
+profils-des-étudiants-selon-leur-situation-en-fin-de-l1

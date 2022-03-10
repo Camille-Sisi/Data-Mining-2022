@@ -252,8 +252,10 @@ Enfin, 40% des bacheliers 2014 se sont inscrits dans une licence de "lettres, la
 ## Profils des étudiants selon leur situation en fin de L1
 On veut maintenant révéler le profil des étudiants selon qu'ils réussisent à passer en L2 en un an, selon qu'ils redoublent, ou encore selon qu'ils se réorientent en DUT, selon les mêmes caractéristiques que précédemment.  
   
-Voici la répartition générale pour l'ensemble de ces étudiants de leur situation en fin de L1 ; à noter qu'ils nous manquent en réalité une information car les 3 situations possibles : passage en L2, redoublement ou encore réorientation, ne donnent pas le total des effectifs néobacheliers inscrits, on va donc créer ici une modalité "inconnue" pour avoir une bonne représentation générale.
-```{r}
+On va représenter avec un graphique en bâtons la répartition générale pour l'ensemble de ces étudiants de leur situation en fin de L1 ; à noter qu'ils nous manquent en réalité une information car les 3 situations possibles : passage en L2, redoublement ou encore réorientation, ne donnent pas le total des effectifs néobacheliers inscrits, comme nous l'avions remarqué lors de la première séance, on va donc créer ici une modalité "inconnue" pour avoir une bonne représentation générale.   
+Pour cela, on utilise d'abord la fonction `summarise()` sur ces 3 variables, mais aussi sur les effectifs généraux, pour justement créer dans une seconde étape avec la fonction `mutate()` une variable 'Inconnue" qui soit la différence entre les effectifs totaux et la somme des effectifs des 3 variables précédentes. Ensuite, comme la sortie des fonctions `summarise()` nous donne les résultats en lignes, on utilise un `pivot_longer()` pour mettre sous forme de tableau avec 2 colonnes, la première intitulée 'Situation_fin_L1' et la seconde 'Effectif ; et on crée une troisième colonne/variable intitulée 'pourcentage' à l'aide toujours de `mutate()`. Enfin, on peut appliquer à ce tableau de contingence la fonction `ggplot()` pour créer un graphique en bâtons avec comme précédemment sur l'axe des abscisses les différentes modalités de la variable 'Situation_fin_L1' et en ordonnées les pourcentages.  
+Au total, vous devriez avoir ce graphique ci-dessous !
+```{r warning=FALSE, echo=FALSE}
 PassageL1L2 %>% summarise(Ensemble=sum(effectif_neobacheliers_passage, na.rm=T), `Passage en L2`=sum(passage_en_l2_1_an, na.rm=T), Redoublement=sum(redoublement_en_l1, na.rm=T),
                           `Reorientation en dut`=sum(reorientation_en_dut_1_an, na.rm=T)) %>% 
   mutate(Inconnue=Ensemble-(`Passage en L2`+Redoublement+`Reorientation en dut`)) %>% 
@@ -271,37 +273,26 @@ PassageL1L2 %>% summarise(Ensemble=sum(effectif_neobacheliers_passage, na.rm=T),
   theme(legend.position = "none")
 ```
 
+<div class="solution-exo">
+```{r warning=FALSE, eval=FALSE}
+PassageL1L2 %>% summarise(Ensemble=sum(effectif_neobacheliers_passage, na.rm=T), `Passage en L2`=sum(passage_en_l2_1_an, na.rm=T), Redoublement=sum(redoublement_en_l1, na.rm=T),
+                          `Reorientation en dut`=sum(reorientation_en_dut_1_an, na.rm=T)) %>% 
+  mutate(Inconnue=Ensemble-(`Passage en L2`+Redoublement+`Reorientation en dut`)) %>% 
+  select(-"Ensemble") %>% 
+  pivot_longer(cols=1:4, names_to = "Situation_fin_L1", values_to ="Effectif") %>% 
+  mutate(Pourcentage=Effectif/sum(Effectif)*100, Pourcentage=round(Pourcentage, 1),
+         Situation_fin_L1=fct_relevel(Situation_fin_L1, "Passage en L2", "Redoublement",
+                                      "Inconnue", "Reorientation en dut"))   %>% 
+  ggplot() + aes(x=Situation_fin_L1, y=Pourcentage, fill=Situation_fin_L1) + 
+  geom_bar(stat="identity") +  
+  geom_text(aes(y=Pourcentage, label=Pourcentage), position = position_stack(vjust = 0.5), 
+            color="gray15", size=3) +
+  scale_fill_brewer(palette = "Set2") +
+  labs(title="Situation en fin de L1", x=" ", y=" ") + 
+  theme(legend.position = "none")
+```
+ </div>
+\fi
+  
 Ainsi, de manière générale, environ 41% des néobacheliers inscrits à l'université en 2014-2015 sont passés en L2, 29% ont redoublé, 28% sont dans une autre situation inconnue et enfin environ 2% se sont réorientés en DUT.  
 On peut maintenant étudier cette situation en fonction des caractéristiques de ces néobacheliers.
-
-  
-Pour cela, on peut de nouveau utiliser la fonction `TAB()` créée précédemment, en créant une variable supplémentaire pour identifier la situation en fin de L1 et agréger ensuite ces tableaux en un seul (tout en les supprimant car nous ne les utiliserons pas séparément, cela se fait directement avec la fonction `rm()`).
-```{r}
-tab_0 <- TAB(PassageL1L2, var1=mention_bac_bis, var_sum=passage_en_l2_1_an) %>% 
-  mutate(finL1="Passage en L2")
-tab_1 <- TAB(PassageL1L2, var1=mention_bac_bis, var_sum=reorientation_en_dut_1_an) %>% 
-  mutate(finL1="Réorientation en DUT")
-tab_2 <- TAB(PassageL1L2, var1=mention_bac_bis, var_sum=redoublement_en_l1) %>% 
-  mutate(finL1="Redoublement")
-tab_3 <- TAB(PassageL1L2, var1=mention_bac_bis, var_sum=effectif_neobacheliers_passage) %>% 
-  mutate(finL1="Ensemble")
-tab_final <- rbind(tab_0, tab_1, tab_2, tab_3)
-rm(tab_0, tab_1, tab_2, tab_3)
-gt(tab_final)
-```
-  
-A partir de ce tableau, on peut ensuite créer un graphique, par exemple ci-dessous la situation à la fin de la L1 selon la mention au bac :
-```{r}
-tab_final %>% 
-  mutate(Variable=fct_relevel(Variable, "Très bien", "Bien", "Assez bien", "Passable","Inconnue"),
-         finL1=fct_relevel(finL1, "Passage en L2", "Réorientation en DUT","Redoublement",  "Ensemble")) %>%  
-  ggplot() + aes(x=finL1, y=Pourcentage, fill=Variable) + geom_bar(stat = "identity") + 
-  geom_text(aes(y=Pourcentage, label=Pourcentage), position = position_stack(vjust = 0.5), color="gray20", size=2.9) +
-  scale_fill_brewer(palette = "Set2") +
-  labs(title="Situation à la fin de la L1 selon la mention au bac", x=" ", y=" ", 
-       fill="Mention au bac")
-```
-  
-On voit ainsi que par rapport à l'ensemble, dernière colonne de droite, la mention "passable" est surreprésentée parmi les redoublements, alors que les mentions "assez bien" à "très bien" sont surreprésentées parmi les passages directs en L2. La situation des réorientés en DUT apparaît intermédiaire : seule la mention "assez bien" est surreprésentée par rapport à l'ensemble des néobacheliers inscrits en licence.
-  
-
