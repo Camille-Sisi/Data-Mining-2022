@@ -9,7 +9,7 @@ Ce document est la seconde version du cours de Data Mining dispensé aux étudia
 
 Ce document est régulièrement corrigé et mis à jour. La version de référence est disponible en ligne à l’adresse suivante :
 
-- [https://github.com/Camille-Sisi/Data-Mining](https://camille-sisi.github.io/Data-Mining/).
+- [https://github.com/Camille-Sisi/Data-Mining](https://github.com/Camille-Sisi/Data-Mining).
 
 Pour toute suggestion ou correction, n'hésitez pas à me contacter [par mail](mailto:camille.signoretto@u-paris.fr).
 
