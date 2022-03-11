@@ -135,7 +135,7 @@ PassageL1L2 %>%  gg_miss_var()
 
 On peut également demander dans `gg_miss_var()` à ce que les valeurs soient en pourcentage, avec l'argument `show_pct=TRUE`.  
   
-On peut aussi réaliser des graphiques montrant le nombre de valeurs manquantes pour l’ensemble des variables numériques de la base, en fonction d’une autre variable de nature 'factor', avec l'argument `fct=` dans `gg_miss_var()`. Cela est intéressant pour voir si certaines valeurs manquantes des variables se retrouvent davantage dans des modalités précises d’une autre variable. Par exemple, ici, selon la série au bac :
+On peut aussi réaliser des graphiques montrant le nombre de valeurs manquantes pour l’ensemble des variables numériques de la base, en fonction d’une autre variable de nature 'factor', avec l'argument `fct=` dans `gg_miss_fct()`. Cela est intéressant pour voir si certaines valeurs manquantes des variables se retrouvent davantage dans des modalités précises d’une autre variable. Par exemple, ici, selon la série au bac :
 ``` {r}
 PassageL1L2 %>%  select(where(is.numeric), serie_bac_lib) %>%
   gg_miss_fct(fct = serie_bac_lib)

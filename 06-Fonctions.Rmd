@@ -11,7 +11,7 @@ nom_fonction <- function(data, var1, var2) {
   
   expression...  # Ce que la fonction fait
   
-  return(tab)  # Optionnel, mais la plupart du temps utilisé (!), 
+  return()  # Optionnel, mais la plupart du temps utilisé (!), 
                # pour sortir le résultat de la fonction
   
 }
@@ -42,7 +42,7 @@ On peut d'abord créer une fonction reprenant le code précédent pour la constr
 Ensuite, dans le langage tidyverse au sein d'une fonction, il faut appeler une variable avec des doubles-accolades. Si l'on utilisait une fonction `summarise()`, une autre subtilité à connaître dans une fonction avec langage tidyverse, est par exemple que cette syntaxe ne sera pas reconnue "summarise({{ nom_var }} = mean({{ var }}, na.rm=TRUE", car il faut indiquer non pas un "=" mais un ":=" pour que la fonction puisse être lue lorsque d'un côté le nom donné à la variable est de type caractère ou "string".  
 Enfin, il ne faut pas oublier de retourner un objet en sortie avec `return()`.   
   
-Essayez donc de créer un fonction `tableau()`, reprenant le code de la section précédente et ci-dessous pour information : 
+Essayez donc de créer une fonction `tableau()`, reprenant le code de la section précédente et ci-dessous pour information : 
 ```{r eval=FALSE}
 PassageL1L2 %>% 
   count(type_bac, wt=effectif_neobacheliers_passage) %>% 
