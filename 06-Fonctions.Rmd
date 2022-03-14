@@ -35,7 +35,7 @@ Si l'on utilise le langage tidyverse, il faut connaître quelques petits "trucs"
    
 
 <div align="justify"> 
-Vous trouverez également des informations utiles <a href="https://thinkr.fr/comment-creer-des-fonctions-dans-le-tidyverse-avec-la-tidyeval-et-le-stash-stash/" target="_blank">ici</a>.  
+Vous trouverez également des informations utiles <a href="https://thinkr.fr/comment-creer-des-fonctions-dans-le-tidyverse-avec-la-tidyeval-et-le-stash-stash/" target="_blank">ici</a> ou <a href="https://www.vishalkatti.com/posts/2021-07-17-programmingwithdplyr/" target="_blank">là</a>.  
 
 On peut d'abord créer une fonction reprenant le code précédent pour la construction de tableau. On l'appelle `TAB`, et on lui donne comme arguments "data", "...", "var1" et "var_sum". L'argument "..." est pratique si l'on ne sait pas combien il y aura de variable(s) dans la fonction à laquelle elle s'applique, c'est-à-dire autant 0 variable, 1 variable ou plus d'une variable ; mais elle peut-être aussi "dangereuse" si on ne se souvient plus qu'on l'a créée et/ou si on ne fait pas attention à bien remplir les autres arguments avec les noms correspondants. Ici, elle nous est utile pour introduire la fonction `group_by()` qu'on n'utilisera pas au début de l'analyse, mais après si.  
 
