@@ -16,3 +16,15 @@ c06-Fonctions
 c07-Analyse-descriptive
 caractéristiques-de-la-cohorte-des-bacheliers-2014-inscrits-en-première-année-de-licence-en-2014-2015-1
 profils-des-étudiants-selon-leur-situation-en-fin-de-l1
+c08-Intro-a-Shiny-theorique
+la-structure-générale-dune-application-shiny
+la-partie-ui
+la-partie-server
+la-réactivité
+un-exemple-avec-le-code-du-script-par-défaut
+c09-Intro-a-Shiny-exemples
+application-vide
+ajout-dun-titre-et-dun-widget
+ajout-dun-graphique
+modification-du-graphique-filtrer-selon-une-variable
+modification-du-graphique-selon-une-variable-au-choix-parmi-deux

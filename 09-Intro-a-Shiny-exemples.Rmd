@@ -1,0 +1,419 @@
+
+
+# La création d'une application Shiny "pas à pas" avec l'une de nos bases de données{#c09-Intro-a-Shiny-exemples}
+<div align="justify">
+On va utiliser la base des aides aux entreprises durant la crise du Covid-19 ; je l'avais enregistré précédemment dans le dossier "Data" du projet correspondant aux deux premières séances de cours et sous le nom "dt_aidesCovid.Rdata". Si vous êtes dans le même projet, il faut donc l'appeler grâce à la fonction `readRDS()`.  
+
+
+## Application vide
+Faisons tourner une application vide et ajoutons au fur et à mesure les éléments qui construirons une vraie application : 
+```{r eval=FALSE}
+#library(shiny)
+
+# Chargement du fichier final
+dt_aidesCovid <- readRDS("Data/dt_aidesCovid.RData")
+
+ui <- fluidPage(
+                )
+
+server <- function(input, 
+                   output) {
+  
+                   }
+
+shinyApp(ui = ui, server = server)
+```
+
+## Ajout d'un titre et d'un widget
+Ajoutons un titre et un widget, par exemple une barre "slider" : 
+```{r eval=FALSE}
+#library(shiny)
+
+# Chargement du fichier final
+dt_aidesCovid <- readRDS("Data/dt_aidesCovid.RData")
+
+# Définition UI et Server de l'application Shiny
+ui <- fluidPage(
+  # Titre de l'application
+  titlePanel("Aides aux entreprises durant la crise du Covid-19"),
+  
+  # Définition du Widget - ici un slider en vue de construire un histogramme
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput(inputId = "Classes",
+                  label = "Nombres de classes : ",
+                  min = 1,
+                  max = 150,
+                  value = 50)
+      ),
+    
+  mainPanel(
+    plotOutput("histPlot")
+    
+    )
+  )
+)
+
+server <- function(input, output) {
+  
+}
+
+shinyApp(ui = ui, server = server)
+```
+  
+  
+## Ajout d'un graphique
+Ajoutons un graphique ; il faut pour cela charger la base de données sur laquelle nous allons travailler : 
+```{r eval=FALSE}
+#library(shiny)
+
+# Chargement du fichier final
+dt_aidesCovid <- readRDS("Data/dt_aidesCovid.RData")
+
+# Définition UI et Server de l'application Shiny
+ui <- fluidPage(
+  # Titre de l'application
+  titlePanel("Aides aux entreprises durant la crise du Covid-19"),
+  
+  # Définition du Widget - ici un slider en vue de construire un histogramme
+    sidebarLayout(
+        sidebarPanel(
+            sliderInput(inputId = "classes",
+                        label = "Nombres de classes",
+                        min = 1,
+                        max = 150,
+                        value = 50)
+        ),
+
+        # Graphe montré à l'utilisateur
+        mainPanel(
+           plotOutput("histPlot")
+        )
+  )
+)
+
+server <- function(input, 
+                   output) {
+output$histPlot <- renderPlot({
+  dt_aidesCovid %>%  
+    ggplot() + aes(x=total_meuros) + geom_histogram(bins=150)
+})
+
+  }
+
+shinyApp(ui = ui, server = server)
+```
+  
+
+
+On a bien maintenant le graphique qui s'affiche mais lorsqu'on change le nombre de classes dans la barre slider, rien ne se passe... C'est normal, nous n'avons pas encore introduit de réactivité dans l'application.  
+
+Pour cela, il va falloir modifier le code dans la fonction **`server`** et ainsi mettre en lien des informations indiquées dans la fonction **`UI`** avec les arguments utilisés dans le graphique développé dans la fonction **`server`**. Pour l'instant, on veut pouvoir modifier le nombre de classes, l'argument pour cela dans la fonction `geom_histogram()` dans le `ggplot()` est `bins=` ; on a indiqué '150' jusqu'ici ; maintenant il faut lui indiquer le nombre que l'utilisateur va lui-même indiquer dans la barre slider ; cela se fait avec l'argument `input$...`, les "..." devant être remplacés par le nom que l'on a donné à l'`inputId` dans le `sliderInput()`, donc ici "classes".
+```{r eval=FALSE}
+# Chargement du fichier final
+dt_aidesCovid <- readRDS("Data/dt_aidesCovid.RData")
+
+# Définition UI et Server de l'application Shiny
+ui <- fluidPage(
+  # Titre de l'application
+  titlePanel("Aides aux entreprises durant la crise du Covid-19"),
+  
+  # Définition du Widget - ici un slider en vue de construire un histogramme
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput(inputId = "classes",
+                  label = "Nombres de classes",
+                  min = 1,
+                  max = 150,
+                  value = 50)
+    ),
+    
+    # Graphe montré à l'utilisateur
+    mainPanel(
+      plotOutput("histPlot")
+    )
+  )
+)
+
+  server <- function(input, output) {
+  
+    output$histPlot <- renderPlot({
+      dt_aidesCovid %>%  
+        ggplot() + aes(x=total_meuros) + geom_histogram(bins=input$classes)
+    })
+    
+  }
+  
+shinyApp(ui = ui, server = server)
+```
+  
+
+  
+Ça y est, maintenant lorsqu'on modifie le curseur dans la barre slider, le graphique change !
+  
+
+## Modification du graphique : filtrer selon une variable
+Essayons ensuite d'ajouter un filtre sur la région pour n'avoir que la distribution du montant total des aides financières distribuées aux entreprises pour une région donnée. De même, on peut procéder par étapes : présentons d'abord le graphique pour la seule région Île-de-France  : 
+```{r eval=FALSE}
+# Chargement du fichier final
+dt_aidesCovid <- readRDS("Data/dt_aidesCovid.RData")
+
+# Définition UI et Server de l'application Shiny
+ui <- fluidPage(
+  # Titre de l'application
+  titlePanel("Aides aux entreprises durant la crise du Covid-19"),
+  
+  # Définition du Widget - ici un slider en vue de construire un histogramme
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput(inputId = "classes",
+                  label = "Nombres de classes",
+                  min = 1,
+                  max = 150,
+                  value = 50)
+    ),
+    
+    # Graphe montré à l'utilisateur
+    mainPanel(
+      plotOutput("histPlot")
+    )
+  )
+)
+
+  server <- function(input, output) {
+  
+    output$histPlot <- renderPlot({
+      dt_aidesCovid %>%  
+        filter(reg_name == "Île-de-France") %>% 
+        ggplot() + aes(x=total_meuros) + geom_histogram(bins=input$classes)
+    })
+    
+  }
+  
+shinyApp(ui = ui, server = server)
+```
+  
+
+  
+Il suffit en effet d'ajouter un `filter(reg_name == "Île-de-France")` dans notre code.  
+
+  
+Ensuite, donnons la possibilité à l'utilisateur de choisir la région qu'il veut : il faut pour cela ajouter un widget dans la fonction **`UI`** ; comme on ne veut laisser qu'un choix de région à l'utilisateur, on peut utiliser un "Radio buttons" ; on regarde alors quels sont les arguments de la fonction `radioButtons()`, on  voit qu'il faut indiquer les choix possibles donc ici la liste des régions dans `choices = ` et indiquer une valeur par défaut dans `selected = ` ; pour cela, on peut indiquer la variable correspondante `choices = dt_aidesCovid$reg_name`, mais attention si on laisse comme ceci, on va avoir une répétition de noms des régions comme lorsqu'on ouvre la table, ce qu'on veut c'est uniquement les niveaux... deux possibilités alors : soit créer avant l'appel de la fonction **`UI`** une variable avec simplement les niveaux de cette variable ; soit passer par la fonction `unique()` dans l'argument donné. 
+```{r eval=FALSE}
+# Chargement du fichier final
+dt_aidesCovid <- readRDS("Data/dt_aidesCovid.RData")
+
+# Quelques modifications du fichier initial de données
+# dt_aidesCovid <- dt_aidesCovid %>% mutate(reg_name=as.factor(reg_name))
+# nom_regions <- levels(dt_aidesCovid$reg_name)
+
+
+# Définition UI et Server de l'application Shiny
+ui <- fluidPage(
+  # Titre de l'application
+  titlePanel("Aides aux entreprises durant la crise du Covid-19"),
+  
+  # Définition du Widget - ici un slider en vue de construire un histogramme
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput(inputId = "classes",
+                  label = "Nombres de classes",
+                  min = 1,
+                  max = 150,
+                  value = 50),
+      radioButtons(inputId = "region", 
+                   label = "Choix de la région",
+                   choices = unique(dt_aidesCovid$reg_name), #ou indiquer 'nom_regions'
+                   selected = "Île-de-France"),
+    ),
+    
+    # Graphe montré à l'utilisateur
+    mainPanel(
+      plotOutput("histPlot")
+    )
+  )
+)
+
+  server <- function(input, output) {
+  
+    output$histPlot <- renderPlot({
+      dt_aidesCovid %>%  
+        filter(reg_name == "Île-de-France") %>% 
+        ggplot() + aes(x=total_meuros) + geom_histogram(bins=input$classes)
+    })
+    
+  }
+  
+shinyApp(ui = ui, server = server)
+```
+  
+  
+Enfin, là encore, il faut introduire la réactivité et "connecter" la partie **`UI`** et la partie **`server`**, en remplaçant le nom de la région dans le `filter(reg_name == )` par le nom de l'`inputId` indiqué dans notre "radioButtons" : 
+```{r eval=FALSE}
+# Chargement du fichier final
+dt_aidesCovid <- readRDS("Data/dt_aidesCovid.RData")
+
+# Quelques modifications du fichier initial de données
+# dt_aidesCovid <- dt_aidesCovid %>% mutate(reg_name=as.factor(reg_name))
+# nom_regions <- levels(dt_aidesCovid$reg_name)
+
+
+# Définition UI et Server de l'application Shiny
+ui <- fluidPage(
+  # Titre de l'application
+  titlePanel("Aides aux entreprises durant la crise du Covid-19"),
+  
+  # Définition du Widget - ici un slider en vue de construire un histogramme
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput(inputId = "classes",
+                  label = "Nombres de classes",
+                  min = 1,
+                  max = 150,
+                  value = 50),
+      radioButtons(inputId = "region", 
+                   label = "Choix de la région",
+                   choices = unique(dt_aidesCovid$reg_name), #ou indiquer 'nom_regions'
+                   selected = "Île-de-France"),
+    ),
+    
+    # Graphe montré à l'utilisateur
+    mainPanel(
+      plotOutput("histPlot")
+    )
+  )
+)
+
+  server <- function(input, output) {
+  
+    output$histPlot <- renderPlot({
+      dt_aidesCovid %>%  
+        filter(reg_name == input$region) %>% 
+        ggplot() + aes(x=total_meuros) + geom_histogram(bins=input$classes)
+    })
+    
+  }
+  
+shinyApp(ui = ui, server = server)
+```
+  
+
+
+## Modification du graphique : selon une variable au choix parmi deux
+On peut maintenant vouloir montrer un graphique (toujours le même histogramme) selon au choix deux variables : soit le montant total des aides en milliers d'euros, soit le nombre d'entreprises concernées (variable `nombre_entreprises`).  
+
+Procédons comme précédemment : créons un nouveau widget avec par exemple `selectInput()`, dont l'`inputID` sera "variable" et l'argument `choices = ` donne les deux variables choisies ; pour cela, on peut utiliser une fonction `list()` et indiquer le nom des deux variables, soient `total_meuros` et `nombre_entreprises`.  
+Et ensuite, dans la fonction **server**, remplaçons `x=total_meuros` par `x=input$variable` et voyons si cela marche !  
+
+```{r eval=FALSE}
+# Chargement du fichier final
+dt_aidesCovid <- readRDS("Data/dt_aidesCovid.RData")
+
+# Quelques modifications du fichier initial de données
+# dt_aidesCovid <- dt_aidesCovid %>% mutate(reg_name=as.factor(reg_name))
+# nom_regions <- levels(dt_aidesCovid$reg_name)
+
+
+# Définition UI et Server de l'application Shiny
+ui <- fluidPage(
+  # Titre de l'application
+  titlePanel("Aides aux entreprises durant la crise du Covid-19"),
+  
+  # Définition du Widget - ici un slider en vue de construire un histogramme
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput(inputId = "classes",
+                  label = "Nombres de classes",
+                  min = 1,
+                  max = 150,
+                  value = 50),
+      radioButtons(inputId = "region", 
+                   label = "Choix de la région",
+                   choices = unique(dt_aidesCovid$reg_name), #ou indiquer 'nom_regions'
+                   selected = "Île-de-France"),
+      selectInput(inputId = "variable", 
+                  label = "Choix de la variable", 
+                  choices = list("nombre_entreprises", "total_meuros"), 
+                  selected = "total_meuros"),
+    ),
+    
+    # Graphe montré à l'utilisateur
+    mainPanel(
+      plotOutput("histPlot")
+    )
+  )
+)
+
+  server <- function(input, output) {
+  
+    output$histPlot <- renderPlot({
+      dt_aidesCovid %>%  
+        filter(reg_name == input$region) %>% 
+        ggplot() + aes(x=input$variable) + 
+                   geom_histogram(bins=input$classes)
+    })
+    
+  }
+  
+shinyApp(ui = ui, server = server)
+```
+
+Et non cela ne fonctionne pas. En réalité, comme nous avons utilisé dans `choices = ` un fonction `list()` qui fait appel à des variables de type caractère, la fonction `ggplot() + aes(x = )` ne comprend pas que la variable appelée est bien une variable numérique, elle croît en quelque sorte que c'est une variable caractère. Il faut donc dire à la fonction `ggplot()` ici que le nom de la variable est de type "string" mais qu'elle comporte bien des valeurs numériques donc compatible avec un histogramme : pour cela, au lieu de `ggplot() + aes(x = )`, il faut utiliser `ggplot() + aes_string(x = )`.  
+
+Réessayons : 
+```{r eval=FALSE}
+# Chargement du fichier final
+dt_aidesCovid <- readRDS("Data/dt_aidesCovid.RData")
+
+# Quelques modifications du fichier initial de données
+# dt_aidesCovid <- dt_aidesCovid %>% mutate(reg_name=as.factor(reg_name))
+# nom_regions <- levels(dt_aidesCovid$reg_name)
+
+
+# Définition UI et Server de l'application Shiny
+ui <- fluidPage(
+  # Titre de l'application
+  titlePanel("Aides aux entreprises durant la crise du Covid-19"),
+  
+  # Définition du Widget - ici un slider en vue de construire un histogramme
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput(inputId = "classes",
+                  label = "Nombres de classes",
+                  min = 1,
+                  max = 150,
+                  value = 50),
+      radioButtons(inputId = "region", 
+                   label = "Choix de la région",
+                   choices = unique(dt_aidesCovid$reg_name), #ou indiquer 'nom_regions'
+                   selected = "Île-de-France"),
+      selectInput(inputId = "variable", 
+                  label = "Choix de la variable", 
+                  choices = list("nombre_entreprises", "total_meuros"), 
+                  selected = "total_meuros"),
+    ),
+    
+    # Graphe montré à l'utilisateur
+    mainPanel(
+      plotOutput("histPlot")
+    )
+  )
+)
+
+  server <- function(input, output) {
+  
+    output$histPlot <- renderPlot({
+      dt_aidesCovid %>%  
+        filter(reg_name == input$region) %>% 
+        ggplot() + aes_string(x=input$variable) + 
+                   geom_histogram(bins=input$classes)
+    })
+    
+  }
+  
+shinyApp(ui = ui, server = server)
+```
+
+
+
+
