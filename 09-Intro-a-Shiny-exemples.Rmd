@@ -11,7 +11,7 @@ Faisons tourner une application vide et ajoutons au fur et à mesure les éléme
 #library(shiny)
 
 # Chargement du fichier final
-dt_aidesCovid <- readRDS("Data/dt_aidesCovid.RData")
+dt_aidesCovid <- readRDS("data/dt_aidesCovid.RData")
 
 ui <- fluidPage(
                 )
@@ -30,7 +30,7 @@ Ajoutons un titre et un widget, par exemple une barre "slider" :
 #library(shiny)
 
 # Chargement du fichier final
-dt_aidesCovid <- readRDS("Data/dt_aidesCovid.RData")
+dt_aidesCovid <- readRDS("data/dt_aidesCovid.RData")
 
 # Définition UI et Server de l'application Shiny
 ui <- fluidPage(
@@ -68,7 +68,7 @@ Ajoutons un graphique ; il faut pour cela charger la base de données sur laquel
 #library(shiny)
 
 # Chargement du fichier final
-dt_aidesCovid <- readRDS("Data/dt_aidesCovid.RData")
+dt_aidesCovid <- readRDS("data/dt_aidesCovid.RData")
 
 # Définition UI et Server de l'application Shiny
 ui <- fluidPage(
@@ -111,7 +111,7 @@ On a bien maintenant le graphique qui s'affiche mais lorsqu'on change le nombre 
 Pour cela, il va falloir modifier le code dans la fonction **`server`** et ainsi mettre en lien des informations indiquées dans la fonction **`UI`** avec les arguments utilisés dans le graphique développé dans la fonction **`server`**. Pour l'instant, on veut pouvoir modifier le nombre de classes, l'argument pour cela dans la fonction `geom_histogram()` dans le `ggplot()` est `bins=` ; on a indiqué '150' jusqu'ici ; maintenant il faut lui indiquer le nombre que l'utilisateur va lui-même indiquer dans la barre slider ; cela se fait avec l'argument `input$...`, les "..." devant être remplacés par le nom que l'on a donné à l'`inputId` dans le `sliderInput()`, donc ici "classes".
 ```{r eval=FALSE}
 # Chargement du fichier final
-dt_aidesCovid <- readRDS("Data/dt_aidesCovid.RData")
+dt_aidesCovid <- readRDS("data/dt_aidesCovid.RData")
 
 # Définition UI et Server de l'application Shiny
 ui <- fluidPage(
@@ -156,7 +156,7 @@ shinyApp(ui = ui, server = server)
 Essayons ensuite d'ajouter un filtre sur la région pour n'avoir que la distribution du montant total des aides financières distribuées aux entreprises pour une région donnée. De même, on peut procéder par étapes : présentons d'abord le graphique pour la seule région Île-de-France  : 
 ```{r eval=FALSE}
 # Chargement du fichier final
-dt_aidesCovid <- readRDS("Data/dt_aidesCovid.RData")
+dt_aidesCovid <- readRDS("data/dt_aidesCovid.RData")
 
 # Définition UI et Server de l'application Shiny
 ui <- fluidPage(
@@ -201,7 +201,7 @@ Il suffit en effet d'ajouter un `filter(reg_name == "Île-de-France")` dans notr
 Ensuite, donnons la possibilité à l'utilisateur de choisir la région qu'il veut : il faut pour cela ajouter un widget dans la fonction **`UI`** ; comme on ne veut laisser qu'un choix de région à l'utilisateur, on peut utiliser un "Radio buttons" ; on regarde alors quels sont les arguments de la fonction `radioButtons()`, on  voit qu'il faut indiquer les choix possibles donc ici la liste des régions dans `choices = ` et indiquer une valeur par défaut dans `selected = ` ; pour cela, on peut indiquer la variable correspondante `choices = dt_aidesCovid$reg_name`, mais attention si on laisse comme ceci, on va avoir une répétition de noms des régions comme lorsqu'on ouvre la table, ce qu'on veut c'est uniquement les niveaux... deux possibilités alors : soit créer avant l'appel de la fonction **`UI`** une variable avec simplement les niveaux de cette variable ; soit passer par la fonction `unique()` dans l'argument donné. 
 ```{r eval=FALSE}
 # Chargement du fichier final
-dt_aidesCovid <- readRDS("Data/dt_aidesCovid.RData")
+dt_aidesCovid <- readRDS("data/dt_aidesCovid.RData")
 
 # Quelques modifications du fichier initial de données
 # dt_aidesCovid <- dt_aidesCovid %>% mutate(reg_name=as.factor(reg_name))
@@ -251,7 +251,7 @@ shinyApp(ui = ui, server = server)
 Enfin, là encore, il faut introduire la réactivité et "connecter" la partie **`UI`** et la partie **`server`**, en remplaçant le nom de la région dans le `filter(reg_name == )` par le nom de l'`inputId` indiqué dans notre "radioButtons" : 
 ```{r eval=FALSE}
 # Chargement du fichier final
-dt_aidesCovid <- readRDS("Data/dt_aidesCovid.RData")
+dt_aidesCovid <- readRDS("data/dt_aidesCovid.RData")
 
 # Quelques modifications du fichier initial de données
 # dt_aidesCovid <- dt_aidesCovid %>% mutate(reg_name=as.factor(reg_name))
@@ -307,7 +307,7 @@ Et ensuite, dans la fonction **server**, remplaçons `x=total_meuros` par `x=inp
 
 ```{r eval=FALSE}
 # Chargement du fichier final
-dt_aidesCovid <- readRDS("Data/dt_aidesCovid.RData")
+dt_aidesCovid <- readRDS("data/dt_aidesCovid.RData")
 
 # Quelques modifications du fichier initial de données
 # dt_aidesCovid <- dt_aidesCovid %>% mutate(reg_name=as.factor(reg_name))
@@ -363,7 +363,7 @@ Et non cela ne fonctionne pas. En réalité, comme nous avons utilisé dans `cho
 Réessayons : 
 ```{r eval=FALSE}
 # Chargement du fichier final
-dt_aidesCovid <- readRDS("Data/dt_aidesCovid.RData")
+dt_aidesCovid <- readRDS("data/dt_aidesCovid.RData")
 
 # Quelques modifications du fichier initial de données
 # dt_aidesCovid <- dt_aidesCovid %>% mutate(reg_name=as.factor(reg_name))
