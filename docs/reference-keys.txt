@@ -41,3 +41,16 @@ code-minimal
 liens-utiles-pour-aller-plus-loin
 les-grands-principes-de-data-visualization
 c11-Ggplot-pratique
+exemple-de-la-construction-dun-graphique-pas-à-pas
+dautres-exemples-à-travers-des-exercices
+distribution-du-montant-total-des-aides-financières-par-secteur-dactivité
+comparaison-des-montants-moyen-et-médian-des-aides-financières-par-région
+lien-entre-le-montant-moyen-des-aides-versées-et-le-nombre-moyen-dentreprises-bénéficiaires-par-secteur-dactivité-puis-par-région
+montant-moyen-des-aides-versées-par-entreprise-dans-chaque-région-ou-chaque-secteur-dactivité
+top-5-des-aides-financières-versées-selon-la-région-ou-le-secteur-dactivité
+à-vous-de-jouer
+c12-Retour-sur-Shiny
+application-avec-un-tableau-et-un-graphique
+introduction-dune-réactivité-appliquée-à-la-table-de-données
+introduction-dune-réactivité-sur-les-inputs-sans-changer-les-outputs-contexte-réactif
+introduction-dune-réactivité-sur-les-inputs-et-les-outputs
