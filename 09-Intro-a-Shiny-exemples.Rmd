@@ -390,16 +390,15 @@ ui <- fluidPage(
       selectInput(inputId = "variable", 
                   label = "Choix de la variable", 
                   choices = list("nombre_entreprises", "total_meuros"), 
-                  selected = "total_meuros"),
-    ),
+                  selected = "total_meuros")
+      ),
     
     # Graphe montré à l'utilisateur
     mainPanel(
       plotOutput("histPlot")
-    )
+      )
   )
 )
-
   server <- function(input, output) {
   
     output$histPlot <- renderPlot({

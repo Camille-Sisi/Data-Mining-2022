@@ -1,6 +1,6 @@
 
 
-# (PART\*) Séance 4 : Data Visualization {-}
+# (PART\*) Séances 4 et 5 : Data Visualization {-}
 
 # Data Visualization et Ggplot2 : aspects théoriques  {#c10-Ggplot-theorique}
 <div align="justify">
