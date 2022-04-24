@@ -306,7 +306,6 @@ shinyApp(ui = ui, server = server)
 Dans la continuité, on souhaite changer le graphique pour que lorsqu'on se situe au niveau régional, on ait cette fois le graphique du Top 5 des aides versées selon les départements de la région choisie, alors que précédemment cela nous indiquait les 5 premiers départements toutes régions confondues.  
 Il faut donc d'abord ajouter un widget `selectInput` qui initialement (lorsqu'on est au niveau "National") ne prenne aucune valeur, mais lorsqu'on sera sur le niveau régional, on l'actualise pour avoir le choix d'une région. Il faut donc dans la fonction `observe()` actualiser 2 widgets maintenant.  
 Ensuite, on va modifier notre base de données réactive en ajoutant un filtre selon la région choisie : mais ce filtre ne doit s'appliquer que lorsque l'utilisateur est au niveau "Régional", il faut pour cela introduire dans la fonction `filter()` une condition `if(input$niveau_analyse == "Régional") (reg_name %in% input$choix_region) else TRUE`.  
-Enifn, on va utiliser la fonction `observeEvent()` pour que le graphique soit modifiée selon le niveau d'analyse sur lequel on se situe, il n'est pas nécessaire ici de mettre une condition `if ... else ...` car le graphique est construit de la même façon et que nous utilisons une base de données réactive qui filtre selon la région quand l'utilisateur a sélectionné le niveau d'analyse régional.   
 L'image suivante vous donne un aperçu de ce qu'on devrait avoir : 
 ![ ](images/Ex.3_Shiny.png)
 
@@ -399,25 +398,23 @@ server <- function(input, output) {
       arrange(desc(montant_total)) %>% slice(1:5)
   })
   
-  observeEvent(
-    input$niveau_analyse,
-      output$barplot <- renderPlot({
-        aidesCovid_reactfilt() %>%
-          ggplot() + aes(x = montant_total, y = fct_reorder(!!sym(input$variable), montant_total), fill=!!sym(input$variable)) +
-          geom_bar(stat="identity")  +
-          geom_text(aes(label=montant_total), position = position_stack(vjust=0.5), size=5) +
-          labs(title=paste("Top 5 des aides financières versées par le fond de \nsolidarité, réparties par", 
-                           if(input$variable=="reg_name"){"région"} else if (input$variable=="naf_section_name"){"secteur d'activité"}
-                           else {"département"}),
-               x = "Montant total en millions d'euros", y = " ") +
-          scale_fill_brewer(palette="Set2") +
-          theme_classic() +
-          theme(legend.position = "none", plot.title=element_text(size=18),
-                axis.text.y = element_text(size=14),
-                axis.text.x = element_text(size=13),
-                axis.title.x = element_text(size=14.5))
+  output$barplot <- renderPlot({
+    aidesCovid_reactfilt() %>%
+      ggplot() + aes(x = montant_total, y = fct_reorder(!!sym(input$variable), montant_total), fill=!!sym(input$variable)) +
+      geom_bar(stat="identity")  +
+      geom_text(aes(label=montant_total), position = position_stack(vjust=0.5), size=5) +
+      labs(title=paste("Top 5 des aides financières versées par le fond de \nsolidarité, réparties par", 
+                       if(input$variable=="reg_name"){"région"} else if (input$variable=="naf_section_name"){"secteur d'activité"}
+                       else {"département"}),
+           x = "Montant total en millions d'euros", y = " ") +
+      scale_fill_brewer(palette="Set2") +
+      theme_classic() +
+      theme(legend.position = "none", plot.title=element_text(size=18),
+            axis.text.y = element_text(size=14),
+            axis.text.x = element_text(size=13),
+            axis.title.x = element_text(size=14.5))
       })   
-  )
+  
 }
 
 
@@ -428,7 +425,7 @@ shinyApp(ui = ui, server = server)
 
   
 
-Pour que cela soit encore plus pertinent, on va également modifier maintenant le tableau général des indicateurs pour qu'il soit lui aussi réactif selon le niveau d'analyse choisi.  On va utiliser la même fonction `observeEvent()` et cette fois une condition `if ... else ...` pour que le tableau change selon le filtre de la région, si l'on ne veut pas mettre une telle condition dans la fonction `observeEvent()`, il faut créer un base réactive comme précédemment.
+Pour que cela soit encore plus pertinent, on va également modifier le tableau général des indicateurs pour qu'il soit, lui aussi, réactif selon le niveau d'analyse choisi.  On va utiliser la fonction `observeEvent()` avec une condition `if ... else ...` pour que le tableau change selon le filtre de la région. Si l'on ne veut pas mettre une telle condition dans la fonction `observeEvent()`, il faut créer un base réactive comme précédemment.  
 L'image suivante vous donne un aperçu de ce qu'on devrait avoir : 
 ![ ](images/Ex.4_Shiny.png)
 
@@ -539,24 +536,22 @@ server <- function(input, output, session) {
       arrange(desc(montant_total)) %>% slice(1:5)
   }) 
   
-  observeEvent(input$niveau_analyse,
-               output$barplot <- renderPlot({
-                 aidesCovid_reactfilt() %>%
-                   ggplot() + aes(x = montant_total, y = fct_reorder(!!sym(input$variable), montant_total), fill=!!sym(input$variable)) +
-                   geom_bar(stat="identity")  +
-                   geom_text(aes(label=montant_total), position = position_stack(vjust=0.5), size=5) +
-                   labs(title=paste("Top 5 des aides financières versées par le fond de \nsolidarité, réparties par", 
-                                    if(input$variable=="reg_name"){"région"} else if (input$variable=="naf_section_name"){"secteur d'activité"}
-                                      else{"département"}),
-                        x = "Montant total en millions d'euros", y = " ") +
-                   scale_fill_brewer(palette="Set2") +
-                   theme_classic() +
-                   theme(legend.position = "none", plot.title=element_text(size=18),
-                         axis.text.y = element_text(size=14),
-                         axis.text.x = element_text(size=13),
-                         axis.title.x = element_text(size=14.5))
-                 })   
-               )
+  output$barplot <- renderPlot({
+    aidesCovid_reactfilt() %>%
+      ggplot() + aes(x = montant_total, y = fct_reorder(!!sym(input$variable), montant_total), fill=!!sym(input$variable)) +
+      geom_bar(stat="identity")  +
+      geom_text(aes(label=montant_total), position = position_stack(vjust=0.5), size=5) +
+      labs(title=paste("Top 5 des aides financières versées par le fond de \nsolidarité, réparties par", 
+                       if(input$variable=="reg_name"){"région"} else if (input$variable=="naf_section_name"){"secteur d'activité"}
+                       else{"département"}),
+           x = "Montant total en millions d'euros", y = " ") +
+      scale_fill_brewer(palette="Set2") +
+      theme_classic() +
+      theme(legend.position = "none", plot.title=element_text(size=18),
+            axis.text.y = element_text(size=14),
+            axis.text.x = element_text(size=13),
+            axis.title.x = element_text(size=14.5))
+    })   
 }
 
 
