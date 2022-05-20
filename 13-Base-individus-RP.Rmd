@@ -1,0 +1,206 @@
+
+
+# (PART\*) Séances 6 et 7 : Clustering {-}
+
+# Nouvelle base de données individuelles à prendre en main : le RP 2018 {#c13-Base-individus-RP}
+<div align="justify">
+
+## Les données du Recensement de la Population (RP)
+```{r include=FALSE}
+RP <- readRDS(file ="data/indiv2018.Rdata") 
+```
+Il existe plusieurs fichiers disponibles sur le site de l'Insee concernant l'enquête du Recensement de la Population, la dernière année disponible datant de 2018. Ces fichiers sont lourds, ils peuvent être téléchargés par zone, c'est ce que nous allons faire. On va ainsi s'intéresser au fichier "Individus localisés au canton-ou-ville" pour la zone A, c'est-à-dire l'Île-de-France.  
+
+Soit vous téléchargez le fichier *via* internet et l'enregistrez dans un de vos dossiers bien spécifiés et vous le "dézippez", soit vous le téléchargez et dézipper directement dans `R` comme cela :  
+```{r eval=FALSE}
+download.file(url="https://www.insee.fr/fr/statistiques/fichier/5542859/RP2018_INDCVIZA_csv.zip",
+              destfile = "data/RP2018_INDCVIZA_csv.zip")
+# Le fichier a donc été téléchargé dans le dossier intitulé "data" du projet R, on va  
+# maintenant le dézipper et enregistrer les fichiers extraits dans le même dossier.
+unzip("data/RP2018_INDCVIZA_csv.zip", exdir = "data")
+```
+  
+Il nous reste plus qu'à charger les données dans R : pour cela on utilise la commande `fread` du package **`data.table`** (à installer avant) car cela va bien plus vite que les fonctions  habituelles du type `read.csv` lorsqu'on a de gros fichiers comme cela ; on indique l'option `stringsAsFactors=TRUE` pour que les variables caractères soient directement transformées en variables "factor", et on transforme l'objet obtenu en `data.frame`. 
+```{r  eval=FALSE}
+# install.packages("data.table")
+library(data.table)
+RP <- fread("data/FD_INDCVIZA_2018.csv", stringsAsFactors=TRUE)
+RP <- as.data.frame(RP)
+```
+On a donc `r ncol(RP)` variables et `r format(nrow(RP), big.mark=" ")` observations.  
+
+On va faire un premier tri dans les variables pour ne garder que celles concernant l'individu et le logement, ainsi que les variables géographiques, qui nous seront utiles pour la suite.
+```{r eval=FALSE}
+RP <- RP %>% 
+  select(-c("AGED","AGEREV","ANAI", "LPRF","ORIDT", "NUMMI", "DEROU", "INFAM",
+            "INPER", "NPERR", "SFM", "TYPMC", "TYPMR", "VOIT", "INPERF", "LIENF",
+            "NE17FR", "NE24FR", "NE3FR", "NE5FR", "NENFR", "NUMF", "TYPFC"))
+```
+  
+Certaines des variables ont été codées comme numériques alors que, selon le dictionnaire des variables, elles devraient être toutes en caractères ou ici dans `R` en "factor", on va regarder quelles variables sont concernées et on va les transformer pour qu'elles soient dans le bon format. On peut utiliser la fonction `select_if` déjà vue précédemment.  
+```{r eval=FALSE}
+RP %>% 
+  select_if(is.numeric) %>%
+  names()
+```
+  
+On en a 23 sur 88, mais attention il y a la variable de pondération `IPONDI` qui, elle, doit rester numérique, donc on peut procéder au changement de type pour l'ensemble de ces variables sauf celle de pondération, avec la fonction `mutate_at` en spécifiant l'ensemble des variables concernées (copiées-collées depuis la sortie précédente en veillant bien sûr à bien enlever `IPONDI`).
+```{r eval=FALSE}
+RP <- RP %>% 
+  mutate_at(c("AGER20", "AGEREVQ", "CATPC", "COUPLE", "CS1", "DEPT", "ETUD", "IMMI", 
+              "INAI", "INATC", "MOCO", "MODV", "NAIDT", "REGION", "SEXE", 
+              "STAT_CONJ","TACT", "TACTD16"), factor)
+```
+  
+On peut enregistrer ce fichier, ainsi que celui contenant les métadonnées, dans le dossier `R` au format RDS.
+```{r  eval=FALSE}
+saveRDS(object = RP,
+        file = "data/indiv2018.Rdata")
+
+# Lecture du fichier de métadonnées et enregistrement dans le dossier data
+# de notre projet
+meta <- fread("data/varmod_INDCVI_2018.csv")
+# Enregistrement dans le dossier data
+saveRDS(object = meta,
+        file = "data/indiv_2018_meta.Rdata")
+```
+
+
+
+## Prise en main rapide
+L'une des difficultés pour l'analyse de cette base de données réside dans les différents niveaux présents : "individu" pour la personne de référence du ménage ; "ménage" regroupant l’ensemble des occupants d’une résidence principale, qu'ils aient ou non des liens de parenté ; "famille" partie d'un ménage comprenant au moins 2 personnes (par exemple, un couple, ou un adulte avec un enfant...) ; et enfin "logement" qui comprend ici les résidences principales et rassemble des informations décrivant les types de logement.  
+Avec le tri effectué précédemment, nous n'avons plus que les variables décrivant le logement, celles décrivant l'individu et les variables géographiques.  
+Il faut bien comprendre comment utiliser à bon escient ces différents niveaux, en particulier ici le niveau logement : pour toute variable de ce niveau, il faudra utiliser un filtre, c'est-à-dire ne prendre que la personne de référence du ménage (`LPRM=="1"`).  
+
+Il faut également penser que les données sont pondérées, donc pour sortir des statistiques descriptives, il faut à chaque fois mettre la variable de pondération `IPONDI`.  
+
+Par exemple, si l'on souhaite décrire le type de logement existant dans cette région : 
+```{r}
+#library(forcats)
+#library(gt)
+RP %>% 
+  filter(LPRM=="1") %>% 
+  mutate(type_logement = case_when(TYPL=="1" ~ "Maisons",
+                                   TYPL=="2" ~ "Appartements",
+                                   TRUE ~ "Autres")) %>% 
+  count(type_logement, wt=IPONDI) %>% 
+  mutate(pct=prop.table(n)*100, pct=round(pct, 1), n=round(n,0)) %>% 
+  arrange(desc(n)) %>% 
+  gt() %>% fmt_number(columns = 2, sep_mark = " ", decimals = 0)
+```
+
+```{r eval=FALSE, include=FALSE}
+RP %>% 
+  filter(LPRM=="1") %>% 
+  mutate(nb_pieces = case_when(NBPI == "01" ~ "1 pièce", 
+                               NBPI == "02" ~ "2 pièces",
+                               NBPI == "03" ~ "3 pièces",
+                               NBPI == "04" ~ "4 pièces",
+                               TRUE ~ "5 pièces ou plus")) %>% 
+  count(nb_pieces, wt=IPONDI) %>% 
+  mutate(pct=prop.table(n)*100, pct=round(pct, 1), n=round(n,0)) %>% 
+  gt() %>% fmt_number(columns = 2, sep_mark = " ", decimals = 0)
+```
+
+
+Ou connaître le nombre d'habitants de la région, puis selon le département :
+```{r}
+RP %>% summarise(Nombre_habitants = sum(IPONDI)) %>% 
+  gt() %>% fmt_number(columns = 1, sep_mark = " ", decimals = 0)
+
+RP %>% group_by(DEPT) %>% 
+  summarise(Nombre_habitants = sum(IPONDI)) %>% 
+  gt() %>% fmt_number(columns = 2, sep_mark = " ", decimals = 0)
+```
+
+
+
+## Tableaux de contingence par IRIS (découpage territorial infracommunal)
+Dans l'analyse de *clustering* que nous allons réaliser ensuite, nous souhaitons décrire la population d'un département ou commune selon ses caractéristiques socio-démographiques et socio-professionnelles au niveau territorial le plus fin, autrement dit l'IRIS. Pour cela, il faut  établir des statistiques du nombre de personnes concernées pour chaque caractéristique par IRIS du département ou de la commune choisie : on crée ainsi des *tableaux de contingence* par IRIS pour chacune de ces caractéristiques.     
+Par exemple, pour connaître le nombre de chômeurs par IRIS du 12ème arrondissement de Paris, il faut : i) utiliser le code IRIS et récupérer les 5 premiers chiffres pour avoir le niveau commune (pour Paris, Marseille ou Lyon, on peut également utiliser la variable `ARM`), ii) filtrer pour n'avoir que les personnes dont l'activité est "chômeur" (`TACT == "12"`) et la commune correspondant au 12ème arrondissement, et iii) calculer la somme par IRIS : 
+```{r}
+RP %>% 
+  mutate(COM = substr(IRIS, 1, 5)) %>% 
+  filter(TACT == "12" & COM == "75112") %>% 
+  group_by(IRIS) %>%  # ou ARM == "75112"
+  summarise(nb_chômeurs = round(sum(IPONDI)))
+```
+  
+Si on veut englober les arrondissements de l'Est parisien (11ème, 12ème et 20ème arrondissements de Paris) :
+```{r}
+RP %>% 
+  mutate(COM = substr(IRIS, 1, 5)) %>% 
+  filter(TACT == "12" & COM %in% c("75111", "75112", "75120")) %>%  
+  group_by(IRIS) %>%
+  summarise(nb_chômeurs = round(sum(IPONDI)))
+```
+  
+
+Comme on va être amené à réaliser ces tableaux de contingence sur chaque caractéristique qui nous intéresse et que l'on veut mettre en variable d'entrée de l'analyse de *clustering*, on peut créer une fonction : cette fonction doit nous permettre d'avoir une somme par IRIS pour chaque variable qu'on utilisera dans notre analyse de *clustering*, selon que l'on se situe au niveau du département ou au niveau de la commune pour se laisser ultérieurement le choix, de même on utilisera les `...` en argument de la fonction `group_by` car on pourra éventuellement avoir plusieurs variables de regroupement. La fonction que l'on appelerra `sum_var_IRIS()` pourra être la suivante :
+```{r}
+sum_var_IRIS <- function(data, codedept, codecom, ..., nom_var)
+{
+  var_sum <- data %>% 
+              mutate(COM = substr(IRIS,1,5)) %>%
+              filter(DEPT %in% codedept | COM %in% codecom) %>%
+              group_by(...) %>%
+              summarise({{ nom_var }} := round(sum(IPONDI)))
+  
+  return(var_sum)
+}
+```
+
+Pour vérifier que la fonction tourne bien, on procède au même exemple que précédemment, pour Paris 12ème puis l'Est parisien :
+```{R}
+RP %>% sum_var_IRIS(codedept=" ", codecom = c("75111", "75112", "75120"), 
+                    IRIS, nom_var = nbhab)
+
+RP %>% filter(TACT == "12") %>% 
+  sum_var_IRIS(codedept=" ", codecom = c("75111", "75112", "75120"), IRIS, 
+               nom_var = nbchom)
+```
+Il y a donc 193 IRIS dans l'Est parisien et on voit bien qu'on a bien une ligne par IRIS (1ère colonne) et une (seconde) colonne renseignant du nombre d'habitants, puis du nombre de chômeurs.  
+
+
+Mais pour des variables à plusieurs modalités, comme l'âge ou la PCS, il faut ajouter une étape supplémentaire car aura d'abord plusieurs lignes (autant qu'il y a de modalités dans la variable) par IRIS. Par exemple, pour l'âge avec la variable `AGER20` :
+```{r warning=FALSE}
+RP %>% sum_var_IRIS(codedept = " ", codecom = c("75111", "75112", "75120"), 
+                    IRIS, AGER20, nom_var = Nb_age)
+```
+
+Il faut donc créer une autre fonction que l'on va nommer `tab_cont_n_iris` pour créer un tableau de contingence avec une seule ligne par IRIS, et autant de colonnes qu'il y a de modalités dans cette variable. Pour cela, on peut utiliser la fonction `pivot_wider()` après la fonction déjà créée `sum_var_IRIS()`.
+```{r warning=FALSE}
+sum_var_IRIS(RP, codedept = " ", codecom = c("75111", "75112", "75120"),
+             IRIS, AGER20, nom_var = Nb_age) %>% 
+  pivot_wider(names_from = AGER20, values_from = Nb_age, values_fill = 0, 
+              names_prefix = "age_")
+```
+
+La fonction s'écrira alors de cette façon :
+```{r}
+tab_cont_n_iris <- function(data, codedept, codecom, ..., nom_var, var, prefix_var)
+{
+  tab <- sum_var_IRIS(data = data, codedept = codedept, codecom = codecom, ..., nom_var = nom_var)
+  
+  tab_n <- tab %>% pivot_wider(names_from = {{ var }}, values_from = nom_var,
+                               values_fill = 0, names_prefix = prefix_var)
+  
+  return(tab_n)
+}
+```
+
+Pour la variable d'âge, cela donnera : 
+```{r Nbage,  warning=FALSE}
+Nbage <- tab_cont_n_iris(RP, codedept = " ", codecom = c("75111", "75112", "75120"), IRIS, AGER20, nom_var = Nb_age,
+                         var = AGER20, prefix_var = "age_")
+Nbage
+```
+
+On se retrouve ainsi avec un tableau avec 193 lignes et 14 colonnes car la variable `AGER20` a 13 modalités ; c'est un peu trop, il faudra donc regrouper des modalités pour éviter d'avoir des catégories avec des effectifs trop faibles et parce que nous n'avons pas besoin d'un niveau de détail si élevé.  
+
+  
+
+  
+
+Avant de sélectionner les variables à partir desquelles on réalisera le clustering, revenons théoriquement sur les objectifs et la démarche de cette méthode d'analyse de données.  
+

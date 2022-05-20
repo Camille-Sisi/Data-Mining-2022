@@ -6,9 +6,9 @@ Et voilà, on a bien "trituré" ces deux bases de données, maintenant on peut l
 ```{r}
 # On enregistre la table de données pour l'utiliser ultérieurement
 saveRDS(object = PassageL1L2,
-        file = "Data/PassageL1L2.Rdata")
+        file = "data/PassageL1L2.Rdata")
 saveRDS(object = dt_aidesCovid,
-        file = "Data/dt_aidesCovid.Rdata")
+        file = "data/dt_aidesCovid.Rdata")
 ```
 
 
