@@ -770,6 +770,8 @@ Ainsi, ce 2nd clustering, qui semble plus pertinent que le 1er, a permis de regr
 - une troisième classe, qui s'oppose à cette 2ème classe ainsi que la dernière, rassemble au contraire desquartiers plus défavorisés qui se situent en majorité sur les boulevards périphériques et davantage dans le 20ème ;
 - enfin une 4ème classe qui elle aussi rassemble une population plus favorisée avec surtout davantage de retraités dans des quartiers principalement du 12ème arrondissement (Bel-Air, Picpus).
 
+Si l'on avait choisi 3 classes, on aurait eu un regroupement de la classe 2 et 4 (les 2 classes à droite du dendogramme ; la classe 3 étant celle le plus à gauche du dendogramme).
+
 
 
 ```{r desc_var, eval=FALSE, include=FALSE}
