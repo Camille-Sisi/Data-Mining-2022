@@ -59,6 +59,7 @@ saveRDS(object = RP,
 
 # Lecture du fichier de métadonnées et enregistrement dans le dossier data
 # de notre projet
+library(data.table)
 meta <- fread("data/varmod_INDCVI_2018.csv")
 # Enregistrement dans le dossier data
 saveRDS(object = meta,
@@ -121,8 +122,8 @@ Par exemple, pour connaître le nombre de chômeurs par IRIS du 12ème arrondiss
 ```{r}
 RP %>% 
   mutate(COM = substr(IRIS, 1, 5)) %>% 
-  filter(TACT == "12" & COM == "75112") %>% 
-  group_by(IRIS) %>%  # ou ARM == "75112"
+  filter(TACT == "12" & COM == "75112") %>% # ou ARM == "75112"
+  group_by(IRIS) %>%  
   summarise(nb_chômeurs = round(sum(IPONDI)))
 ```
   
@@ -136,7 +137,7 @@ RP %>%
 ```
   
 
-Comme on va être amené à réaliser ces tableaux de contingence sur chaque caractéristique qui nous intéresse et que l'on veut mettre en variable d'entrée de l'analyse de *clustering*, on peut créer une fonction : cette fonction doit nous permettre d'avoir une somme par IRIS pour chaque variable qu'on utilisera dans notre analyse de *clustering*, selon que l'on se situe au niveau du département ou au niveau de la commune pour se laisser ultérieurement le choix, de même on utilisera les `...` en argument de la fonction `group_by` car on pourra éventuellement avoir plusieurs variables de regroupement. La fonction que l'on appelerra `sum_var_IRIS()` pourra être la suivante :
+Comme on va être amené à réaliser ces tableaux de contingence sur chaque caractéristique qui nous intéresse et que l'on veut mettre en variable d'entrée de l'analyse de *clustering*, on peut créer une fonction : cette fonction doit nous permettre d'avoir une somme par IRIS pour chaque variable qu'on utilisera dans notre analyse de *clustering*, selon que l'on se situe au niveau du département ou au niveau de la commune pour se laisser ultérieurement le choix ; de même on utilisera les `...` en argument de la fonction `group_by` car on pourra éventuellement avoir plusieurs variables de regroupement. La fonction que l'on appelera `sum_var_IRIS()` pourra être la suivante :
 ```{r}
 sum_var_IRIS <- function(data, codedept, codecom, ..., nom_var)
 {
@@ -162,7 +163,7 @@ RP %>% filter(TACT == "12") %>%
 Il y a donc 193 IRIS dans l'Est parisien et on voit bien qu'on a bien une ligne par IRIS (1ère colonne) et une (seconde) colonne renseignant du nombre d'habitants, puis du nombre de chômeurs.  
 
 
-Mais pour des variables à plusieurs modalités, comme l'âge ou la PCS, il faut ajouter une étape supplémentaire car aura d'abord plusieurs lignes (autant qu'il y a de modalités dans la variable) par IRIS. Par exemple, pour l'âge avec la variable `AGER20` :
+Mais pour des variables à plusieurs modalités, comme l'âge ou la PCS, il faut ajouter une étape supplémentaire car on aura d'abord plusieurs lignes (autant qu'il y a de modalités dans la variable) par IRIS. Par exemple, pour l'âge avec la variable `AGER20` :
 ```{r warning=FALSE}
 RP %>% sum_var_IRIS(codedept = " ", codecom = c("75111", "75112", "75120"), 
                     IRIS, AGER20, nom_var = Nb_age)
