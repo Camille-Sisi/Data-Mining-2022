@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Section 13 Nouvelle base de données individuelles à prendre en main : le RP 2018 | DATA MINING</title>
   <meta name="description" content="Titre du cours" />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Section 13 Nouvelle base de données individuelles à prendre en main : le RP 2018 | DATA MINING" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Camille Signoretto, Maîtresse de conférences en économie, Université Paris Cité" />
 
 
-<meta name="date" content="2022-05-20" />
+<meta name="date" content="2022-07-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -244,6 +244,22 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="14.1" data-path="14-Clustering-theorique.html"><a href="14-Clustering-theorique.html#la-classification-ascendante-hiérarchique-cah"><i class="fa fa-check"></i><b>14.1</b> La classification ascendante hiérarchique (CAH)</a></li>
 <li class="chapter" data-level="14.2" data-path="14-Clustering-theorique.html"><a href="14-Clustering-theorique.html#la-méthode-des-centres-mobiles-et-sa-variante-les-k-means"><i class="fa fa-check"></i><b>14.2</b> La méthode des centres mobiles et sa variante, <em>les K-means</em></a></li>
 </ul></li>
+<li class="chapter" data-level="15" data-path="15-Clustering-application.html"><a href="15-Clustering-application.html"><i class="fa fa-check"></i><b>15</b> Clustering : application sur le RP 2018</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="15-Clustering-application.html"><a href="15-Clustering-application.html#choix-des-variables-et-préparation-du-tableau-final"><i class="fa fa-check"></i><b>15.1</b> Choix des variables et préparation du tableau final</a>
+<ul>
+<li class="chapter" data-level="15.1.1" data-path="15-Clustering-application.html"><a href="15-Clustering-application.html#variables-socio-professionnelles-caractérisant-les-individushabitants-de-notre-commune"><i class="fa fa-check"></i><b>15.1.1</b> Variables socio-professionnelles caractérisant les individus/habitants de notre commune</a></li>
+<li class="chapter" data-level="15.1.2" data-path="15-Clustering-application.html"><a href="15-Clustering-application.html#création-des-différents-tableaux-de-contingence"><i class="fa fa-check"></i><b>15.1.2</b> Création des différents tableaux de contingence</a></li>
+<li class="chapter" data-level="15.1.3" data-path="15-Clustering-application.html"><a href="15-Clustering-application.html#création-du-tableau-final"><i class="fa fa-check"></i><b>15.1.3</b> Création du tableau final</a></li>
+<li class="chapter" data-level="15.1.4" data-path="15-Clustering-application.html"><a href="15-Clustering-application.html#choix-des-variables-actives-dans-le-clustering"><i class="fa fa-check"></i><b>15.1.4</b> choix des variables actives dans le clustering</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="15-Clustering-application.html"><a href="15-Clustering-application.html#la-méthode-de-la-cah-appliquée-à-nos-données"><i class="fa fa-check"></i><b>15.2</b> La méthode de la CAH appliquée à nos données</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="15-Clustering-application.html"><a href="15-Clustering-application.html#constitution-des-classes"><i class="fa fa-check"></i><b>15.2.1</b> Constitution des classes</a></li>
+<li class="chapter" data-level="15.2.2" data-path="15-Clustering-application.html"><a href="15-Clustering-application.html#visualisation-sur-la-carte-de-la-commune"><i class="fa fa-check"></i><b>15.2.2</b> Visualisation sur la carte de la commune</a></li>
+<li class="chapter" data-level="15.2.3" data-path="15-Clustering-application.html"><a href="15-Clustering-application.html#interprétation"><i class="fa fa-check"></i><b>15.2.3</b> Interprétation</a></li>
+</ul></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -300,10 +316,11 @@ code span.wa { color: #bf0303; } /* Warning */
 <span id="cb136-3"><a href="13-Base-individus-RP.html#cb136-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb136-4"><a href="13-Base-individus-RP.html#cb136-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Lecture du fichier de métadonnées et enregistrement dans le dossier data</span></span>
 <span id="cb136-5"><a href="13-Base-individus-RP.html#cb136-5" aria-hidden="true" tabindex="-1"></a><span class="co"># de notre projet</span></span>
-<span id="cb136-6"><a href="13-Base-individus-RP.html#cb136-6" aria-hidden="true" tabindex="-1"></a>meta <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&quot;data/varmod_INDCVI_2018.csv&quot;</span>)</span>
-<span id="cb136-7"><a href="13-Base-individus-RP.html#cb136-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Enregistrement dans le dossier data</span></span>
-<span id="cb136-8"><a href="13-Base-individus-RP.html#cb136-8" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(<span class="at">object =</span> meta,</span>
-<span id="cb136-9"><a href="13-Base-individus-RP.html#cb136-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">file =</span> <span class="st">&quot;data/indiv_2018_meta.Rdata&quot;</span>)</span></code></pre></div>
+<span id="cb136-6"><a href="13-Base-individus-RP.html#cb136-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb136-7"><a href="13-Base-individus-RP.html#cb136-7" aria-hidden="true" tabindex="-1"></a>meta <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&quot;data/varmod_INDCVI_2018.csv&quot;</span>)</span>
+<span id="cb136-8"><a href="13-Base-individus-RP.html#cb136-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Enregistrement dans le dossier data</span></span>
+<span id="cb136-9"><a href="13-Base-individus-RP.html#cb136-9" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(<span class="at">object =</span> meta,</span>
+<span id="cb136-10"><a href="13-Base-individus-RP.html#cb136-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">file =</span> <span class="st">&quot;data/indiv_2018_meta.Rdata&quot;</span>)</span></code></pre></div>
 </div>
 <div id="prise-en-main-rapide" class="section level2 hasAnchor" number="13.2">
 <h2><span class="header-section-number">13.2</span> Prise en main rapide<a href="13-Base-individus-RP.html#prise-en-main-rapide" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -1640,8 +1657,8 @@ Il faut bien comprendre comment utiliser à bon escient ces différents niveaux,
 Par exemple, pour connaître le nombre de chômeurs par IRIS du 12ème arrondissement de Paris, il faut : i) utiliser le code IRIS et récupérer les 5 premiers chiffres pour avoir le niveau commune (pour Paris, Marseille ou Lyon, on peut également utiliser la variable <code>ARM</code>), ii) filtrer pour n’avoir que les personnes dont l’activité est “chômeur” (<code>TACT == "12"</code>) et la commune correspondant au 12ème arrondissement, et iii) calculer la somme par IRIS :</p>
 <div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="13-Base-individus-RP.html#cb140-1" aria-hidden="true" tabindex="-1"></a>RP <span class="sc">%&gt;%</span> </span>
 <span id="cb140-2"><a href="13-Base-individus-RP.html#cb140-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">COM =</span> <span class="fu">substr</span>(IRIS, <span class="dv">1</span>, <span class="dv">5</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb140-3"><a href="13-Base-individus-RP.html#cb140-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(TACT <span class="sc">==</span> <span class="st">&quot;12&quot;</span> <span class="sc">&amp;</span> COM <span class="sc">==</span> <span class="st">&quot;75112&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb140-4"><a href="13-Base-individus-RP.html#cb140-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(IRIS) <span class="sc">%&gt;%</span>  <span class="co"># ou ARM == &quot;75112&quot;</span></span>
+<span id="cb140-3"><a href="13-Base-individus-RP.html#cb140-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(TACT <span class="sc">==</span> <span class="st">&quot;12&quot;</span> <span class="sc">&amp;</span> COM <span class="sc">==</span> <span class="st">&quot;75112&quot;</span>) <span class="sc">%&gt;%</span> <span class="co"># ou ARM == &quot;75112&quot;</span></span>
+<span id="cb140-4"><a href="13-Base-individus-RP.html#cb140-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(IRIS) <span class="sc">%&gt;%</span>  </span>
 <span id="cb140-5"><a href="13-Base-individus-RP.html#cb140-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(nb_chômeurs <span class="ot">=</span> <span class="fu">round</span>(<span class="fu">sum</span>(IPONDI)))</span></code></pre></div>
 <pre><code># A tibble: 57 x 2
    IRIS      nb_chômeurs
@@ -1677,7 +1694,7 @@ Par exemple, pour connaître le nombre de chômeurs par IRIS du 12ème arrondiss
  9 751114109         216
 10 751114110         171
 # ... with 182 more rows</code></pre>
-<p>Comme on va être amené à réaliser ces tableaux de contingence sur chaque caractéristique qui nous intéresse et que l’on veut mettre en variable d’entrée de l’analyse de <em>clustering</em>, on peut créer une fonction : cette fonction doit nous permettre d’avoir une somme par IRIS pour chaque variable qu’on utilisera dans notre analyse de <em>clustering</em>, selon que l’on se situe au niveau du département ou au niveau de la commune pour se laisser ultérieurement le choix, de même on utilisera les <code>...</code> en argument de la fonction <code>group_by</code> car on pourra éventuellement avoir plusieurs variables de regroupement. La fonction que l’on appelerra <code>sum_var_IRIS()</code> pourra être la suivante :</p>
+<p>Comme on va être amené à réaliser ces tableaux de contingence sur chaque caractéristique qui nous intéresse et que l’on veut mettre en variable d’entrée de l’analyse de <em>clustering</em>, on peut créer une fonction : cette fonction doit nous permettre d’avoir une somme par IRIS pour chaque variable qu’on utilisera dans notre analyse de <em>clustering</em>, selon que l’on se situe au niveau du département ou au niveau de la commune pour se laisser ultérieurement le choix ; de même on utilisera les <code>...</code> en argument de la fonction <code>group_by</code> car on pourra éventuellement avoir plusieurs variables de regroupement. La fonction que l’on appelera <code>sum_var_IRIS()</code> pourra être la suivante :</p>
 <div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="13-Base-individus-RP.html#cb144-1" aria-hidden="true" tabindex="-1"></a>sum_var_IRIS <span class="ot">&lt;-</span> <span class="cf">function</span>(data, codedept, codecom, ..., nom_var)</span>
 <span id="cb144-2"><a href="13-Base-individus-RP.html#cb144-2" aria-hidden="true" tabindex="-1"></a>{</span>
 <span id="cb144-3"><a href="13-Base-individus-RP.html#cb144-3" aria-hidden="true" tabindex="-1"></a>  var_sum <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
@@ -1723,7 +1740,7 @@ Par exemple, pour connaître le nombre de chômeurs par IRIS du 12ème arrondiss
 10 751114110    171
 # ... with 182 more rows</code></pre>
 <p>Il y a donc 193 IRIS dans l’Est parisien et on voit bien qu’on a bien une ligne par IRIS (1ère colonne) et une (seconde) colonne renseignant du nombre d’habitants, puis du nombre de chômeurs.</p>
-<p>Mais pour des variables à plusieurs modalités, comme l’âge ou la PCS, il faut ajouter une étape supplémentaire car aura d’abord plusieurs lignes (autant qu’il y a de modalités dans la variable) par IRIS. Par exemple, pour l’âge avec la variable <code>AGER20</code> :</p>
+<p>Mais pour des variables à plusieurs modalités, comme l’âge ou la PCS, il faut ajouter une étape supplémentaire car on aura d’abord plusieurs lignes (autant qu’il y a de modalités dans la variable) par IRIS. Par exemple, pour l’âge avec la variable <code>AGER20</code> :</p>
 <div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="13-Base-individus-RP.html#cb149-1" aria-hidden="true" tabindex="-1"></a>RP <span class="sc">%&gt;%</span> <span class="fu">sum_var_IRIS</span>(<span class="at">codedept =</span> <span class="st">&quot; &quot;</span>, <span class="at">codecom =</span> <span class="fu">c</span>(<span class="st">&quot;75111&quot;</span>, <span class="st">&quot;75112&quot;</span>, <span class="st">&quot;75120&quot;</span>), </span>
 <span id="cb149-2"><a href="13-Base-individus-RP.html#cb149-2" aria-hidden="true" tabindex="-1"></a>                    IRIS, AGER20, <span class="at">nom_var =</span> Nb_age)</span></code></pre></div>
 <pre><code>`summarise()` has grouped output by &#39;IRIS&#39;. You can override using the

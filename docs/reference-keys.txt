@@ -61,3 +61,13 @@ tableaux-de-contingence-par-iris-découpage-territorial-infracommunal
 c14-Clustering-theorique
 la-classification-ascendante-hiérarchique-cah
 la-méthode-des-centres-mobiles-et-sa-variante-les-k-means
+c15-Clustering-application
+choix-des-variables-et-préparation-du-tableau-final
+variables-socio-professionnelles-caractérisant-les-individushabitants-de-notre-commune
+création-des-différents-tableaux-de-contingence
+création-du-tableau-final
+choix-des-variables-actives-dans-le-clustering
+la-méthode-de-la-cah-appliquée-à-nos-données
+constitution-des-classes
+visualisation-sur-la-carte-de-la-commune
+interprétation
