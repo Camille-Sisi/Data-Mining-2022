@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Section 14 Clustering : aspects théoriques | DATA MINING</title>
   <meta name="description" content="Titre du cours" />
-  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Section 14 Clustering : aspects théoriques | DATA MINING" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Camille Signoretto, Maîtresse de conférences en économie, Université Paris Cité" />
 
 
-<meta name="date" content="2022-07-28" />
+<meta name="date" content="2023-02-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -285,7 +285,10 @@ Les méthodes de <strong>clustering</strong> (ou typologie, ou segmentation, ou 
 Ce sont justement les algorithmes qui vont chercher à organiser les observations en groupes ou classes dit “clusters” en fonction de variables quantitatives choisies en entrée/input dans le modèle. L’algorithme va ensuite chercher à ce que ces “clusters” soient à la fois le plus similaire possible à l’intérieur/en leur sein (forte “similarité intraclasse”, on cherche alors à <strong>minimiser l’inertie intraclasse</strong>) et le plus distinctif/différent des autres groupes/classes (faible “similarité interclasse”, on parlera de <strong>maximisation de l’inertie interclasse</strong>). Ces observations peuvent être des individus, des entreprises, ou comme ici pour nous, un niveau territorial (l’IRIS).<br />
 
 <div align="center">
-<img src="images/Representation%20graphique%20Inertie%20clustering.png" title="fig:" alt="Représentation graphique Inertie totale, interclasse et intraclasse" />
+<div class="figure">
+<img src="images/Representation%20graphique%20Inertie%20clustering.png" alt="" />
+<p class="caption">Représentation graphique Inertie totale, interclasse et intraclasse</p>
+</div>
 <div align="center">
 <p><em>Source : document de cours accessible ici <a href="http://iml.univ-mrs.fr/~reboul/ADD4-MAB.pdf" class="uri">http://iml.univ-mrs.fr/~reboul/ADD4-MAB.pdf</a></em></p>
 <div align="justify">
@@ -295,7 +298,10 @@ Ce sont justement les algorithmes qui vont chercher à organiser les observation
 <h2><span class="header-section-number">14.1</span> La classification ascendante hiérarchique (CAH)<a href="14-Clustering-theorique.html#la-classification-ascendante-hiérarchique-cah" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Voici une représentation générale d’un clustering hiérarhique :</p>
 <div align="center">
-<img src="images/Representation%20graphique%20clustering%20hiérarchique.png" title="fig:" alt="Représentation graphique clustering hiérarchique" />
+<div class="figure">
+<img src="images/Representation%20graphique%20clustering%20hiérarchique.png" alt="" />
+<p class="caption">Représentation graphique clustering hiérarchique</p>
+</div>
 <div align="center">
 <p><em>Source : document de cours accessible ici <a href="https://perso.univ-rennes1.fr/valerie.monbet/ExposesM2/2013/Classification2.pdf" class="uri">https://perso.univ-rennes1.fr/valerie.monbet/ExposesM2/2013/Classification2.pdf</a></em></p>
 <div align="justify">
@@ -307,7 +313,10 @@ Ce sont justement les algorithmes qui vont chercher à organiser les observation
 </ul>
 <p>Un schéma de 3 de ces distances permet de mieux visualiser ce dont il s’agit :</p>
 <div align="center">
-<img src="images/Representation%20graphique%20criteres%20agregation%20clustering.png" title="fig:" alt="Representation graphique de 3 critères d’agrégation" />
+<div class="figure">
+<img src="images/Representation%20graphique%20criteres%20agregation%20clustering.png" alt="" />
+<p class="caption">Representation graphique de 3 critères d’agrégation</p>
+</div>
 <div align="center">
 <p><em>Source : document de cours accessible ici <a href="https://r.developpez.com/tutoriels/programmation-graphe/livre-R-et-espace/?page=chapitre-7-methodes-de-classification" class="uri">https://r.developpez.com/tutoriels/programmation-graphe/livre-R-et-espace/?page=chapitre-7-methodes-de-classification</a></em></p>
 <div align="justify">
@@ -403,7 +412,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

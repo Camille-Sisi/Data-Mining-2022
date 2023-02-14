@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Section 8 Les applications interactives avec Shiny App | DATA MINING</title>
   <meta name="description" content="Titre du cours" />
-  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Section 8 Les applications interactives avec Shiny App | DATA MINING" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Camille Signoretto, Maîtresse de conférences en économie, Université Paris Cité" />
 
 
-<meta name="date" content="2022-07-28" />
+<meta name="date" content="2023-02-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -354,6 +354,10 @@ Le première comprend la fonction <code>sidebarPanel()</code> qui contient le ou
 <p>La liste des widgets est reproduite ci-dessous avec un tableau et une image récapitulative (disponible directement <a href="https://shiny.rstudio.com/gallery/widget-gallery.html" target="_blank">ici</a>) ; à part les arguments communs <code>inputID()</code> et <code>label()</code>, les autres arguments diffèrent selon le widget, il est donc essentiel d’y faire un tour avant d’en utiliser un si l’on ne le connaît pas <em>a priori</em>.</p>
 <table>
 <caption><strong>Tableau : Fonctions Shiny et widgets associés</strong></caption>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th align="left">Fonction</th>
@@ -563,7 +567,10 @@ Elle est définie par la fonction <code>function(input, output){ }</code>. À ch
 <li>un <em>premier type de réactivité</em>, le plus simple, à travers les interactions entre les fonctions <strong><code>ui()</code></strong> et <strong><code>server()</code></strong> : comme expliqué au-dessus, cela passe par les “input” définis dans la partie <strong>ui</strong> et les “output” créés dans la partie <strong>server</strong> ; plus précisément, si on a définit un widget permettant par exemple de choisir une année donnée et qu’on l’a appelé <code>annee</code> (avec l’argument <code>id=" "</code>), alors dans la ou les fonctions <code>render...()</code> de la partie <strong>server</strong>, il faudra renvoyer à cette variable par l’indication <code>input$annee</code>. De manière générale, il faudra accoler le nom donné à un input <code>x</code> de cette façon dans le <strong>server</strong> : <code>input$x</code>.<br />
 Cela peut être résumé par le schéma suivant, emprunté à l’une des sources citées en introduction :</li>
 </ul>
-<img src="images/Reactivite%20UI%20et%20SERVER.png" title="fig:" alt="Reactivité UI et Server" />
+<div class="figure">
+<img src="images/Reactivite%20UI%20et%20SERVER.png" alt="" />
+<p class="caption">Reactivité UI et Server</p>
+</div>
 <div align="center">
 <p><em>Source : <a href="https://laderast.github.io/gradual_shiny/introduction.html" class="uri">https://laderast.github.io/gradual_shiny/introduction.html</a></em></p>
 <div align="justify">
@@ -656,7 +663,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

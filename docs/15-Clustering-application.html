@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Section 15 Clustering : application sur le RP 2018 | DATA MINING</title>
   <meta name="description" content="Titre du cours" />
-  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Section 15 Clustering : application sur le RP 2018 | DATA MINING" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Camille Signoretto, Maîtresse de conférences en économie, Université Paris Cité" />
 
 
-<meta name="date" content="2022-07-28" />
+<meta name="date" content="2023-02-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1525,6 +1525,7 @@ Enfin, on trouve une part plus importante d’actifs occupés chez les habitants
 <li>une troisième classe, qui s’oppose à cette 2ème classe ainsi que la dernière, rassemble au contraire desquartiers plus défavorisés qui se situent en majorité sur les boulevards périphériques et davantage dans le 20ème ;</li>
 <li>enfin une 4ème classe qui elle aussi rassemble une population plus favorisée avec surtout davantage de retraités dans des quartiers principalement du 12ème arrondissement (Bel-Air, Picpus).</li>
 </ul>
+<p>Si l’on avait choisi 3 classes, on aurait eu un regroupement de la classe 2 et 4 (les 2 classes à droite du dendogramme ; la classe 3 étant celle le plus à gauche du dendogramme).</p>
 <!-- Enfin, on a vu qu'il y avait plusieurs méthodes d'agrégation, ici nous avons utilisé le critère de Ward. Il est possible de tester d'autres méthodes et de comparer les dendogrammes alors obtenus. -->
 <!-- On observe donc de fortes différences entre les dendogrammes. Par exemple, la méthode du "lien simple" ou "minimum" va avoir tendance à construire une grosse classe et une autre plus petite, c'est bien ce que l'on voit ici ; alors qu'au contraire, la méthode d'agrégation dite "complete" tend à construire des groupes plutôt de taille égale, en revanche, il faut savoir qu'elle est sensible aux points aberrants (on voit que ce n'est pas le cas ici). Enfin, on voit également que la méthode du "centroïd" (barycentre/centre de gravité des classes) produit un dendogramme particulier et déséquilibré comme le premier graphe (méthode du "lien simple").  C'est bien la méthode de Ward qui est la plus utilisée en pratique.   -->
 <!-- ## La méthode des *k-means* appliquée à nos données
@@ -1785,7 +1786,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');
