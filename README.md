@@ -1,8 +1,8 @@
-# Cours de DATA MINING dispensé en M2 PISE et CCESE de l'Université Paris Cité
+# Cours de DATA MINING dispensé en M2 PISE et CCESE de l'Université Paris Cité, année 2021-2022
 
 Ceci est le code source du document *Data Mining*, accessible en ligne à l'adresse suivante :
 
-- https://camille-sisi.github.io/Data-Mining
+- https://camille-sisi.github.io/Data-Mining-2022.
 
 Le document est généré grâce à l'extension [bookdown](https://bookdown.org/) de [Yihui Xie](https://yihui.name/). Il est mis à disposition selon les termes de la [Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International](http://creativecommons.org/licenses/by-nc-sa/4.0/).
 
